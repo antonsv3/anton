@@ -267,9 +267,7 @@ func formatMasterValues(master Master, tempLine Lines, rotationNumber, lineSprea
 }
 
 // Method used to send the Master to Anton
-func (master Master) SendToAnton() {
-
-	antonLocation := GetAntonLocation()
+func (master Master) SendToAnton(antonLocation string) {
 
 	// We want to send the account we're following, and not the Master Account, if the Account Type is "Agent"
 	if master.AccountType == "Agent" {
