@@ -75,6 +75,8 @@ type Slave struct {
 
 // Create struct to hold info about lines pulled from scrapped sites
 type Lines struct {
+	ID       primitive.ObjectID `bson:"_id,omitempty"`
+	ObjectID string             `bson:"-"`
 
 	// Will need to fill these out based from the scrapper
 	RotationNumber  string `json:"RotationNumber"`
