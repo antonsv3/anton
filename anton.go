@@ -79,16 +79,15 @@ type Lines struct {
 	ObjectID string             `bson:"-"`
 
 	// Will need to fill these out based from the scrapper
-	RotationNumber     string `json:"RotationNumber"`
-	LineSpread         string `json:"LineSpread"`
-	LineJuice          string `json:"LineJuice"`
-	OverUnder          string `json:"OverUnder"`
-	FavoredUnderdog    string `json:"FavoredUnderdog"`
-	LineType           string `json:"LineType"`
-	TicketID           string `json:"TicketID"`
-	RiskAmount         string `json:"RiskAmount"`
-	ToWinAmount        string `json:"ToWinAmount"`
-	LineCharacteristic string `json:"LineCharacteristic"`
+	RotationNumber  string `json:"RotationNumber"`
+	LineSpread      string `json:"LineSpread"`
+	LineJuice       string `json:"LineJuice"`
+	OverUnder       string `json:"OverUnder"`
+	FavoredUnderdog string `json:"FavoredUnderdog"`
+	LineType        string `json:"LineType"`
+	TicketID        string `json:"TicketID"`
+	RiskAmount      string `json:"RiskAmount"`
+	ToWinAmount     string `json:"ToWinAmount"`
 
 	// This is more for documenting purposes for the Database
 	MasterName string `json:"MasterName"`
@@ -103,10 +102,11 @@ type Lines struct {
 	HomeAway string `json:"HomeAway"`
 
 	// These will be auto-populated by the lines from the scrapper
-	Sport  string `json:"Sport"`
-	League string `json:"League"`
-	Period string `json:"Period"`
-	Team   string `json:"Team"`
+	Sport              string `json:"Sport"`
+	League             string `json:"League"`
+	Period             string `json:"Period"`
+	Team               string `json:"Team"`
+	LineCharacteristic string `json:"LineCharacteristic"`
 
 	// These can be inherited by Approved Bet, CurrentUser, or have default values for Potential:
 	LineStatus         string
