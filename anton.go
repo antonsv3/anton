@@ -92,8 +92,10 @@ type Lines struct {
 	// This is more for documenting purposes for the Database
 	MasterName string `json:"MasterName"`
 	MasterPass string `json:"MasterPass"`
+	MasterSite string `json:"MasterSite"`
 	SlaveName  string `json:"SlaveName"`
 	SlavePass  string `json:"SlavePass"`
+	SlaveSite  string `json:"SlaveSite"`
 
 	// This is Optional holder for any unique values for a particular line
 	UniqueID string `json:"UniqueID"`
