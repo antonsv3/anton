@@ -79,15 +79,16 @@ type Lines struct {
 	ObjectID string             `bson:"-"`
 
 	// Will need to fill these out based from the scrapper
-	RotationNumber  string `json:"RotationNumber"`
-	LineSpread      string `json:"LineSpread"`
-	LineJuice       string `json:"LineJuice"`
-	OverUnder       string `json:"OverUnder"`
-	FavoredUnderdog string `json:"FavoredUnderdog"`
-	LineType        string `json:"LineType"`
-	TicketID        string `json:"TicketID"`
-	RiskAmount      string `json:"RiskAmount"`
-	ToWinAmount     string `json:"ToWinAmount"`
+	RotationNumber     string `json:"RotationNumber"`
+	LineSpread         string `json:"LineSpread"`
+	LineJuice          string `json:"LineJuice"`
+	OverUnder          string `json:"OverUnder"`
+	FavoredUnderdog    string `json:"FavoredUnderdog"`
+	LineType           string `json:"LineType"`
+	TicketID           string `json:"TicketID"`
+	RiskAmount         string `json:"RiskAmount"`
+	ToWinAmount        string `json:"ToWinAmount"`
+	LineCharacteristic string `json:"LineCharacteristic"`
 
 	// This is more for documenting purposes for the Database
 	MasterName string `json:"MasterName"`
