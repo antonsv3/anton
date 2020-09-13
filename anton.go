@@ -96,9 +96,9 @@ type Lines struct {
 	MasterPass string `json:"MasterPass"`
 	MasterSite string `json:"MasterSite"`
 
-	SlaveName string `json:"SlaveName,omitempty"`
-	SlavePass string `json:"SlavePass,omitempty"`
-	SlaveSite string `json:"SlaveSite,omitempty"`
+	SlaveName string `bson:",omitempty" json:"SlaveName,omitempty"`
+	SlavePass string `bson:",omitempty" json:"SlavePass,omitempty"`
+	SlaveSite string `bson:",omitempty" json:"SlaveSite,omitempty"`
 
 	// This is Optional holder for any unique values for a particular line
 	UniqueID string `json:"UniqueID"`
