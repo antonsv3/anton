@@ -136,6 +136,8 @@ func (helper Helper) PrintCollectorTraffic(currentCollector *colly.Collector, se
 // Helper function that checks if a string value is negative, positive, or zero, returns "Negative", "Positive", "Error"
 // I'm going to return Zeros as Positive, it will get reformatted and error checked by other functions
 func (helper Helper) StringNegativePositiveZero(stringValue string) string {
+	stringValue = helper.ReplaceParameters(stringValue, "½", ".5", "\u00a0", "", "", "")
+
 	var returnString string
 	var isZeroAnError string
 	var tempFloat float64
