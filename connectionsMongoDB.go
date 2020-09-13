@@ -237,3 +237,27 @@ func GatherSlaveLines(client *mongo.Client, filter bson.M) []Lines {
 	return lines
 
 }
+
+func PushOpenBets(client *mongo.Client, filter bson.M) []Lines {
+	var lines []Lines
+	collection := client.Database("Anton").Collection("SlavesLines")
+	cur, err := collection.Find(context.TODO(), filter)
+	if err != nil {
+		log.Fatal("Error on Finding all the documents", err)
+	}
+	for cur.Next(context.TODO()) {
+		var line Lines
+		err = cur.Decode(&line)
+		if err != nil {
+			log.Fatal("Error on Decoding the document", err)
+		}
+		lines = append(lines, line)
+	}
+
+	// Close the Cursor
+	cur.Close(context.TODO())
+
+	// Return Results
+	return lines
+
+}

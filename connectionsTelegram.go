@@ -8,32 +8,13 @@ import (
 	"strconv"
 )
 
-func SendTelegram(msg, group string) {
+func SendTelegram(msg, groupID, tokenID string) {
 
 	// Declare the helper struct to access the helper functions
 	var helper Helper
 
-	// These are static values
-
-	// This is our Bot Token ID for @AntonSV3Bot
-	tokenID := ""
-	// This is the URL:
+	// This is the URI:
 	postURL := "https://api.telegram.org/bot{tokenID}/sendMessage"
-
-	// Create a variable to see which group to send the message, whether test or real
-	groupID := ""
-	if group == "Test" {
-		// This is the GroupID for "Anton Test" with Mike
-		//groupID = ""
-		// New Test group without Mike
-		groupID = ""
-	} else if group == "Active" {
-		// This is the GroupID for "AntonBot"
-		// groupID = ""
-		// New Test group without
-		groupID = ""
-
-	}
 
 	// Create New Post Body for the message to send
 	postBody := new(TelegramMsg)

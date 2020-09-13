@@ -89,23 +89,25 @@ type Lines struct {
 	RiskAmount      string `json:"RiskAmount"`
 	ToWinAmount     string `json:"ToWinAmount"`
 
-	// This is more for documenting purposes for the Database
+	// These are more for documenting purposes for the Database
 	MasterName string `json:"MasterName"`
 	MasterPass string `json:"MasterPass"`
 	MasterSite string `json:"MasterSite"`
-	SlaveName  string `json:"SlaveName"`
-	SlavePass  string `json:"SlavePass"`
-	SlaveSite  string `json:"SlaveSite"`
+
+	SlaveName string `json:"SlaveName"`
+	SlavePass string `json:"SlavePass"`
+	SlaveSite string `json:"SlaveSite"`
 
 	// This is Optional holder for any unique values for a particular line
 	UniqueID string `json:"UniqueID"`
 	HomeAway string `json:"HomeAway"`
 
 	// These will be auto-populated by the lines from the scrapper
-	Sport              string `json:"Sport"`
-	League             string `json:"League"`
-	Period             string `json:"Period"`
-	Team               string `json:"Team"`
+	Sport  string `json:"Sport"`
+	League string `json:"League"`
+	Period string `json:"Period"`
+	Team   string `json:"Team"`
+
 	LineCharacteristic string `json:"LineCharacteristic"`
 
 	// These can be inherited by Approved Bet, CurrentUser, or have default values for Potential:
