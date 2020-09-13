@@ -239,14 +239,80 @@ func GatherSlaveLines(client *mongo.Client, filter bson.M) []Lines {
 }
 
 // Master Method to push all MasterLines to MongoDB
-func (master Master) PushMasterLines(URI string) {
+func (master Master) PushMasterLines(MongoURI, TelegramGroupID, TelegramToken string) {
+
+	var helper Helper
+
+	// First format the Master and Lines, will need the telegram message to look like:
+
+	// {Master} ({MasterPass}) #{TicketID}
+	// LineType: {LineType}
+
+	// If it is a Total, The bottom lines need to look like this
+	// {Team} {OverUnder} {Spread} ({Juice}) [{RiskAmount}/{ToWinAmount}]
+	// {Sport} - {League}
+
+	// If it is a Spread, The bottom lines need to look like this
+	// {Team} {Spread} ({Juice}) [{RiskAmount}/{ToWinAmount}]
+	// {Sport} - {League}
+
+	// We need to format each line for the Telegram Msg
+	for i := range master.MasterLines {
+
+		// If the Master is an Agent account, we want to send the User we are following, and not the Agent Login
+		tempUserName := ""
+		tempUserPass := ""
+
+		if master.AccountType == "Agent" {
+			tempUserName = master.MasterLines[i].MasterName
+			tempUserPass = master.MasterLines[i].MasterPass
+		} else {
+			tempUserName = master.MasterName
+			tempUserPass = master.MasterPass
+		}
+
+		lines := master.MasterLines[i]
+
+		telegramMsg := helper.ReplaceParameters("{Master} ({MasterPass}) #{TicketID}\n", "{Master}", tempUserName,
+			"{MasterPass}", tempUserPass, "{TicketID}", lines.TicketID)
+		telegramMsg += helper.ReplaceParameters("{LineType} - {Period}\n", "{Period}", lines.Period, "{LineType}",
+			lines.LineType)
+
+		// Based on the LineType, the next telegramMsg line will be formatted differently
+		if lines.LineType == "Total" || lines.LineType == "TeamTotal" {
+			telegramMsg += helper.ReplaceParameters("{Team} {OverUnder} {Spread} ({Juice}) [{RiskAmount}/{ToWin}]\n",
+				"{Team}", lines.Team, "{OverUnder}", lines.OverUnder, "{Spread}", lines.LineSpread, "{Juice}",
+				lines.LineJuice, "{RiskAmount}", lines.RiskAmount, "{ToWin}", lines.ToWinAmount)
+		}
+
+		// Based on the LineType, the next telegramMsg line will be formatted differently
+		if lines.LineType == "MoneyLine" {
+			telegramMsg += helper.ReplaceParameters("{Team} ({Juice}) [{RiskAmount}/{ToWin}]\n", "{Team}",
+				lines.Team, "{Juice}", lines.LineJuice, "{RiskAmount}", lines.RiskAmount, "{ToWin}", lines.ToWinAmount)
+		}
+
+		// Based on the LineType, the next telegramMsg line will be formatted differently
+		if lines.LineType == "Spread" {
+			telegramMsg += helper.ReplaceParameters("{Team} {Spread} ({Juice}) [{RiskAmount}/{ToWin}]\n",
+				"{Team}", lines.Team, "{Spread}", lines.LineSpread, "{Juice}", lines.LineJuice, "{RiskAmount}",
+				lines.RiskAmount, "{ToWin}", lines.ToWinAmount)
+		}
+
+		// The last line on the TelegramMsg will be the same for the different leagues
+		telegramMsg += helper.ReplaceParameters("{Sport} - {League}\n", "{Sport}", lines.Sport, "{League}",
+			lines.League)
+
+		// Now we can send the Telegram Msg within this loop
+		SendTelegram(telegramMsg, TelegramGroupID, TelegramToken)
+	}
 
 	// Start database connections
-	client := GetClient(URI)
+	client := GetClient(MongoURI)
 	results := client.Database("Anton").Collection("MastersLines")
 
-	formattedLinesToInsert := []interface{}{master.MasterLines}
-	results.InsertMany(context.Background(), formattedLinesToInsert)
+	linesToInsert := []interface{}{}
+	linesToInsert = append(linesToInsert, master.MasterLines)
+	results.InsertMany(context.Background(), linesToInsert)
 	DisconnectClient(client)
 
 }
