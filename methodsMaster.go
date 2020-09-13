@@ -3,19 +3,11 @@ package anton
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
-	"os"
 	"strconv"
 	"strings"
-
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/session"
-	"github.com/aws/aws-sdk-go/service/dynamodb"
-	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute"
-	"github.com/aws/aws-sdk-go/service/dynamodb/expression"
 )
 
 // The Different Methods in the Anton Package for Masters are listed in the order below:
@@ -295,6 +287,7 @@ func (master Master) SendToAnton(antonLocation string) {
 	log.Println(string(body))
 }
 
+/*
 // Sent API call to DynamoDB to gather Users, add them into overallWorkflow.Users slice of Users struct
 func (master *Master) GatherSlaves() {
 
@@ -350,6 +343,7 @@ func (master *Master) GatherSlaves() {
 		os.Exit(1)
 	}
 
+
 	// For each user from the Query API call
 	for _, i := range result.Items {
 		slave := Slave{}
@@ -362,10 +356,10 @@ func (master *Master) GatherSlaves() {
 			os.Exit(1)
 		}
 
-		slave.ProxyAddress = "http://" + slave.ProxyAddress
+		slave.Proxy.ProxyAddress = "http://" + slave.ProxyAddress
 
 		// Use tempUserStruct and append to the slice of Users Struct held outside in overallWorkflow
 		master.Slaves = append(master.Slaves, slave)
 	}
-
 }
+*/
