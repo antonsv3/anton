@@ -121,6 +121,7 @@ func GatherProxies(client *mongo.Client, filter bson.M) []Proxy {
 		if err != nil {
 			log.Fatal("Error on Decoding the document", err)
 		}
+		proxy.ProxyAddress = "http://" + proxy.ProxyAddress
 		proxies = append(proxies, proxy)
 	}
 
