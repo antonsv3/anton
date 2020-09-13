@@ -238,18 +238,14 @@ func GatherSlaveLines(client *mongo.Client, filter bson.M) []Lines {
 
 }
 
-// Master Method to push all Open Bets to our MongoDB
-func (master *Master) PushMasterLines(URI string) {
+// Master Method to push all MasterLines to MongoDB
+func (master Master) PushMasterLines(URI string) {
 
 	// Start database connections
 	client := GetClient(URI)
 	results := client.Database("Anton").Collection("MastersLines")
 
-	// We only want to insert lines that are new, so we'll save them to this variable
-	var linesToInsert []Lines
-
-	formattedLinesToInsert := []interface{}{linesToInsert}
-
+	formattedLinesToInsert := []interface{}{master.MasterLines}
 	results.InsertMany(context.Background(), formattedLinesToInsert)
 	DisconnectClient(client)
 
