@@ -154,8 +154,16 @@ func formatMasterValues(master Master, tempLine Lines, rotationNumber, lineSprea
 
 	// Append Inherited Values from the Current User
 	returnMasterLine.BetType = "Master"
-	returnMasterLine.BettingSite = master.SiteName
-	returnMasterLine.BettingUser = master.MasterName
+	returnMasterLine.MasterSite = master.SiteName
+
+	// Grab the Characteristic, which is either FavoredUnderdog or OverUnder
+	if tempLine.FavoredUnderdog != "" {
+		returnMasterLine.LineCharacteristic = tempLine.FavoredUnderdog
+	} else if tempLine.OverUnder != "" {
+		returnMasterLine.LineCharacteristic = tempLine.OverUnder
+	} else {
+		returnMasterLine.ErrorLog = append(returnMasterLine.ErrorLog, "Could not append Line Characteristic")
+	}
 
 	// ----------------------------------- Converting LineSpread to LineSpreadFloat --------------------------------- //
 

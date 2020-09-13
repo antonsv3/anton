@@ -101,8 +101,8 @@ type Lines struct {
 	SlaveSite string `bson:",omitempty" json:"SlaveSite,omitempty"`
 
 	// This is Optional holder for any unique values for a particular line
-	UniqueID string `json:"UniqueID"`
-	HomeAway string `json:"HomeAway"`
+	UniqueID string `bson:",omitempty" json:"UniqueID"`
+	HomeAway string `bson:",omitempty" json:"HomeAway"`
 
 	// These will be auto-populated by the lines from the scrapper
 	Sport  string `json:"Sport"`
@@ -116,14 +116,14 @@ type Lines struct {
 	LineStatus         string
 	CreatedViaFunction string
 	BetType            string
-	BettingSite        string
-	BettingUser        string
-	LineSpreadFloat    float64
-	LineJuiceFloat     float64
-	FunctionLog        string
-	ErrorLog           []string
+	//BettingSite        string			Replaced by MasterName or SlaveName
+	//BettingUser        string			Replaced by MasterSite or SlaveSite
+	LineSpreadFloat float64
+	LineJuiceFloat  float64
+	FunctionLog     string
+	ErrorLog        []string
 
-	ComparedLines []Lines // Line Struct of ApprovedBet			Populated by ApprovedBet
+	ComparedLines []Lines `bson:"ComparedLines,omitempty"` // Line Struct of ApprovedBet			Populated by ApprovedBet
 }
 
 type Profile struct {
