@@ -113,8 +113,9 @@ func formatSlaveLineValues(slave Slave, slaveLine, masterLine Lines, rotationNum
 
 	// Append Inherited Values from the Current User
 	returnSlaveLine.BetType = "Slave"
-	returnSlaveLine.BettingUser = slave.SlaveName
-	returnSlaveLine.BettingSite = slave.SiteName
+	returnSlaveLine.SlaveName = slave.SlaveName
+	returnSlaveLine.SlavePass = slave.SlavePass
+	returnSlaveLine.SlaveSite = slave.SiteName
 
 	// Append Inherited Values from the Master Bet we're comparing against
 	returnSlaveLine.Sport = masterLine.Sport

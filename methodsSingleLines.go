@@ -113,22 +113,48 @@ func (line *Lines) ValidateSingleLine() {
 	// ------------------------------------------------------------------------------- BettingSite
 	// Need to make sure that BettingSites are correctly configured and not empty
 
-	if line.BettingSite == "" {
-		line.ErrorLog = append(line.ErrorLog, "{betType} {lineType}: BettingSite -> Please assign the Site "+
-			"Name where Line is found")
-
-		// BettingSite should also have prefix of at least "http" (will work for https) , as well as suffix of "/"
-	} else if !strings.HasPrefix(line.BettingSite, "http") || !strings.HasSuffix(line.BettingSite, "/") {
-
-		line.ErrorLog = append(line.ErrorLog, "{betType} {lineType}: BettingSite -> Incorrectly "+
-			"structured, ex. http://247sports.bet/")
+	if line.BetType == "Master" {
+		if line.MasterSite == "" {
+			line.ErrorLog = append(line.ErrorLog, "{betType} {lineType}: BettingSite -> Please assign the"+
+				"Site Name where Line is found")
+		} else if !strings.HasPrefix(line.MasterSite, "http") || !strings.HasSuffix(line.MasterSite, "/") {
+			line.ErrorLog = append(line.ErrorLog, "{betType} {lineType}: BettingSite -> Incorrectly "+
+				"structured, ex. http://247sports.bet/")
+		}
+	} else if line.BetType == "Slave" {
+		if line.SlaveSite == "" {
+			line.ErrorLog = append(line.ErrorLog, "{betType} {lineType}: BettingSite -> Please assign the"+
+				"Site Name where Line is found")
+		} else if !strings.HasPrefix(line.SlaveSite, "http") || !strings.HasSuffix(line.SlaveSite, "/") {
+			line.ErrorLog = append(line.ErrorLog, "{betType} {lineType}: BettingSite -> Incorrectly "+
+				"structured, ex. http://247sports.bet/")
+		}
 	}
 
-	// ------------------------------------------------------------------------------- BettingUser
-	if line.BettingUser == "" {
+	// ------------------------------------------------------------------------------- MasterName & MasterPass
 
-		line.ErrorLog = append(line.ErrorLog, "{betType} {lineType}: BettingUser -> Please assign"+
-			" the BettingUser where Line is found")
+	if line.BetType == "Master" {
+		if line.MasterName == "" {
+			line.ErrorLog = append(line.ErrorLog, "{betType} {lineType}: MasterName -> Please assign"+
+				" the Master Name where Line is found")
+		}
+		if line.MasterPass == "" {
+			line.ErrorLog = append(line.ErrorLog, "{betType} {lineType}: MasterPass -> Please assign"+
+				" the Master Pass where Line is found")
+		}
+	}
+
+	// ------------------------------------------------------------------------------- MasterName & MasterPass
+
+	if line.BetType == "Slave" {
+		if line.SlaveName == "" {
+			line.ErrorLog = append(line.ErrorLog, "{betType} {lineType}: SlaveName -> Please assign"+
+				" the Slave Name where Line is found")
+		}
+		if line.SlavePass == "" {
+			line.ErrorLog = append(line.ErrorLog, "{betType} {lineType}: SlavePass -> Please assign"+
+				" the Slave Pass where Line is found")
+		}
 	}
 
 	// ------------------------------------------------------------------------------- RotationNumber
