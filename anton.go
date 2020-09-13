@@ -65,8 +65,7 @@ type Slave struct {
 	AuthorizedLines []Lines
 
 	// These are for the UserAgent and the Proxy
-	HTTPUserAgent string `json:"HTTPUserAgent"`
-	ProxyAddress  string `json:"ProxyAddress"`
+	Proxy Proxy `bson:"-" json:"-"`
 
 	// This is populated by pulling from DynamoDB, the structure can be found below
 	SiteDictionary SiteDictionary `bson:"-"`
@@ -180,11 +179,12 @@ type Proxy struct {
 	ID       primitive.ObjectID `bson:"_id,omitempty"`
 	ObjectID string             `bson:"-"`
 
-	ProxyAddress string   `json:"ProxyAddress"`
-	SubnetNumber string   `json:"SubnetNumber"`
-	UserName     string   `json:"UserName"`
-	SiteName     string   `json:"SiteName"`
-	BannedSites  struct{} `json:"BannedSites"`
+	ProxyAddress  string   `json:"ProxyAddress"`
+	HTTPUserAgent string   `json:"HTTPUserAgent"`
+	SubnetNumber  string   `json:"SubnetNumber"`
+	UserName      string   `json:"UserName"`
+	SiteName      string   `json:"SiteName"`
+	BannedSites   struct{} `json:"BannedSites"`
 }
 
 // Anton Users for Front-End Login
