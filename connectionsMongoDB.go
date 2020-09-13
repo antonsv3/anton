@@ -310,8 +310,12 @@ func (master Master) PushMasterLines(MongoURI, TelegramGroupID, TelegramToken st
 	client := GetClient(MongoURI)
 	results := client.Database("Anton").Collection("MastersLines")
 
-	linesToInsert := []interface{}{}
-	linesToInsert = append(linesToInsert, master.MasterLines)
+	// This is how MongoDB needs to take the lines
+	var linesToInsert []interface{}
+	for i := range master.MasterLines {
+		linesToInsert = append(linesToInsert, master.MasterLines[i])
+	}
+
 	results.InsertMany(context.Background(), linesToInsert)
 	DisconnectClient(client)
 
