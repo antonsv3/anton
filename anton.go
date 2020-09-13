@@ -21,14 +21,17 @@ type Master struct {
 	ObjectID string             `bson:"-"`
 
 	// These are populated when the Master and Lines are received from Scraping Scripts
-	MasterName    string `json:"MasterName"`
-	MasterPass    string `json:"MasterPass"`
-	LoginName     string `json:"LoginName"`
-	LoginPass     string `json:"LoginPass"`
-	SiteName      string `json:"SiteName"`
-	HTTPUserAgent string `json:"HTTPUserAgent"`
-	ProxyAddress  string `json:"ProxyAddress"`
-	AccountType   string `json:"AccountType"`
+	MasterName string `json:"MasterName"`
+	MasterPass string `json:"MasterPass"`
+	LoginName  string `json:"LoginName"`
+	LoginPass  string `json:"LoginPass"`
+	SiteName   string `json:"SiteName"`
+	//HTTPUserAgent string `json:"HTTPUserAgent"`
+	//ProxyAddress  string `json:"ProxyAddress"`
+	AccountType string `json:"AccountType"`
+
+	// Proxy and HTTPUserAgent is saved in this struct
+	Proxy Proxy `bson:"-" json:"-"`
 
 	// If the account type is Agent, we will use a different login, and leverage these fields
 	AgentPlayers      string   `json:"AgentPlayers" bson:"-"`
