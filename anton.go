@@ -84,8 +84,8 @@ type Lines struct {
 	RotationNumber  string `json:"RotationNumber"`
 	LineSpread      string `json:"LineSpread"`
 	LineJuice       string `json:"LineJuice"`
-	OverUnder       string `json:"OverUnder"`
-	FavoredUnderdog string `json:"FavoredUnderdog"`
+	OverUnder       string `bson:"OverUnder,omitempty" json:"OverUnder"`
+	FavoredUnderdog string `bson:"FavoredUnderdog,omitempty" json:"FavoredUnderdog"`
 	LineType        string `json:"LineType"`
 	TicketID        string `json:"TicketID"`
 	RiskAmount      string `json:"RiskAmount"`
@@ -116,12 +116,10 @@ type Lines struct {
 	LineStatus         string
 	CreatedViaFunction string
 	BetType            string
-	//BettingSite        string			Replaced by MasterName or SlaveName
-	//BettingUser        string			Replaced by MasterSite or SlaveSite
-	LineSpreadFloat float64
-	LineJuiceFloat  float64
-	FunctionLog     string
-	ErrorLog        []string
+	LineSpreadFloat    float64
+	LineJuiceFloat     float64
+	FunctionLog        string
+	ErrorLog           []string
 
 	ComparedLines []Lines `bson:"ComparedLines,omitempty"` // Line Struct of ApprovedBet			Populated by ApprovedBet
 }
