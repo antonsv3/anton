@@ -3,11 +3,10 @@ package anton
 import (
 	"context"
 	"fmt"
-	"log"
-
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
+	"log"
 )
 
 // Get the Client, will pass this Client into our other functions
@@ -238,26 +237,19 @@ func GatherSlaveLines(client *mongo.Client, filter bson.M) []Lines {
 
 }
 
-func PushOpenBets(client *mongo.Client, filter bson.M) []Lines {
-	var lines []Lines
-	collection := client.Database("Anton").Collection("SlavesLines")
-	cur, err := collection.Find(context.TODO(), filter)
-	if err != nil {
-		log.Fatal("Error on Finding all the documents", err)
-	}
-	for cur.Next(context.TODO()) {
-		var line Lines
-		err = cur.Decode(&line)
-		if err != nil {
-			log.Fatal("Error on Decoding the document", err)
-		}
-		lines = append(lines, line)
-	}
+// Master Method to push all Open Bets to our MongoDB
+func (master *Master) PushMasterLines(URI string) {
 
-	// Close the Cursor
-	cur.Close(context.TODO())
+	// Start database connections
+	client := GetClient(URI)
+	results := client.Database("Anton").Collection("MastersLines")
 
-	// Return Results
-	return lines
+	// We only want to insert lines that are new, so we'll save them to this variable
+	var linesToInsert []Lines
+
+	formattedLinesToInsert := []interface{}{linesToInsert}
+
+	results.InsertMany(context.Background(), formattedLinesToInsert)
+	DisconnectClient(client)
 
 }
