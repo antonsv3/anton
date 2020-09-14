@@ -17,6 +17,8 @@ import (
 // This method lets me know what additional values I need for a Master Line to ensure consistency
 func (masterLine *Lines) AddMasterLineValues(riskAmount, toWinAmount, period, league, sport, team, masterName, masterPass string) {
 
+	// Can just pass it's own masterName and masterPass when calling function if not found on HTML page
+
 	// Format Line with additional values, will need a method
 	masterLine.RiskAmount = riskAmount
 	masterLine.ToWinAmount = toWinAmount
@@ -25,9 +27,18 @@ func (masterLine *Lines) AddMasterLineValues(riskAmount, toWinAmount, period, le
 	masterLine.MasterPass = masterPass
 
 	// These three properties I need to run through and translate, will need their own functions
-	masterLine.League = league
-	masterLine.Sport = sport
-	masterLine.Period = period
+	masterLine.League = formatLeague(league)
+	masterLine.Sport = formatSport(sport)
+	masterLine.Period = formatPeriod(period)
+
+	// Check for any errors
+	if masterLine.League == "Undefined" {
+		masterLine.ErrorLog = append(masterLine.ErrorLog, "[#AddMasterLineValues] League is Undefined")
+	} else if masterLine.Sport == "Undefined" {
+		masterLine.ErrorLog = append(masterLine.ErrorLog, "[#AddMasterLineValues] Sport is Undefined")
+	} else if masterLine.Period == "Undefined" {
+		masterLine.ErrorLog = append(masterLine.ErrorLog, "[#AddMasterLineValues] Period is Undefined")
+	}
 }
 
 // This function validates the shared properties between Slave and Master, and is used by the two functions above

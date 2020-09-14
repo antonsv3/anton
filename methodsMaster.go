@@ -148,9 +148,23 @@ func formatMasterValues(master Master, tempLine Lines, rotationNumber, lineSprea
 	returnMasterLine.FunctionLog = "[#createMasterLine] New Master Line created through function"
 
 	// Append the parameters from the calling of one of those three functions, which we passed into here
-	returnMasterLine.RotationNumber = rotationNumber
+	returnMasterLine.RotationNumber = helper.ReplaceParameters(rotationNumber, "\u00a0", "", " ", "")
 	returnMasterLine.LineJuice = helper.ReplaceParameters(lineJuice, "½", ".5", "\u00a0", "")
 	returnMasterLine.LineSpread = helper.ReplaceParameters(lineSpread, "½", ".5", "\u00a0", "")
+
+	// I want to add "+" in front of the LineSpread, if it is Positive
+	if helper.StringNegativePositiveZero(returnMasterLine.LineSpread) == "Positive" {
+		if !strings.HasPrefix(returnMasterLine.LineSpread, "+") {
+			returnMasterLine.LineSpread = "+" + returnMasterLine.LineSpread
+		}
+	}
+
+	// I want to add "+" in front of the LineJuice, if it is Positive
+	if helper.StringNegativePositiveZero(returnMasterLine.LineJuice) == "Positive" {
+		if !strings.HasPrefix(returnMasterLine.LineJuice, "+") {
+			returnMasterLine.LineJuice = "+" + returnMasterLine.LineJuice
+		}
+	}
 
 	// Append Inherited Values from the Current User
 	returnMasterLine.BetType = "Master"
@@ -294,80 +308,3 @@ func (master Master) SendToAnton(antonLocation string) {
 
 	log.Println(string(body))
 }
-
-/*
-// Sent API call to DynamoDB to gather Users, add them into overallWorkflow.Users slice of Users struct
-func (master *Master) GatherSlaves() {
-
-	// Initialize a session that the SDK will use to load
-	// credentials from the shared credentials file ~/.aws/credentials
-	// and region from the shared configuration file ~/.aws/config.
-	sess := session.Must(session.NewSessionWithOptions(session.Options{
-		SharedConfigState: session.SharedConfigEnable,
-	}))
-
-	// Create DynamoDB client
-	svc := dynamodb.New(sess)
-
-	// Start creating Queries with these arguments
-	tableName := "Users"
-	Status := "Test"
-
-	// Create the Expression to fill the input struct with.
-	filt := expression.Name("Status").Equal(expression.Value(Status))
-
-	// What values do we want back from our DynamoDB Query?
-	proj := expression.NamesList(
-		expression.Name("Status"),
-		expression.Name("UserName"),
-		expression.Name("UserPass"),
-		expression.Name("SiteName"),
-		expression.Name("Framework"),
-		expression.Name("ProxyAddress"),
-		expression.Name("UserAgent"),
-	)
-
-	expr, err := expression.NewBuilder().WithFilter(filt).WithProjection(proj).Build()
-	if err != nil {
-		fmt.Println("Got error building expression:")
-		fmt.Println(err.Error())
-		os.Exit(1)
-	}
-
-	// Build the query input parameters
-	params := &dynamodb.ScanInput{
-		ExpressionAttributeNames:  expr.Names(),
-		ExpressionAttributeValues: expr.Values(),
-		FilterExpression:          expr.Filter(),
-		ProjectionExpression:      expr.Projection(),
-		TableName:                 aws.String(tableName),
-	}
-
-	// Make the DynamoDB Query API call
-	result, err := svc.Scan(params)
-	if err != nil {
-		fmt.Println("Query API call failed:")
-		fmt.Println((err.Error()))
-		os.Exit(1)
-	}
-
-
-	// For each user from the Query API call
-	for _, i := range result.Items {
-		slave := Slave{}
-
-		err = dynamodbattribute.UnmarshalMap(i, &slave)
-
-		if err != nil {
-			fmt.Println("Got error unmarshalling:")
-			fmt.Println(err.Error())
-			os.Exit(1)
-		}
-
-		slave.Proxy.ProxyAddress = "http://" + slave.ProxyAddress
-
-		// Use tempUserStruct and append to the slice of Users Struct held outside in overallWorkflow
-		master.Slaves = append(master.Slaves, slave)
-	}
-}
-*/

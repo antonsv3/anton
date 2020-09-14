@@ -111,7 +111,21 @@ func formatSlaveLineValues(slave Slave, slaveLine, masterLine Lines, rotationNum
 	returnSlaveLine.LineJuice = helper.ReplaceParameters(lineJuice, "½", ".5", " ", "")
 	returnSlaveLine.LineSpread = helper.ReplaceParameters(lineSpread, "½", ".5", " ", "")
 
-	// Append Inherited Values from the Current User
+	// I want to add "+" in front of the LineSpread, if it is Positive
+	if helper.StringNegativePositiveZero(returnSlaveLine.LineSpread) == "Positive" {
+		if !strings.HasPrefix(returnSlaveLine.LineSpread, "+") {
+			returnSlaveLine.LineSpread = "+" + returnSlaveLine.LineSpread
+		}
+	}
+
+	// I want to add "+" in front of the LineJuice, if it is Positive
+	if helper.StringNegativePositiveZero(returnSlaveLine.LineJuice) == "Positive" {
+		if !strings.HasPrefix(returnSlaveLine.LineJuice, "+") {
+			returnSlaveLine.LineJuice = "+" + returnSlaveLine.LineJuice
+		}
+	}
+
+	// Append Inherited Values from the Current Slave
 	returnSlaveLine.BetType = "Slave"
 	returnSlaveLine.SlaveName = slave.SlaveName
 	returnSlaveLine.SlavePass = slave.SlavePass
