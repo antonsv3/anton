@@ -49,13 +49,13 @@ var sportValuesFootball = []string{"FOOTBALL", "AMERICANFOOTBALL"}
 
 // ------------------------------------------------------------------------------- League - Possible Values
 // "MLB"
-var leagueValuesMLB = []string{"MLB", "MAJORLEAGUEBASEBALL"}
+var leagueValuesMLB = []string{"MLB", "MAJORLEAGUEBASEBALL", "MLBBASEBALL"}
 
 // "NBA"
-var leagueValuesNBA = []string{"NBA", "NATIONALBASKETBALLASSOCIATION"}
+var leagueValuesNBA = []string{"NBA", "NATIONALBASKETBALLASSOCIATION", "NBABASKETBALL"}
 
 // "NFL"
-var leagueValuesNFL = []string{"NFL", "NATIONALFOOTBALLLEAGUE"}
+var leagueValuesNFL = []string{"NFL", "NATIONALFOOTBALLLEAGUE", "NFLFOOTBALL"}
 
 // "C Football"
 var leagueValuesCFootball = []string{"COLLEGEFOOTBALL"}
