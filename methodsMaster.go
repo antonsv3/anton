@@ -272,10 +272,10 @@ func formatMasterValues(master Master, tempLine Lines, rotationNumber, lineSprea
 	// ---------------------------------------------- LineCharacteristic -------------------------------------------- //
 
 	// Grab the Characteristic, which is either FavoredUnderdog or OverUnder
-	if tempLine.FavoredUnderdog != "" {
-		returnMasterLine.LineCharacteristic = tempLine.FavoredUnderdog
-	} else if tempLine.OverUnder != "" {
-		returnMasterLine.LineCharacteristic = tempLine.OverUnder
+	if returnMasterLine.FavoredUnderdog != "" {
+		returnMasterLine.LineCharacteristic = returnMasterLine.FavoredUnderdog
+	} else if returnMasterLine.OverUnder != "" {
+		returnMasterLine.LineCharacteristic = returnMasterLine.OverUnder
 	} else {
 		returnMasterLine.ErrorLog = append(returnMasterLine.ErrorLog, "Could not append Line Characteristic")
 	}
