@@ -25,8 +25,8 @@ func formatSport(sport string) string {
 	} else if helper.FindIfStringInSlice(returnSport, sportValuesFootball) != "False" {
 		returnSport = "Football"
 	} else {
+		fmt.Println("Error, can not format Period with a value of " + returnSport)
 		returnSport = "Undefined"
-		fmt.Println("Error, can not format Period")
 	}
 
 	return returnSport
@@ -47,8 +47,8 @@ func formatLeague(league string) string {
 	} else if helper.FindIfStringInSlice(returnLeague, periodValuesOneHalf) != "False" {
 		returnLeague = "NFL"
 	} else {
+		fmt.Println("Error, can not format Period with a value of " + returnLeague)
 		returnLeague = "Undefined"
-		fmt.Println("Error, can not format Period")
 	}
 
 	return returnLeague
@@ -77,8 +77,8 @@ func formatPeriod(period string) string {
 	} else if helper.FindIfStringInSlice(returnPeriod, periodValuesFourQuarter) != "False" {
 		returnPeriod = "4th Quarter"
 	} else {
+		fmt.Println("Error, can not format Period with a value of " + returnPeriod)
 		returnPeriod = "Undefined"
-		fmt.Println("Error, can not format Period")
 	}
 
 	return returnPeriod
