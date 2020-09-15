@@ -176,15 +176,6 @@ func formatMasterValues(master Master, tempLine Lines, rotationNumber, lineSprea
 	returnMasterLine.BetType = "Master"
 	returnMasterLine.MasterSite = master.SiteName
 
-	// Grab the Characteristic, which is either FavoredUnderdog or OverUnder
-	if tempLine.FavoredUnderdog != "" {
-		returnMasterLine.LineCharacteristic = tempLine.FavoredUnderdog
-	} else if tempLine.OverUnder != "" {
-		returnMasterLine.LineCharacteristic = tempLine.OverUnder
-	} else {
-		returnMasterLine.ErrorLog = append(returnMasterLine.ErrorLog, "Could not append Line Characteristic")
-	}
-
 	// ----------------------------------- Converting LineSpread to LineSpreadFloat --------------------------------- //
 
 	// Assign the Slice of Even Spread Values to new variable to help compare
@@ -268,6 +259,25 @@ func formatMasterValues(master Master, tempLine Lines, rotationNumber, lineSprea
 		// I also know Juice Values shouldn't be between 99 and -99, log error if true
 	} else if returnMasterLine.LineJuiceFloat > -99 && returnMasterLine.LineJuiceFloat < 99 {
 		returnMasterLine.ErrorLog = append(returnMasterLine.ErrorLog, "LineJuiceFloat is between -99 and 99")
+	}
+
+	if returnMasterLine.LineType == "MoneyLine" {
+		if returnMasterLine.LineJuiceFloat < -99 {
+			returnMasterLine.FavoredUnderdog = "Underdog"
+		} else if returnMasterLine.LineJuiceFloat > 99 {
+			returnMasterLine.FavoredUnderdog = "Favored"
+		}
+	}
+
+	// ---------------------------------------------- LineCharacteristic -------------------------------------------- //
+
+	// Grab the Characteristic, which is either FavoredUnderdog or OverUnder
+	if tempLine.FavoredUnderdog != "" {
+		returnMasterLine.LineCharacteristic = tempLine.FavoredUnderdog
+	} else if tempLine.OverUnder != "" {
+		returnMasterLine.LineCharacteristic = tempLine.OverUnder
+	} else {
+		returnMasterLine.ErrorLog = append(returnMasterLine.ErrorLog, "Could not append Line Characteristic")
 	}
 
 	// ------------------------------------------ LineJuiceFloat Consistencies -------------------------------------- //
