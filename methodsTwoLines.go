@@ -53,6 +53,14 @@ func (slaveLine *Lines) CompareSlaveLineToMasterLine(masterLine Lines, slave Sla
 	slaveLine.ValidateSingleLine()
 	masterLine.ValidateSingleLine()
 
+	// Next, let's compare it to the profiles to see whether the Slave is following the master on these lines
+	if len(slave.Profiles) > 1 {
+		slaveLine.ValidateAgainstProfile(slave.Profiles[0])
+	} else {
+		slaveLine.LineStatus = "Error"
+		slaveLine.ErrorLog = append(slaveLine.ErrorLog, "Slave does not have a Profile Attached")
+	}
+
 	// If slaveLine passes Validation, then they're populated correctly, then we can pre-check versus the Master Line
 	if slaveLine.LineStatus == "Validated" {
 		slaveLine.ValidateAgainst(masterLine)
@@ -77,23 +85,18 @@ func (slaveLine *Lines) CompareSlaveLineToMasterLine(masterLine Lines, slave Sla
 		// First, lets compare the juice to see if it is within the parameter
 		slaveLine.compareJuiceValues(masterLine, juiceParameter)
 
-		// Since MoneyLine doesn't have anything else to compare since Juice is done, let's do Total & Spread
-		if slaveLine.LineType == "Total" && masterLine.LineType == "Total" {
-
-			slaveLine.compareTotalLine(masterLine, spreadParameter)
-
-		} else if slaveLine.LineType == "Spread" && masterLine.LineType == "Spread" {
-
-			slaveLine.compareSpreadLine(masterLine, spreadParameter)
-
-		} else if slaveLine.LineType == "TeamTotal" && masterLine.LineType == "TeamTotal" {
-
-			slaveLine.compareTeamTotalLine(masterLine, spreadParameter)
-
-		} else if slaveLine.LineType != "MoneyLine" && masterLine.LineType != "MoneyLine" {
-
-			slaveLine.ErrorLog = append(slaveLine.ErrorLog, "Unable to triage Lines to Compare")
-
+		// Only continue if Juice Values comparisons are passed
+		if strings.HasPrefix(slaveLine.FunctionLog, "[#CompareJuiceValues Passed]") {
+			// Since MoneyLine doesn't have anything else to compare since Juice is done, let's do Total & Spread
+			if slaveLine.LineType == "Total" && masterLine.LineType == "Total" {
+				slaveLine.compareTotalLine(masterLine, spreadParameter)
+			} else if slaveLine.LineType == "Spread" && masterLine.LineType == "Spread" {
+				slaveLine.compareSpreadLine(masterLine, spreadParameter)
+			} else if slaveLine.LineType == "TeamTotal" && masterLine.LineType == "TeamTotal" {
+				slaveLine.compareTeamTotalLine(masterLine, spreadParameter)
+			} else if slaveLine.LineType != "MoneyLine" && masterLine.LineType != "MoneyLine" {
+				slaveLine.ErrorLog = append(slaveLine.ErrorLog, "Unable to triage Lines to Compare")
+			}
 		}
 
 		// Let's validate slave line one more time, let's create a new variable so we don't mess up any function logs

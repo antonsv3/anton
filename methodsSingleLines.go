@@ -195,25 +195,6 @@ func (line *Lines) ValidateSingleLine() {
 
 	}
 
-	// I'm going to comment these three out until I finish getting the mapping and consistency between sites figured out
-
-	/*
-		// ------------------------------------------------------------------------------- TeamName
-		if returnLine.TeamName == "" {
-			returnLine.ErrorLog = append(returnLine.ErrorLog, "TeamName -> Please assign the Team Name")
-		}
-
-		// ------------------------------------------------------------------------------- LeagueName
-		if returnLine.LeagueName == "" {
-			returnLine.ErrorLog = append(returnLine.ErrorLog, "LeagueName -> Please assign the LeagueName")
-		}
-
-		// ------------------------------------------------------------------------------- LeagueID
-		if returnLine.LeagueID == "" {
-			returnLine.ErrorLog = append(returnLine.ErrorLog, "LeagueID -> Please assign the LeagueID")
-		}
-	*/
-
 	// Let's now do specific requirement values for specific LineTypes: MoneyLine vs Spread vs Total
 
 	// ------------------------------------------------------------------------------- LineSpread
@@ -435,4 +416,132 @@ func (line Lines) PrintSingleLine() {
 // Helper function for above to help center the print
 func centerString(s string, w int) string {
 	return fmt.Sprintf("%[1]*s", -w, fmt.Sprintf("%[1]*s", (w+len(s))/2, s))
+}
+
+// Check Line against a profile
+func (line *Lines) ValidateAgainstProfile(profile Profile) {
+
+	// Things we need to check for are Period and LineType after checking League first
+	if line.League == "MLB" {
+
+		// These are the four different LineTypes we will check against the profile
+		if line.LineType == "MoneyLine" && profile.SportsSettings.MLB.MoneyLine != "Yes" {
+			line.LineStatus = "Ignored"
+			line.FunctionLog = "[#ValidateAgainstProfile] Slave is not following MLB MoneyLine from this Master"
+		} else if line.LineType == "Spread" && profile.SportsSettings.MLB.Spread != "Yes" {
+			line.LineStatus = "Ignored"
+			line.FunctionLog = "[#ValidateAgainstProfile] Slave is not following MLB Spread from this Master"
+		} else if line.LineType == "Total" && profile.SportsSettings.MLB.Total != "Yes" {
+			line.LineStatus = "Ignored"
+			line.FunctionLog = "[#ValidateAgainstProfile] Slave is not following MLB Total from this Master"
+		} else if line.LineType == "TeamTotal" && profile.SportsSettings.MLB.TeamTotal != "Yes" {
+			line.LineStatus = "Ignored"
+			line.FunctionLog = "[#ValidateAgainstProfile] Slave is not following MLB TeamTotal from this Master"
+		} else {
+			fmt.Println("Could not match MLB Line Type to Profile")
+		}
+
+		// These are the different Periods, for MLB, there is only two
+		if line.Period == "" && profile.SportsSettings.MLB.OneFiveInnings != "Yes" {
+			line.LineStatus = "Ignored"
+			line.FunctionLog = "[#ValidateAgainstProfile] Slave is not following MLB 1st Five Innings from this Master"
+		} else if line.Period == "" && profile.SportsSettings.MLB.Game != "Yes" {
+			line.LineStatus = "Ignored"
+			line.FunctionLog = "[#ValidateAgainstProfile] Slave is not following MLB Game from this Master"
+		} else {
+			fmt.Println("Could not match MLB Line Period to Profile")
+		}
+
+	} else if line.League == "NBA" {
+
+		// These are the four different LineTypes we will check against the profile
+		if line.LineType == "MoneyLine" && profile.SportsSettings.NBA.MoneyLine != "Yes" {
+			line.LineStatus = "Skipped"
+			line.FunctionLog = "[#ValidateAgainstProfile] Slave is not following NBA MoneyLine from this Master"
+		} else if line.LineType == "Spread" && profile.SportsSettings.NBA.Spread != "Yes" {
+			line.LineStatus = "Skipped"
+			line.FunctionLog = "[#ValidateAgainstProfile] Slave is not following NBA Spread from this Master"
+		} else if line.LineType == "Total" && profile.SportsSettings.NBA.Total != "Yes" {
+			line.LineStatus = "Skipped"
+			line.FunctionLog = "[#ValidateAgainstProfile] Slave is not following NBA Total from this Master"
+		} else if line.LineType == "TeamTotal" && profile.SportsSettings.NBA.TeamTotal != "Yes" {
+			line.LineStatus = "Skipped"
+			line.FunctionLog = "[#ValidateAgainstProfile] Slave is not following NBA TeamTotal from this Master"
+		} else {
+			fmt.Println("Could not match NBA Line Type to Profile")
+		}
+
+		// These are the different Periods, for NBA, there is six
+		if line.Period == "" && profile.SportsSettings.NBA.Game != "Yes" {
+			line.LineStatus = "Ignored"
+			line.FunctionLog = "[#ValidateAgainstProfile] Slave is not following NBA Game from this Master"
+		} else if line.Period == "" && profile.SportsSettings.NBA.OneHalf != "Yes" {
+			line.LineStatus = "Ignored"
+			line.FunctionLog = "[#ValidateAgainstProfile] Slave is not following NBA First Half from this Master"
+		} else if line.Period == "" && profile.SportsSettings.NBA.TwoHalf != "Yes" {
+			line.LineStatus = "Ignored"
+			line.FunctionLog = "[#ValidateAgainstProfile] Slave is not following NBA Second Half from this Master"
+		} else if line.Period == "" && profile.SportsSettings.NBA.OneQuarter != "Yes" {
+			line.LineStatus = "Ignored"
+			line.FunctionLog = "[#ValidateAgainstProfile] Slave is not following NBA First Quarter from this Master"
+		} else if line.Period == "" && profile.SportsSettings.NBA.TwoQuarter != "Yes" {
+			line.LineStatus = "Ignored"
+			line.FunctionLog = "[#ValidateAgainstProfile] Slave is not following NBA Second Quarter from this Master"
+		} else if line.Period == "" && profile.SportsSettings.NBA.ThreeQuarter != "Yes" {
+			line.LineStatus = "Ignored"
+			line.FunctionLog = "[#ValidateAgainstProfile] Slave is not following NBA Third Quarter from this Master"
+		} else if line.Period == "" && profile.SportsSettings.NBA.FourQuarter != "Yes" {
+			line.LineStatus = "Ignored"
+			line.FunctionLog = "[#ValidateAgainstProfile] Slave is not following NBA Fourth Quarter from this Master"
+		} else {
+			fmt.Println("Could not match NBA Period to Profile")
+		}
+
+	} else if line.League == "NFL" {
+
+		// These are the four different LineTypes we will check against the profile
+		if line.LineType == "MoneyLine" && profile.SportsSettings.NFL.MoneyLine != "Yes" {
+			line.LineStatus = "Ignored"
+			line.FunctionLog = "[#ValidateAgainstProfile] Slave is not following NFL MoneyLine from this Master"
+		} else if line.LineType == "Spread" && profile.SportsSettings.NFL.Spread != "Yes" {
+			line.LineStatus = "Ignored"
+			line.FunctionLog = "[#ValidateAgainstProfile] Slave is not following NFL Spread from this Master"
+		} else if line.LineType == "Total" && profile.SportsSettings.NFL.Total != "Yes" {
+			line.LineStatus = "Ignored"
+			line.FunctionLog = "[#ValidateAgainstProfile] Slave is not following NFL Total from this Master"
+		} else if line.LineType == "TeamTotal" && profile.SportsSettings.NFL.TeamTotal != "Yes" {
+			line.LineStatus = "Ignored"
+			line.FunctionLog = "[#ValidateAgainstProfile] Slave is not following NFL TeamTotal from this Master"
+		} else {
+			fmt.Println("Could not match NFL Line Type to Profile")
+		}
+
+		// These are the different Periods, for NFL, there is six
+		if line.Period == "" && profile.SportsSettings.NFL.Game != "Yes" {
+			line.LineStatus = "Ignored"
+			line.FunctionLog = "[#ValidateAgainstProfile] Slave is not following NFL Game from this Master"
+		} else if line.Period == "" && profile.SportsSettings.NFL.OneHalf != "Yes" {
+			line.LineStatus = "Ignored"
+			line.FunctionLog = "[#ValidateAgainstProfile] Slave is not following NFL First Half from this Master"
+		} else if line.Period == "" && profile.SportsSettings.NFL.TwoHalf != "Yes" {
+			line.LineStatus = "Ignored"
+			line.FunctionLog = "[#ValidateAgainstProfile] Slave is not following NFL Second Half from this Master"
+		} else if line.Period == "" && profile.SportsSettings.NFL.OneQuarter != "Yes" {
+			line.LineStatus = "Ignored"
+			line.FunctionLog = "[#ValidateAgainstProfile] Slave is not following NFL First Quarter from this Master"
+		} else if line.Period == "" && profile.SportsSettings.NFL.TwoQuarter != "Yes" {
+			line.LineStatus = "Ignored"
+			line.FunctionLog = "[#ValidateAgainstProfile] Slave is not following NFL Second Quarter from this Master"
+		} else if line.Period == "" && profile.SportsSettings.NFL.ThreeQuarter != "Yes" {
+			line.LineStatus = "Ignored"
+			line.FunctionLog = "[#ValidateAgainstProfile] Slave is not following NFL Third Quarter from this Master"
+		} else if line.Period == "" && profile.SportsSettings.NFL.FourQuarter != "Yes" {
+			line.LineStatus = "Ignored"
+			line.FunctionLog = "[#ValidateAgainstProfile] Slave is not following NFL Fourth Quarter from this Master"
+		} else {
+			fmt.Println("Could not match NFL Period to Profile")
+		}
+
+	}
+
 }
