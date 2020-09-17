@@ -179,7 +179,7 @@ type Proxy struct {
 	HTTPUserAgent string `bson:"httpuseragent" json:"httpuseragent"`
 
 	AccountType string   `bson:"accounttype" json:"accounttype"`
-	LoginName   string   `bson:"username" json:"username"`
+	LoginName   string   `bson:"loginname" json:"loginname"`
 	SiteName    string   `bson:"sitename" json:"sitename"`
 	BannedSites struct{} `bson:"bannedsites" json:"bannedsites"`
 }
