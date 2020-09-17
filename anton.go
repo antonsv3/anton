@@ -17,242 +17,236 @@ import (
 
 // Create struct to hold info about Masters
 type Master struct {
-	ID       primitive.ObjectID `bson:"_id,omitempty"`
-	ObjectID string             `bson:"-"`
+	ID       primitive.ObjectID `bson:"_id,omitempty" json:"-"`
+	ObjectID string             `bson:"-" json:"-"`
 
 	// These are populated when the Master and Lines are received from Scraping Scripts
-	MasterName string `json:"MasterName"`
-	MasterPass string `json:"MasterPass"`
-	LoginName  string `json:"LoginName"`
-	LoginPass  string `json:"LoginPass"`
-	SiteName   string `json:"SiteName"`
-	//HTTPUserAgent string `json:"HTTPUserAgent"`
-	//ProxyAddress  string `json:"ProxyAddress"`
-	AccountType string `json:"AccountType"`
+	MasterName  string `bson:"mastername" json:"mastername"`
+	MasterPass  string `bson:"masterpass" json:"masterpass"`
+	LoginName   string `bson:"loginname" json:"loginname"`
+	LoginPass   string `bson:"loginpass" json:"loginpass"`
+	SiteName    string `bson:"sitename" json:"sitename"`
+	AccountType string `bson:"accounttype" json:"accounttype"`
+	Status      string `bson:"status" json:"status"`
+
+	// Approved Lines sent from the feeder will be in this slice
+	MasterLines []Lines `bson:"-" json:"masterlines"`
 
 	// Proxy and HTTPUserAgent is saved in this struct
 	Proxy Proxy `bson:"-" json:"-"`
 
-	// If the account type is Agent, we will use a different login, and leverage these fields
-	AgentPlayers      string   `json:"AgentPlayers" bson:"-"`
-	AgentPlayersSlice []string `bson:"-"`
-
-	// Approved Lines sent from the feeder will be in this slice
-	MasterLines []Lines `json:"MasterLines" bson:"-"`
+	// If the account type is Agent, we will use a different login, and leverage this slice
+	AgentPlayersSlice []string `bson:"-" json:"-"`
 
 	// This slice is populated by pulling the DynamoDB for Slaves to compare against
-	Slaves []Slave `bson:"-"`
+	Slaves []Slave `bson:"-" json:"-"`
 
 	// These are properties that will change during runtime, Status will be "Active" or "Error"
-	Status        string   `json:"Status"`
-	ProgramError  []string `json:"-" bson:"-"`
-	LoginAttempts int      `json:"-" bson:"-"`
-	LinesOnPage   []string `json:"-" bson:"-"`
+	ProgramError  []string `bson:"-" json:"-"`
+	LoginAttempts int      `bson:"-" json:"-"`
+	LinesOnPage   []string `bson:"-" json:"-"`
 
 	// These will be time stamps for comparisons later
-	TimeReceived time.Time `json:"-" bson:"-"`
+	TimeReceived time.Time `bson:"-" json:"-"`
 }
 
 // Create struct to hold info about Slaves pulled from the database
 type Slave struct {
-	ID       primitive.ObjectID `bson:"_id,omitempty" json:"id,omitempty"`
-	ObjectID string             `bson:"-"`
+	ID       primitive.ObjectID `bson:"_id,omitempty" json:"-"`
+	ObjectID string             `bson:"-" json:"-"`
 
-	Status      string `bson:"Status" json:"Status"`
-	SlaveName   string `json:"SlaveName"`
-	SlavePass   string `json:"SlavePass"`
-	SiteName    string `json:"SiteName"`
-	WagerAmount string `json:"WagerAmount"`
+	Status      string `bson:"status" json:"status"`
+	SlaveName   string `bson:"slavename" json:"slavename"`
+	SlavePass   string `bson:"slavepass" json:"slavepass"`
+	SiteName    string `bson:"sitename" json:"sitename"`
+	WagerAmount string `bson:"wageramount" json:"wageramount"`
+
+	// These are populated by pulling from MongoDB
+	SiteDictionary SiteDictionary `bson:"-" json:"-"`
+	Profiles       []Profile      `bson:"-" json:"-"`
+	Proxy          Proxy          `bson:"-" json:"-"`
 
 	// Sort out the Lines after Creating and Comparing them
-	AuthorizedLines []Lines
-
-	// These are for the UserAgent and the Proxy
-	Proxy Proxy `bson:"-" json:"-"`
-
-	// This is populated by pulling from DynamoDB, the structure can be found below
-	SiteDictionary SiteDictionary `bson:"-"`
-	Profiles       []Profile      `bson:"-"`
+	AuthorizedLines []Lines `bson:"-" json:"-"`
 }
 
 // Create struct to hold info about lines pulled from scrapped sites
 type Lines struct {
-	ID       primitive.ObjectID `bson:"_id,omitempty"`
-	ObjectID string             `bson:"-"`
+	ID       primitive.ObjectID `bson:"_id,omitempty" json:"-"`
+	ObjectID string             `bson:"-" json:"-"`
 
 	// Will need to fill these out based from the scrapper
-	RotationNumber  string `json:"RotationNumber"`
-	LineSpread      string `json:"LineSpread"`
-	LineJuice       string `json:"LineJuice"`
-	OverUnder       string `bson:"OverUnder,omitempty" json:"OverUnder"`
-	FavoredUnderdog string `bson:"FavoredUnderdog,omitempty" json:"FavoredUnderdog"`
-	LineType        string `json:"LineType"`
-	TicketID        string `json:"TicketID"`
-	RiskAmount      string `json:"RiskAmount"`
-	ToWinAmount     string `json:"ToWinAmount"`
+	RotationNumber  string `bson:"rotationnumber" json:"rotationnumber"`
+	LineSpread      string `bson:"linespread" json:"linespread"`
+	LineJuice       string `bson:"linejuice" json:"linejuice"`
+	OverUnder       string `bson:"overunder,omitempty" json:"overunder,omitempty"`
+	FavoredUnderdog string `bson:"favoredunderdog,omitempty" json:"favoredunderdog,omitempty"`
+	LineType        string `bson:"linetype" json:"linetype"`
+	TicketID        string `bson:"ticketid" json:"ticketid"`
+	RiskAmount      string `bson:"riskamount" json:"riskamount"`
+	ToWinAmount     string `bson:"towinamount" json:"towinamount"`
 
 	// These are more for documenting purposes for the Database
-	MasterName string `json:"MasterName"`
-	MasterPass string `json:"MasterPass"`
-	MasterSite string `json:"MasterSite"`
+	MasterName string `bson:"mastername" json:"mastername"`
+	MasterPass string `bson:"masterpass" json:"masterpass"`
+	MasterSite string `bson:"mastersite" json:"mastersite"`
 
-	SlaveName string `bson:",omitempty" json:"SlaveName,omitempty"`
-	SlavePass string `bson:",omitempty" json:"SlavePass,omitempty"`
-	SlaveSite string `bson:",omitempty" json:"SlaveSite,omitempty"`
+	SlaveName string `bson:",omitempty" json:"slavename,omitempty"`
+	SlavePass string `bson:",omitempty" json:"slavepass,omitempty"`
+	SlaveSite string `bson:",omitempty" json:"slavesite,omitempty"`
 
 	// This is Optional holder for any unique values for a particular line
-	UniqueID string `bson:",omitempty" json:"UniqueID"`
-	HomeAway string `bson:",omitempty" json:"HomeAway"`
+	UniqueID string `bson:",omitempty" json:"uniqueid"`
+	HomeAway string `bson:",omitempty" json:"homeaway"`
 
 	// These will be auto-populated by the lines from the scrapper
-	Sport  string `json:"Sport"`
-	League string `json:"League"`
-	Period string `json:"Period"`
-	Team   string `json:"Team"`
+	Sport  string `bson:"sport" json:"sport"`
+	League string `bson:"league" json:"league"`
+	Period string `bson:"period" json:"period"`
+	Team   string `bson:"team" json:"team"`
 
-	LineCharacteristic string `json:"LineCharacteristic"`
+	LineCharacteristic string `bson:"linecharacteristic" json:"linecharacteristic"`
 
 	// These can be inherited by Approved Bet, CurrentUser, or have default values for Potential:
-	LineStatus         string
-	CreatedViaFunction string
-	BetType            string
-	LineSpreadFloat    float64
-	LineJuiceFloat     float64
-	FunctionLog        string
-	ErrorLog           []string
+	LineStatus         string   `bson:"linestatus" json:"linestatus"`
+	CreatedViaFunction string   `bson:"-" json:"-"`
+	BetType            string   `bson:"bettype" json:"bettype"`
+	LineSpreadFloat    float64  `bson:"linespreadfloat" json:"linespreadfloat"`
+	LineJuiceFloat     float64  `bson:"linejuicefloat" json:"linejuicefloat"`
+	FunctionLog        string   `bson:"functionlog" json:"functionlog"`
+	ErrorLog           []string `bson:"errorlog" json:"errorlog"`
 
-	ComparedLines []Lines `bson:"ComparedLines,omitempty"` // Line Struct of ApprovedBet			Populated by ApprovedBet
+	ComparedLines []Lines `bson:"comparedlines,omitempty"`
 }
 
 type Profile struct {
-	ID       primitive.ObjectID `bson:"_id,omitempty"`
-	ObjectID string             `bson:"-"`
+	ID       primitive.ObjectID `bson:"_id,omitempty" json:"-"`
+	ObjectID string             `bson:"-" json:"-"`
 
-	Status          string `json:"Status"`
-	SiteName        string `json:"SiteName"`
-	MasterName      string `json:"MasterName"`
-	MasterSite      string `json:"MasterSite"`
-	SlaveName       string `json:"SlaveName"`
-	SlaveSite       string `json:"SlaveSite"`
-	SpreadParameter string `json:"SpreadParameter"`
-	JuiceParameter  string `json:"JuiceParameter"`
+	Status          string `bson:"status" json:"status"`
+	SiteName        string `bson:"sitename" json:"sitename"`
+	MasterName      string `bson:"mastername" json:"mastername"`
+	MasterSite      string `bson:"mastersite" json:"mastersite"`
+	SlaveName       string `bson:"slavename" json:"slavename"`
+	SlaveSite       string `bson:"slavesite" json:"slavesite"`
+	SpreadParameter string `bson:"spreadparameter" json:"spreadparameter"`
+	JuiceParameter  string `bson:"juiceparameter" json:"juiceparameter"`
 	SportsSettings  struct {
 		NFL struct {
-			MoneyLine    string `json:"MoneyLine"`
-			Spread       string `json:"Spread"`
-			Total        string `json:"Total"`
-			TeamTotal    string `json:"TeamTotal"`
-			Game         string `json:"Game"`
-			OneHalf      string `json:"OneHalf"`
-			TwoHalf      string `json:"TwoHalf"`
-			OneQuarter   string `json:"OneQuarter"`
-			TwoQuarter   string `json:"TwoQuarter"`
-			ThreeQuarter string `json:"ThreeQuarter"`
-			FourQuarter  string `json:"FourQuarter"`
-		} `json:"NFL"`
+			MoneyLine    string `bson:"moneyline" json:"moneyline"`
+			Spread       string `bson:"spread" json:"spread"`
+			Total        string `bson:"total" json:"total"`
+			TeamTotal    string `bson:"teamtotal" json:"teamtotal"`
+			Game         string `bson:"game" json:"game"`
+			OneHalf      string `bson:"onehalf" json:"onehalf"`
+			TwoHalf      string `bson:"twohalf" json:"twohalf"`
+			OneQuarter   string `bson:"onequarter" json:"onequarter"`
+			TwoQuarter   string `bson:"twoquarter" json:"twoquarter"`
+			ThreeQuarter string `bson:"threequarter" json:"threequarter"`
+			FourQuarter  string `bson:"fourquarter" json:"fourquarter"`
+		} `bson:"nfl" json:"nfl"`
 		NBA struct {
-			MoneyLine    string `json:"MoneyLine"`
-			Spread       string `json:"Spread"`
-			Total        string `json:"Total"`
-			TeamTotal    string `json:"TeamTotal"`
-			Game         string `json:"Game"`
-			OneHalf      string `json:"OneHalf"`
-			TwoHalf      string `json:"TwoHalf"`
-			OneQuarter   string `json:"OneQuarter"`
-			TwoQuarter   string `json:"TwoQuarter"`
-			ThreeQuarter string `json:"ThreeQuarter"`
-			FourQuarter  string `json:"FourQuarter"`
-		} `json:"NBA"`
+			MoneyLine    string `bson:"moneyline" json:"moneyline"`
+			Spread       string `bson:"spread" json:"spread"`
+			Total        string `bson:"total" json:"total"`
+			TeamTotal    string `bson:"teamtotal" json:"teamtotal"`
+			Game         string `bson:"game" json:"game"`
+			OneHalf      string `bson:"onehalf" json:"onehalf"`
+			TwoHalf      string `bson:"twohalf" json:"twohalf"`
+			OneQuarter   string `bson:"onequarter" json:"onequarter"`
+			TwoQuarter   string `bson:"twoquarter" json:"twoquarter"`
+			ThreeQuarter string `bson:"threequarter" json:"threequarter"`
+			FourQuarter  string `bson:"fourquarter" json:"fourquarter"`
+		} `bson:"nba" json:"nba"`
 		MLB struct {
-			MoneyLine      string `json:"MoneyLine"`
-			Spread         string `json:"Spread"`
-			Total          string `json:"Total"`
-			TeamTotal      string `json:"TeamTotal"`
-			Game           string `json:"Game"`
-			OneFiveInnings string `json:"OneFiveInnings"`
-		} `json:"MLB"`
-	} `json:"SportsSettings"`
+			MoneyLine      string `bson:"moneyline" json:"moneyline"`
+			Spread         string `bson:"spread" json:"spread"`
+			Total          string `bson:"total" json:"total"`
+			TeamTotal      string `bson:"teamtotal" json:"teamtotal"`
+			Game           string `bson:"game" json:"game"`
+			OneFiveInnings string `bson:"onefiveinnings" json:"onefiveinnings"`
+		} `bson:"mlb" json:"mlb"`
+	} `bson:"sportssettings" json:"sportssettings"`
 }
 
 // Struct to hold Proxy Addresses
 type Proxy struct {
-	// MongoDB ID's
-	ID       primitive.ObjectID `bson:"_id,omitempty"`
-	ObjectID string             `bson:"-"`
+	ID       primitive.ObjectID `bson:"_id,omitempty" json:"-"`
+	ObjectID string             `bson:"-" json:"-"`
 
-	ProxyAddress  string `json:"ProxyAddress"`
-	SubnetNumber  string `json:"SubnetNumber"`
-	HTTPUserAgent string `json:"HTTPUserAgent"`
+	ProxyAddress  string `bson:"proxyaddress" json:"proxyaddress"`
+	SubnetNumber  string `bson:"subnetnumber" json:"subnetnumber"`
+	HTTPUserAgent string `bson:"httpuseragent" json:"httpuseragent"`
 
-	AccountType string   `json:"AccountType"`
-	LoginName   string   `json:"UserName"`
-	SiteName    string   `json:"SiteName"`
-	BannedSites struct{} `json:"BannedSites"`
+	AccountType string   `bson:"accounttype" json:"accounttype"`
+	LoginName   string   `bson:"username" json:"username"`
+	SiteName    string   `bson:"sitename" json:"sitename"`
+	BannedSites struct{} `bson:"bannedsites" json:"bannedsites"`
 }
 
 // Anton Users for Front-End Login
 type FrontEndUser struct {
-	User          string `json:"User"`
-	Password      string `json:"Password"`
-	Authenticated bool   `bson:"-"`
+	User          string `bson:"user" json:"user"`
+	Password      string `bson:"password" json:"password"`
+	Authenticated bool   `bson:"-" json:"-"`
 }
 
 // Telegram Message Struct
 type TelegramMsg struct {
-	ChatID int64  `json:"chat_id"`
-	Text   string `json:"text"`
+	ChatID int64  `bson:"-" json:"chat_id"`
+	Text   string `bson:"-" json:"text"`
 }
 
 // Slave Results for return when
 type SlaveResults struct {
-	PlacedLines  []Lines
-	SkippedLines []Lines
-	ErrorLines   []Lines
+	PlacedLines  []Lines `bson:"-" json:"-"`
+	SkippedLines []Lines `bson:"-" json:"-"`
+	ErrorLines   []Lines `bson:"-" json:"-"`
 }
 
 // This is a Struct to hold the Site's Dict, to help navigate through the different Sites, easier to read this way
 type SiteDictionary struct {
-	SiteName   string `json:"SiteName"`
+	SiteName   string `bson:"sitename" json:"sitename"`
 	SportsDict struct {
 		Baseball struct {
-			ID  string `json:"ID"`
+			ID  string `bson:"id" json:"id"`
 			MLB struct {
-				ID     string `json:"ID"`
+				ID     string `bson:"id" json:"ID"`
 				Period struct {
-					OneFiveInnings string `json:"1st 5 Innings"`
-					Game           string `json:"Game"`
-				} `json:"Period"`
-			} `json:"MLB"`
-		} `json:"Baseball"`
+					OneFiveInnings string `bson:"onefiveinnings" json:"onefiveinnings"`
+					Game           string `bson:"game" json:"game"`
+				} `bson:"period" json:"period"`
+			} `bson:"mlb" json:"mlb"`
+		} `bson:"baseball" json:"baseball"`
 		Basketball struct {
-			ID  string `json:"ID"`
+			ID  string `bson:"id" json:"id"`
 			NBA struct {
-				ID     string `json:"ID"`
+				ID     string `bson:"id" json:"id"`
 				Period struct {
-					OneHalf      string `json:"1st Half"`
-					OneQuarter   string `json:"1st Quarter"`
-					TwoHalf      string `json:"2nd Half"`
-					TwoQuarter   string `json:"2nd Quarter"`
-					ThreeQuarter string `json:"3rd Quarter"`
-					FourQuarter  string `json:"4th Quarter"`
-					Game         string `json:"Game"`
-				} `json:"Period"`
-			} `json:"NBA"`
-		} `json:"Basketball"`
+					OneHalf      string `bson:"onehalf" json:"onehalf"`
+					OneQuarter   string `bson:"onequarter" json:"onequarter"`
+					TwoHalf      string `bson:"twohalf" json:"twohalf"`
+					TwoQuarter   string `bson:"twoquarter" json:"twoquarter"`
+					ThreeQuarter string `bson:"threequarter" json:"threequarter"`
+					FourQuarter  string `bson:"fourquarter" json:"fourquarter"`
+					Game         string `bson:"game" json:"game"`
+				} `bson:"period" json:"period"`
+			} `bson:"nba" json:"nba"`
+		} `bson:"basketball" json:"basketball"`
 		Football struct {
-			ID  string `json:"ID"`
+			ID  string `bson:"id" json:"id"`
 			NFL struct {
-				ID     string `json:"ID"`
+				ID     string `bson:"id" json:"id"`
 				Period struct {
-					OneHalf      string `json:"1st Half"`
-					OneQuarter   string `json:"1st Quarter"`
-					TwoHalf      string `json:"2nd Half"`
-					TwoQuarter   string `json:"2nd Quarter"`
-					ThreeQuarter string `json:"3rd Quarter"`
-					FourQuarter  string `json:"4th Quarter"`
-					Game         string `json:"Game"`
-				} `json:"Period"`
-			} `json:"NFL"`
-		} `json:"Football"`
-	} `json:"SportsDict"`
+					OneHalf      string `bson:"onehalf" json:"onehalf"`
+					TwoHalf      string `bson:"twohalf" json:"twohalf"`
+					OneQuarter   string `bson:"onequarter" json:"onequarter"`
+					TwoQuarter   string `bson:"twoquarter" json:"twoquarter"`
+					ThreeQuarter string `bson:"threequarter" json:"threequarter"`
+					FourQuarter  string `bson:"fourquarter" json:"fourquarter"`
+					Game         string `bson:"game" json:"game"`
+				} `bson:"period" json:"period"`
+			} `bson:"nfl" json:"nfl"`
+		} `bson:"football" json:"football"`
+	} `bson:"sportsdict" json:"sportsdict"`
 }
