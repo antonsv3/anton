@@ -1,19 +1,38 @@
 package anton
 
+// SLAVE CONSOLIDATION CHECKED
+
 import (
-	"bytes"
-	"encoding/json"
-	"io/ioutil"
-	"log"
-	"net/http"
 	"strconv"
 	"strings"
 )
 
-// The Different Methods in the Anton Package for Masters are listed in the order below:
-// - CreateNewMaster()				(<-- Although not a Method, it returns an empty Master)
-// - SendToAnton()
-// -
+/*
+
+Create Master Lines Function Breakdown:
+
+- Master Method
+
+	- CreateMasterMoneyLine
+		- formatMasterLineValues
+
+	- CreateMasterSpread
+		- formatMasterLineValues
+
+	- CreateMasterTotal
+		- formatMasterLineValues
+
+	- CreateMasterTeamTotal
+		- formatMasterLineValues
+
+- Line Method
+
+	- AddMasterLineValues
+		- formatPeriod
+		- formatSport
+		- formatLeague
+
+*/
 
 func (master Master) CreateMasterMoneyLine(ticketID, rotationNumber, lineJuice string) Lines {
 
@@ -24,7 +43,7 @@ func (master Master) CreateMasterMoneyLine(ticketID, rotationNumber, lineJuice s
 	}
 
 	// Now that we've got MoneyLine Specific values, we can call the formatMasterValues for the shared values
-	newMasterMoneyLine = formatMasterValues(master, newMasterMoneyLine, rotationNumber, "0", lineJuice)
+	newMasterMoneyLine = formatMasterLineValues(master, newMasterMoneyLine, rotationNumber, "0", lineJuice)
 
 	// If there is any Errors, set the Status to "Error" and Log the Function
 	if len(newMasterMoneyLine.ErrorLog) > 0 {
@@ -57,7 +76,7 @@ func (master Master) CreateMasterSpread(ticketID, rotationNumber, lineSpread, li
 	}
 
 	// Now that we've got Spread Specific values, we can call the formatMasterValues for the shared values
-	newMasterSpread = formatMasterValues(master, newMasterSpread, rotationNumber, lineSpread, lineJuice)
+	newMasterSpread = formatMasterLineValues(master, newMasterSpread, rotationNumber, lineSpread, lineJuice)
 
 	// If there is any Errors, set the Status to "Error" and Log the Function
 	if len(newMasterSpread.ErrorLog) > 0 {
@@ -90,7 +109,7 @@ func (master Master) CreateMasterTotal(ticketID, rotationNumber, lineSpread, lin
 	}
 
 	// Now that we've got Total Specific values, we can call the formatMasterValues for the shared values
-	newMasterTotal = formatMasterValues(master, newMasterTotal, rotationNumber, lineSpread, lineJuice)
+	newMasterTotal = formatMasterLineValues(master, newMasterTotal, rotationNumber, lineSpread, lineJuice)
 
 	// If there is any Errors, set the Status to "Error" and Log the Function
 	if len(newMasterTotal.ErrorLog) > 0 {
@@ -123,7 +142,7 @@ func (master Master) CreateMasterTeamTotal(ticketID, rotationNumber, lineSpread,
 	}
 
 	// Now that we've got Total Specific values, we can call the formatMasterValues for the shared values
-	newMasterTotal = formatMasterValues(master, newMasterTotal, rotationNumber, lineSpread, lineJuice)
+	newMasterTotal = formatMasterLineValues(master, newMasterTotal, rotationNumber, lineSpread, lineJuice)
 
 	// If there is any Errors, set the Status to "Error" and Log the Function
 	if len(newMasterTotal.ErrorLog) > 0 {
@@ -134,7 +153,7 @@ func (master Master) CreateMasterTeamTotal(ticketID, rotationNumber, lineSpread,
 	return newMasterTotal
 }
 
-func formatMasterValues(master Master, tempLine Lines, rotationNumber, lineSpread, lineJuice string) Lines {
+func formatMasterLineValues(master Master, tempLine Lines, rotationNumber, lineSpread, lineJuice string) Lines {
 
 	// Declare the helper struct to access the helper functions
 	var helper Helper
@@ -154,7 +173,9 @@ func formatMasterValues(master Master, tempLine Lines, rotationNumber, lineSprea
 
 	// I want to add "+" in front of the LineSpread, if it is Positive and only if it's not Total or TeamTotal
 	if returnMasterLine.LineType != "Total" && returnMasterLine.LineType != "TeamTotal" {
-		if helper.StringNegativePositiveZero(returnMasterLine.LineSpread) == "Positive" {
+		if helper.StringNegativePositiveZero(returnMasterLine.LineSpread) == "Positive" ||
+			helper.StringNegativePositiveZero(returnMasterLine.LineSpread) == "Even" {
+
 			if !strings.HasPrefix(returnMasterLine.LineSpread, "+") {
 				returnMasterLine.LineSpread = "+" + returnMasterLine.LineSpread
 			}
@@ -165,8 +186,10 @@ func formatMasterValues(master Master, tempLine Lines, rotationNumber, lineSprea
 		}
 	}
 
-	// I want to add "+" in front of the LineJuice, if it is Positive and only if it's not Total or TeamTotal
-	if helper.StringNegativePositiveZero(returnMasterLine.LineJuice) == "Positive" {
+	// I want to add "+" in front of the LineJuice, if it is Positive
+	if helper.StringNegativePositiveZero(returnMasterLine.LineJuice) == "Positive" ||
+		helper.StringNegativePositiveZero(returnMasterLine.LineSpread) == "Even" {
+
 		if !strings.HasPrefix(returnMasterLine.LineJuice, "+") {
 			returnMasterLine.LineJuice = "+" + returnMasterLine.LineJuice
 		}
@@ -296,31 +319,29 @@ func formatMasterValues(master Master, tempLine Lines, rotationNumber, lineSprea
 	return returnMasterLine
 }
 
-// Method used to send the Master to Anton
-func (master Master) SendToAnton(antonLocation string) {
+// This method lets me know what additional values I need for a Master Line to ensure consistency
+func (masterLine *Lines) AddMasterLineValues(riskAmount, toWinAmount, period, league, sport, team, masterName, masterPass string) {
 
-	// We want to send the account we're following, and not the Master Account, if the Account Type is "Agent"
-	if master.AccountType == "Agent" {
-		// We can just take the first Line's UserName and Pass because there shouldn't be multiple lines from different
-		// users at the same time
-		master.MasterName = master.MasterLines[0].MasterName
-		master.MasterPass = master.MasterLines[0].MasterPass
+	// Can just pass it's own masterName and masterPass when calling function if not found on HTML page
+
+	// Format Line with additional values, will need a method
+	masterLine.RiskAmount = riskAmount
+	masterLine.ToWinAmount = toWinAmount
+	masterLine.Team = team
+	masterLine.MasterName = masterName
+	masterLine.MasterPass = masterPass
+
+	// These three properties I need to run through and translate, will need their own functions
+	masterLine.League = formatLeague(league)
+	masterLine.Sport = formatSport(sport)
+	masterLine.Period = formatPeriod(period)
+
+	// Check for any errors
+	if masterLine.League == "Undefined" {
+		masterLine.ErrorLog = append(masterLine.ErrorLog, "[#AddMasterLineValues] League is Undefined")
+	} else if masterLine.Sport == "Undefined" {
+		masterLine.ErrorLog = append(masterLine.ErrorLog, "[#AddMasterLineValues] Sport is Undefined")
+	} else if masterLine.Period == "Undefined" {
+		masterLine.ErrorLog = append(masterLine.ErrorLog, "[#AddMasterLineValues] Period is Undefined")
 	}
-
-	requestBody, err := json.Marshal(master)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	resp, err := http.Post(antonLocation, "application/json", bytes.NewBuffer(requestBody))
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	body, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		log.Fatalln(err)
-	}
-
-	log.Println(string(body))
 }

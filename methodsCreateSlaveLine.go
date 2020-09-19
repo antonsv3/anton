@@ -5,10 +5,39 @@ import (
 	"strings"
 )
 
-// The Different Methods in the Anton Package for Bettors are listed in the order below:
-// - SendToAnton()
+/*
 
-func (slave Slave) CreateSlaveMoneyLine(masterLine Lines, rotationNumber, lineJuice string) Lines {
+Create Slave Lines Function Breakdown:
+
+- Slave Method
+
+	- CreateSlaveMoneyLine
+		- formatSlaveLineValues
+			- formatPeriod
+			- formatSport
+			- formatLeague
+
+	- CreateSlaveSpread
+		- formatSlaveLineValues
+			- formatPeriod
+			- formatSport
+			- formatLeague
+
+	- CreateSlaveTotal
+		- formatSlaveLineValues
+			- formatPeriod
+			- formatSport
+			- formatLeague
+
+	- CreateSlaveTeamTotal
+		- formatSlaveLineValues
+			- formatPeriod
+			- formatSport
+			- formatLeague
+
+*/
+
+func (slave Slave) CreateSlaveMoneyLine(rotationNumber, period, lineJuice, sport, league string) Lines {
 
 	// Create the New Line Struct that will be returned by this function
 	returnSlaveMoneyLine := Lines{
@@ -16,7 +45,8 @@ func (slave Slave) CreateSlaveMoneyLine(masterLine Lines, rotationNumber, lineJu
 	}
 
 	// Now that we've got MoneyLine Specific values, we can call the formatSlaveLineValues for the shared values
-	returnSlaveMoneyLine = formatSlaveLineValues(slave, returnSlaveMoneyLine, masterLine, rotationNumber, "0", lineJuice)
+	returnSlaveMoneyLine = formatSlaveLineValues(slave, returnSlaveMoneyLine, rotationNumber, period, "0",
+		lineJuice, sport, league)
 
 	// If there is any Errors, set the Status to "Error" and Log the Function
 	if len(returnSlaveMoneyLine.ErrorLog) > 0 {
@@ -27,7 +57,8 @@ func (slave Slave) CreateSlaveMoneyLine(masterLine Lines, rotationNumber, lineJu
 	return returnSlaveMoneyLine
 }
 
-func (slave Slave) CreateSlaveSpread(masterLine Lines, rotationNumber, lineSpread, lineJuice, favoredUnderdog string) Lines {
+func (slave Slave) CreateSlaveSpread(rotationNumber, period, lineSpread, lineJuice, favoredUnderdog,
+	sport, league string) Lines {
 
 	// Create New Line Struct that will be returned by this function
 	returnSlaveSpread := Lines{
@@ -38,7 +69,8 @@ func (slave Slave) CreateSlaveSpread(masterLine Lines, rotationNumber, lineSprea
 	returnSlaveSpread.FavoredUnderdog = favoredUnderdog
 
 	// Now that we've got Spread Specific values, we can call the formatSlaveLineValues for the shared values
-	returnSlaveSpread = formatSlaveLineValues(slave, returnSlaveSpread, masterLine, rotationNumber, lineSpread, lineJuice)
+	returnSlaveSpread = formatSlaveLineValues(slave, returnSlaveSpread, rotationNumber, period, lineSpread, lineJuice,
+		sport, league)
 
 	// If there is any Errors, set the Status to "Error" and Log the Function
 	if len(returnSlaveSpread.ErrorLog) > 0 {
@@ -49,7 +81,7 @@ func (slave Slave) CreateSlaveSpread(masterLine Lines, rotationNumber, lineSprea
 	return returnSlaveSpread
 }
 
-func (slave Slave) CreateSlaveTotal(masterLine Lines, rotationNumber, lineSpread, lineJuice, overUnder string) Lines {
+func (slave Slave) CreateSlaveTotal(rotationNumber, period, lineSpread, lineJuice, overUnder, sport, league string) Lines {
 
 	// Create New Line Struct that will be returned by this function
 	returnSlaveTotal := Lines{
@@ -60,7 +92,8 @@ func (slave Slave) CreateSlaveTotal(masterLine Lines, rotationNumber, lineSpread
 	returnSlaveTotal.OverUnder = overUnder
 
 	// Now that we've got Total Specific values, we can call the formatSlaveLineValues for the shared values
-	returnSlaveTotal = formatSlaveLineValues(slave, returnSlaveTotal, masterLine, rotationNumber, lineSpread, lineJuice)
+	returnSlaveTotal = formatSlaveLineValues(slave, returnSlaveTotal, rotationNumber, period, lineSpread, lineJuice,
+		sport, league)
 
 	// If there is any Errors, set the Status to "Error" and Log the Function
 	if len(returnSlaveTotal.ErrorLog) > 0 {
@@ -71,7 +104,8 @@ func (slave Slave) CreateSlaveTotal(masterLine Lines, rotationNumber, lineSpread
 	return returnSlaveTotal
 }
 
-func (slave Slave) CreateSlaveTeamTotal(masterLine Lines, rotationNumber, lineSpread, lineJuice, overUnder string) Lines {
+func (slave Slave) CreateSlaveTeamTotal(rotationNumber, period, lineSpread, lineJuice, overUnder,
+	sport, league string) Lines {
 
 	// Create New Line Struct that will be returned by this function
 	returnSlaveTeamTotal := Lines{
@@ -82,7 +116,8 @@ func (slave Slave) CreateSlaveTeamTotal(masterLine Lines, rotationNumber, lineSp
 	returnSlaveTeamTotal.OverUnder = overUnder
 
 	// Now that we've got Total Specific values, we can call the formatSlaveLineValues for the shared values
-	returnSlaveTeamTotal = formatSlaveLineValues(slave, returnSlaveTeamTotal, masterLine, rotationNumber, lineSpread, lineJuice)
+	returnSlaveTeamTotal = formatSlaveLineValues(slave, returnSlaveTeamTotal, rotationNumber, period,
+		lineSpread, lineJuice, sport, league)
 
 	// If there is any Errors, set the Status to "Error" and Log the Function
 	if len(returnSlaveTeamTotal.ErrorLog) > 0 {
@@ -93,7 +128,8 @@ func (slave Slave) CreateSlaveTeamTotal(masterLine Lines, rotationNumber, lineSp
 	return returnSlaveTeamTotal
 }
 
-func formatSlaveLineValues(slave Slave, slaveLine, masterLine Lines, rotationNumber, lineSpread, lineJuice string) Lines {
+func formatSlaveLineValues(slave Slave, slaveLine Lines, rotationNumber, period, lineSpread, lineJuice,
+	sport, league string) Lines {
 
 	// Declare the helper struct to access the helper functions
 	var helper Helper
@@ -111,15 +147,26 @@ func formatSlaveLineValues(slave Slave, slaveLine, masterLine Lines, rotationNum
 	returnSlaveLine.LineJuice = helper.ReplaceParameters(lineJuice, "½", ".5", " ", "")
 	returnSlaveLine.LineSpread = helper.ReplaceParameters(lineSpread, "½", ".5", " ", "")
 
-	// I want to add "+" in front of the LineSpread, if it is Positive
-	if helper.StringNegativePositiveZero(returnSlaveLine.LineSpread) == "Positive" {
-		if !strings.HasPrefix(returnSlaveLine.LineSpread, "+") {
-			returnSlaveLine.LineSpread = "+" + returnSlaveLine.LineSpread
+	// I want to add "+" in front of the LineSpread, if it is Positive and only if it's not Total or TeamTotal
+	// This will remove "+" and "-" if it is a Total or TeamTotal, which we'll be using OverUnder to compare
+	if returnSlaveLine.LineType != "Total" && returnSlaveLine.LineType != "TeamTotal" {
+		if helper.StringNegativePositiveZero(returnSlaveLine.LineSpread) == "Positive" ||
+			helper.StringNegativePositiveZero(returnSlaveLine.LineSpread) == "Even" {
+
+			if !strings.HasPrefix(returnSlaveLine.LineSpread, "+") {
+				returnSlaveLine.LineSpread = "+" + returnSlaveLine.LineSpread
+			}
+		}
+	} else {
+		if strings.HasPrefix(returnSlaveLine.LineSpread, "+") || strings.HasPrefix(returnSlaveLine.LineSpread, "-") {
+			returnSlaveLine.LineSpread = helper.ReplaceParameters(returnSlaveLine.LineSpread, "+", "", "-", "")
 		}
 	}
 
 	// I want to add "+" in front of the LineJuice, if it is Positive
-	if helper.StringNegativePositiveZero(returnSlaveLine.LineJuice) == "Positive" {
+	if helper.StringNegativePositiveZero(returnSlaveLine.LineJuice) == "Positive" ||
+		helper.StringNegativePositiveZero(returnSlaveLine.LineSpread) == "Even" {
+
 		if !strings.HasPrefix(returnSlaveLine.LineJuice, "+") {
 			returnSlaveLine.LineJuice = "+" + returnSlaveLine.LineJuice
 		}
@@ -131,17 +178,10 @@ func formatSlaveLineValues(slave Slave, slaveLine, masterLine Lines, rotationNum
 	returnSlaveLine.SlavePass = slave.SlavePass
 	returnSlaveLine.SlaveSite = slave.SiteName
 
-	// Append Inherited Values from the Master Bet we're comparing against
-	returnSlaveLine.Sport = masterLine.Sport
-	returnSlaveLine.League = masterLine.League
-	returnSlaveLine.Period = masterLine.Period
-	returnSlaveLine.Team = masterLine.Team
-
-	// Add the TicketID from the masterLine to the slaveLine
-	returnSlaveLine.TicketID = masterLine.TicketID
-
-	// Can probably remove this below
-	returnSlaveLine.ComparedLines = append(returnSlaveLine.ComparedLines, masterLine)
+	// Format the Sport, League and Period
+	returnSlaveLine.Sport = formatSport(sport)
+	returnSlaveLine.League = formatLeague(league)
+	returnSlaveLine.Period = formatPeriod(period)
 
 	// ----------------------------------- Converting LineSpread to LineSpreadFloat --------------------------------- //
 

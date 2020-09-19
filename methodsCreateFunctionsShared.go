@@ -5,10 +5,7 @@ import (
 	"strings"
 )
 
-// MASTER DONE
-
-// These are the functions that help us ingest values, will be used to format when Creating Lines in the Methods
-// Used in both methodsMaster.go and methodsSlave.go
+// These three functions are used in methodsCreateMasterLine.go and methodsCreateSlaveLine.go
 
 // Possible Sport Values can be found in configurableParameters.go
 func formatSport(sport string) string {

@@ -95,6 +95,9 @@ type Lines struct {
 	SlavePass string `bson:",omitempty" json:"slavepass,omitempty"`
 	SlaveSite string `bson:",omitempty" json:"slavesite,omitempty"`
 
+	// This is only used by SlaveLines, inherited by the MasterLine it is comparing against
+	MasterTicketID string `bson:"masterticketID,omitempty" json:"masterticketID,omitempty"`
+
 	// This is Optional holder for any unique values for a particular line
 	UniqueID string `bson:",omitempty" json:"uniqueid"`
 	HomeAway string `bson:",omitempty" json:"homeaway"`
