@@ -197,8 +197,13 @@ type TelegramMsg struct {
 	Text   string `bson:"-" json:"text"`
 }
 
-// Slave Results for return when
+// Slave Results
 type SlaveResults struct {
+	// LinesOnPage will be distributed among these different slices below
+	LinesOnPage []Lines `bson:"-" json:"-"`
+
+	// AuthLines will be place holder for PlacedLines, pre-placing
+	AuthLines    []Lines `bson:"-" json:"-"`
 	PlacedLines  []Lines `bson:"-" json:"-"`
 	SkippedLines []Lines `bson:"-" json:"-"`
 	ErrorLines   []Lines `bson:"-" json:"-"`
