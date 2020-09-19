@@ -199,14 +199,16 @@ type TelegramMsg struct {
 
 // Slave Results
 type SlaveResults struct {
-	// LinesOnPage will be distributed among these different slices below
+	// Section (c) of the Scrapper
 	LinesOnPage []Lines `bson:"-" json:"-"`
 
-	// AuthLines will be place holder for PlacedLines, pre-placing
+	// Section (d) of the Scrapper
 	AuthLines    []Lines `bson:"-" json:"-"`
-	PlacedLines  []Lines `bson:"-" json:"-"`
 	SkippedLines []Lines `bson:"-" json:"-"`
-	ErrorLines   []Lines `bson:"-" json:"-"`
+
+	// Section (e) of the Scrapper
+	PlacedLines []Lines `bson:"-" json:"-"`
+	ErrorLines  []Lines `bson:"-" json:"-"`
 }
 
 // This is a Struct to hold the Site's Dict, to help navigate through the different Sites, easier to read this way
