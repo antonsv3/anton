@@ -286,7 +286,7 @@ func (helper Helper) FormatStringSportLeaguePeriod(master Master, slave Slave, s
 }
 
 // Helper Function to help print JSON formatted of a struct
-func (helper Helper) structPrintJSON(v interface{}) {
+func (helper Helper) PrintStructInJSON(v interface{}) {
 	printString, _ := json.MarshalIndent(v, "", "    ")
 	var prettyJSON bytes.Buffer
 	err := json.Indent(&prettyJSON, printString, "", "    ")
