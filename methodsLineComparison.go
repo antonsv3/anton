@@ -31,8 +31,6 @@ Compare Lines Function Breakdown:
 
 func (slaveLine *Lines) CompareSlaveLineToMasterLine(masterLine Lines, slave Slave, profile Profile) {
 
-	var helper Helper
-
 	// This flag is to ensure that we have met all other criteria prior to comparing, default "False"
 	preChecksValidFlag := "False"
 
@@ -122,7 +120,6 @@ func (slaveLine *Lines) CompareSlaveLineToMasterLine(masterLine Lines, slave Sla
 			slaveLine.FunctionLog = "[#ComparedLines] Error Occurred during Lines Comparison"
 		}
 
-		helper.PrintStructInJSON(slaveLine)
 	}
 }
 
