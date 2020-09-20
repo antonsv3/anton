@@ -450,8 +450,6 @@ func (line *Lines) ValidateAgainstProfile(profile Profile) {
 			line.FunctionLog = "[#ValidateAgainstProfile] Slave is not following MLB Total from this Master"
 		} else if line.LineType == "TeamTotal" && profile.SportsSettings.MLB.TeamTotal != "Yes" {
 			line.FunctionLog = "[#ValidateAgainstProfile] Slave is not following MLB TeamTotal from this Master"
-		} else {
-			fmt.Println("Could not match MLB Line Type to Profile")
 		}
 
 		// These are the different Periods, for MLB, there is only two
@@ -459,8 +457,6 @@ func (line *Lines) ValidateAgainstProfile(profile Profile) {
 			line.FunctionLog = "[#ValidateAgainstProfile] Slave is not following MLB 1st Five Innings from this Master"
 		} else if line.Period == "" && profile.SportsSettings.MLB.Game != "Yes" {
 			line.FunctionLog = "[#ValidateAgainstProfile] Slave is not following MLB Game from this Master"
-		} else {
-			fmt.Println("Could not match MLB Line Period to Profile")
 		}
 
 	} else if line.League == "NBA" {
@@ -474,8 +470,6 @@ func (line *Lines) ValidateAgainstProfile(profile Profile) {
 			line.FunctionLog = "[#ValidateAgainstProfile] Slave is not following NBA Total from this Master"
 		} else if line.LineType == "TeamTotal" && profile.SportsSettings.NBA.TeamTotal != "Yes" {
 			line.FunctionLog = "[#ValidateAgainstProfile] Slave is not following NBA TeamTotal from this Master"
-		} else {
-			fmt.Println("Could not match NBA Line Type to Profile")
 		}
 
 		// These are the different Periods, for NBA, there is six
@@ -493,8 +487,6 @@ func (line *Lines) ValidateAgainstProfile(profile Profile) {
 			line.FunctionLog = "[#ValidateAgainstProfile] Slave is not following NBA Third Quarter from this Master"
 		} else if line.Period == "" && profile.SportsSettings.NBA.FourQuarter != "Yes" {
 			line.FunctionLog = "[#ValidateAgainstProfile] Slave is not following NBA Fourth Quarter from this Master"
-		} else {
-			fmt.Println("Could not match NBA Period to Profile")
 		}
 
 	} else if line.League == "NFL" {
@@ -508,8 +500,6 @@ func (line *Lines) ValidateAgainstProfile(profile Profile) {
 			line.FunctionLog = "[#ValidateAgainstProfile] Slave is not following NFL Total from this Master"
 		} else if line.LineType == "TeamTotal" && profile.SportsSettings.NFL.TeamTotal != "Yes" {
 			line.FunctionLog = "[#ValidateAgainstProfile] Slave is not following NFL TeamTotal from this Master"
-		} else {
-			fmt.Println("Could not match NFL Line Type to Profile")
 		}
 
 		// These are the different Periods, for NFL, there is six
@@ -527,10 +517,7 @@ func (line *Lines) ValidateAgainstProfile(profile Profile) {
 			line.FunctionLog = "[#ValidateAgainstProfile] Slave is not following NFL Third Quarter from this Master"
 		} else if line.Period == "" && profile.SportsSettings.NFL.FourQuarter != "Yes" {
 			line.FunctionLog = "[#ValidateAgainstProfile] Slave is not following NFL Fourth Quarter from this Master"
-		} else {
-			fmt.Println("Could not match NFL Period to Profile")
 		}
-
 	}
 
 	// If there's a function log from above criteria, we know the Slave is not following the Master on Profile
@@ -539,7 +526,6 @@ func (line *Lines) ValidateAgainstProfile(profile Profile) {
 	} else {
 		line.FunctionLog = "[#ValidateAgainstProfile] Slave is following Master on this Line"
 	}
-
 }
 
 // This function is to help do Pre-Checks prior to Comparing Lines
