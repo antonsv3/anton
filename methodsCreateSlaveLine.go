@@ -140,7 +140,9 @@ func formatSlaveLineValues(slave Slave, slaveLine Lines, rotationNumber, period,
 	// Append Static Values that'll be changed if there are any errors with this function
 	returnSlaveLine.CreatedViaFunction = "True"
 	returnSlaveLine.LineStatus = "New"
-	returnSlaveLine.FunctionLog = "[#createSlaveMoneyLine] New Slave Money Line created through function"
+	returnSlaveLine.FunctionLog = "[#createSlave{LineType}] New Slave {LineType} created through function"
+	returnSlaveLine.FunctionLog = helper.ReplaceParameters(returnSlaveLine.FunctionLog, "{LineType}",
+		returnSlaveLine.LineType)
 
 	// Append the parameters from the calling of one of those three functions, which we passed into here
 	returnSlaveLine.RotationNumber = rotationNumber
