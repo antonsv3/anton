@@ -94,8 +94,6 @@ func (slaveLine *Lines) CompareSlaveLineToMasterLine(masterLine Lines, slave Sla
 		// First, lets compare the juice to see if it is within the parameter
 		slaveLine.compareJuiceValues(masterLine, juiceParameter)
 
-		helper.PrintStructInJSON(slaveLine)
-
 		// Only continue if Juice Values comparisons are passed
 		if strings.HasPrefix(slaveLine.FunctionLog, "[#CompareJuiceValues Passed]") {
 			// Since MoneyLine doesn't have anything else to compare since Juice is done, let's do Total & Spread
@@ -123,6 +121,8 @@ func (slaveLine *Lines) CompareSlaveLineToMasterLine(masterLine Lines, slave Sla
 			slaveLine.LineStatus = "Error"
 			slaveLine.FunctionLog = "[#ComparedLines] Error Occurred during Lines Comparison"
 		}
+
+		helper.PrintStructInJSON(slaveLine)
 	}
 }
 
