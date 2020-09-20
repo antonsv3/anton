@@ -168,9 +168,11 @@ func (line *Lines) ValidateSingleLine() {
 
 	// Values are: True
 	createdViaFunctionValues := GetCreatedViaFunctionValues()
-	if helper.FindIfStringInSlice(line.CreatedViaFunction, createdViaFunctionValues) == "False" {
-		line.ErrorLog = append(line.ErrorLog, "{betType} {lineType}: CreatedViaFunction -> Line "+
-			"should be created leveraging Create Function")
+	if line.BetType != "Master" {
+		if helper.FindIfStringInSlice(line.CreatedViaFunction, createdViaFunctionValues) == "False" {
+			line.ErrorLog = append(line.ErrorLog, "{betType} {lineType}: CreatedViaFunction -> Line "+
+				"should be created leveraging Create Function")
+		}
 	}
 
 	// ------------------------------------------------------------------------------- FavoredUnderdog
