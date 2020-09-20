@@ -22,7 +22,7 @@ func formatSport(sport string) string {
 	} else if helper.FindIfStringInSlice(returnSport, sportValuesFootball) != "False" {
 		returnSport = "Football"
 	} else {
-		fmt.Println("Error, can not format Period with a value of " + returnSport)
+		//fmt.Println("Error, can not format Period with a value of " + returnSport)
 		returnSport = "Undefined"
 	}
 
