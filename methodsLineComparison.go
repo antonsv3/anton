@@ -46,7 +46,7 @@ func (slaveLine *Lines) CompareSlaveLineToMasterLine(masterLine Lines, slave Sla
 	if slaveLine.LineStatus == "Validated" && masterLine.LineStatus == "Validated" {
 
 		// Next, let's compare it to the profiles to see whether the Slave is following the master on these lines
-		if len(slave.Profiles) > 1 {
+		if len(slave.Profiles) >= 1 {
 
 			// This variable is our parameter for what is the maximum difference of Juice between Slave and Master
 			// Because GoLang uses 0 if there is an error when converting to float/integers, we need to see if error or not
