@@ -64,6 +64,10 @@ func (slaveLine *Lines) CompareSlaveLineToMasterLine(masterLine Lines, slave Sla
 			}
 
 			slaveLine.ValidateAgainstProfile(slave.Profiles[0])
+
+			fmt.Println("ValidateAgainstProfile Invoked -------------------------------------")
+			fmt.Println(slaveLine)
+			fmt.Println("ValidateAgainstProfile Conclude ------------------------------------")
 		} else {
 			slaveLine.LineStatus = "Error"
 			slaveLine.ErrorLog = append(slaveLine.ErrorLog, "Slave does not have a Profile Attached")
@@ -73,6 +77,9 @@ func (slaveLine *Lines) CompareSlaveLineToMasterLine(masterLine Lines, slave Sla
 	// If slaveLine is still Validated, then we can pre-check versus the Master Line
 	if slaveLine.LineStatus == "Validated" && masterLine.LineStatus == "Validated" {
 		slaveLine.ValidateAgainst(masterLine)
+		fmt.Println("ValidateAgainstMasterLine Invoked -------------------------------------")
+		fmt.Println(slaveLine)
+		fmt.Println("ValidateAgainstMasterLine Conclude ------------------------------------")
 	}
 
 	// If slaveLine is still Validated after single line validation, profile validation, pre-check validation, flip flag
