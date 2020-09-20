@@ -109,7 +109,7 @@ func (slaveLine *Lines) CompareSlaveLineToMasterLine(masterLine Lines, slave Sla
 		}
 
 		// Let's validate slave line one more time, let's create a new variable so we don't mess up any function logs
-		finalValidation := slaveLine
+		finalValidation := *slaveLine
 		finalValidation.ValidateSingleLine()
 		if finalValidation.LineStatus == "Error" {
 			slaveLine.ErrorLog = append(slaveLine.ErrorLog, "Slave Line did not pass Final "+
