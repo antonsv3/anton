@@ -31,6 +31,8 @@ Compare Lines Function Breakdown:
 
 func (slaveLine *Lines) CompareSlaveLineToMasterLine(masterLine Lines, slave Slave, profile Profile) {
 
+	var helper Helper
+
 	// This flag is to ensure that we have met all other criteria prior to comparing, default "False"
 	preChecksValidFlag := "False"
 
@@ -65,9 +67,6 @@ func (slaveLine *Lines) CompareSlaveLineToMasterLine(masterLine Lines, slave Sla
 
 			slaveLine.ValidateAgainstProfile(slave.Profiles[0])
 
-			fmt.Println("ValidateAgainstProfile Invoked -------------------------------------")
-			fmt.Println(slaveLine)
-			fmt.Println("ValidateAgainstProfile Conclude ------------------------------------")
 		} else {
 			slaveLine.LineStatus = "Error"
 			slaveLine.ErrorLog = append(slaveLine.ErrorLog, "Slave does not have a Profile Attached")
@@ -77,10 +76,6 @@ func (slaveLine *Lines) CompareSlaveLineToMasterLine(masterLine Lines, slave Sla
 	// If slaveLine is still Validated, then we can pre-check versus the Master Line
 	if slaveLine.LineStatus == "Validated" && masterLine.LineStatus == "Validated" {
 		slaveLine.ValidateAgainst(masterLine)
-		fmt.Println("ValidateAgainstMasterLine Invoked -------------------------------------")
-		fmt.Println(slaveLine)
-		fmt.Println(masterLine)
-		fmt.Println("ValidateAgainstMasterLine Conclude ------------------------------------")
 	}
 
 	// If slaveLine is still Validated after single line validation, profile validation, pre-check validation, flip flag
@@ -94,10 +89,12 @@ func (slaveLine *Lines) CompareSlaveLineToMasterLine(masterLine Lines, slave Sla
 	}
 
 	// Now that we've checked, we can compare the two Lines now by calling the functions below
-	if preChecksValidFlag == "True" && slaveLine.LineStatus != "Ignored" {
+	if preChecksValidFlag == "True" {
 
 		// First, lets compare the juice to see if it is within the parameter
 		slaveLine.compareJuiceValues(masterLine, juiceParameter)
+
+		helper.PrintStructInJSON(slaveLine)
 
 		// Only continue if Juice Values comparisons are passed
 		if strings.HasPrefix(slaveLine.FunctionLog, "[#CompareJuiceValues Passed]") {
