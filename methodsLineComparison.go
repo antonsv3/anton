@@ -268,12 +268,14 @@ func (line *Lines) ValidateSingleLine() {
 	}
 
 	// ------------------------------------------------------------------------------- TicketID
-	if line.TicketID == "" {
+	/*
+		if line.TicketID == "" {
 
-		line.ErrorLog = append(line.ErrorLog, "{betType} {lineType}: TicketID -> Please "+
-			"assign the TicketID")
+			line.ErrorLog = append(line.ErrorLog, "{betType} {lineType}: TicketID -> Please "+
+				"assign the TicketID")
 
-	}
+		}
+	*/
 
 	// Let's now do specific requirement values for specific LineTypes: MoneyLine vs Spread vs Total
 
