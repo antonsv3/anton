@@ -3,6 +3,8 @@ package anton
 // SLAVE CONSOLIDATION CHECKED
 
 import (
+	"bytes"
+	"encoding/json"
 	"fmt"
 	"regexp"
 	"strconv"
@@ -281,4 +283,20 @@ func (helper Helper) FormatStringSportLeaguePeriod(master Master, slave Slave, s
 	}
 
 	return returnStringSlice
+}
+
+// Helper Function to help print JSON formatted of a struct
+func (helper Helper) structPrintJSON(v interface{}) {
+	printString, _ := json.MarshalIndent(v, "", "    ")
+	var prettyJSON bytes.Buffer
+	err := json.Indent(&prettyJSON, printString, "", "    ")
+	if err != nil {
+		fmt.Println("JSON parse error: ", err)
+	}
+
+	fmt.Println("---------------------------------------")
+	fmt.Println()
+	fmt.Println(string(prettyJSON.Bytes()))
+	fmt.Println()
+	fmt.Println("---------------------------------------")
 }
