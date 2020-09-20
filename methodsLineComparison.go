@@ -617,11 +617,6 @@ func (slaveLine *Lines) ValidateAgainst(masterLine Lines) {
 				" shouldn't be populated")
 		}
 
-		if masterLine.FavoredUnderdog != "" {
-			slaveLine.ErrorLog = append(slaveLine.ErrorLog, "Master MoneyLine: FavoredUnderdog Values"+
-				" should not be populated")
-		}
-
 		if masterLine.OverUnder != "" {
 			slaveLine.ErrorLog = append(slaveLine.ErrorLog, "Master MoneyLine: OverUnder Values"+
 				" shouldn't be populated")
