@@ -79,6 +79,7 @@ func (slaveLine *Lines) CompareSlaveLineToMasterLine(masterLine Lines, slave Sla
 		slaveLine.ValidateAgainst(masterLine)
 		fmt.Println("ValidateAgainstMasterLine Invoked -------------------------------------")
 		fmt.Println(slaveLine)
+		fmt.Println(masterLine)
 		fmt.Println("ValidateAgainstMasterLine Conclude ------------------------------------")
 	}
 
