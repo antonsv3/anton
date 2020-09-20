@@ -611,10 +611,6 @@ func (slaveLine *Lines) ValidateAgainst(masterLine Lines) {
 
 	// If LineType == "MoneyLine" and either OverUnder or FavoredUnderdog is not blank
 	if slaveLine.LineType == "MoneyLine" && masterLine.LineType == "MoneyLine" {
-		if slaveLine.FavoredUnderdog != "" {
-			slaveLine.ErrorLog = append(slaveLine.ErrorLog, "Slave MoneyLine: FavoredUnderdog"+
-				" Values should not be populated")
-		}
 
 		if slaveLine.OverUnder != "" {
 			slaveLine.ErrorLog = append(slaveLine.ErrorLog, "Slave MoneyLine: OverUnder Values"+
