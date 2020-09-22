@@ -63,6 +63,10 @@ func (slaveLine *Lines) CompareSlaveLineToMasterLine(masterLine Lines, slave Sla
 			// Because GoLang uses 0 if there is an error when converting to float/integers, we need to see if error or not
 			spreadParameter, _ = strconv.ParseFloat(slave.Profiles[0].SpreadParameter, 32)
 			if spreadParameter == 0 && profile.SpreadParameter != "0" {
+				fmt.Println("Profile Spread Parameter")
+				fmt.Println(profile.SpreadParameter)
+				fmt.Println("Spread Parameter")
+				fmt.Println(spreadParameter)
 				slaveLine.ErrorLog = append(slaveLine.ErrorLog, "Could Not Parse Spread Parameter to Float Value")
 			}
 
