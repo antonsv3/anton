@@ -285,6 +285,50 @@ func (helper Helper) FormatStringSportLeaguePeriod(master Master, slave Slave, s
 	return returnStringSlice
 }
 
+// This function helps get a value from a Period
+func (helper Helper) GetPeriodTextValue(dictionary SiteDictionary, periodValue string) string {
+
+	returnPeriodText := ""
+
+	// These are all the "Game" Period values
+	if periodValue == dictionary.SportsDict.Baseball.MLB.Period.Game ||
+		periodValue == dictionary.SportsDict.Football.NFL.Period.Game ||
+		periodValue == dictionary.SportsDict.Basketball.NBA.Period.Game {
+
+		returnPeriodText = "Game"
+	} else if periodValue == dictionary.SportsDict.Baseball.MLB.Period.OneFiveInnings {
+		returnPeriodText = "1st 5 Innings"
+	} else if periodValue == dictionary.SportsDict.Basketball.NBA.Period.OneHalf ||
+		periodValue == dictionary.SportsDict.Football.NFL.Period.OneHalf {
+
+		returnPeriodText = "1st Half"
+	} else if periodValue == dictionary.SportsDict.Basketball.NBA.Period.TwoHalf ||
+		periodValue == dictionary.SportsDict.Football.NFL.Period.TwoHalf {
+
+		returnPeriodText = "2nd Half"
+	} else if periodValue == dictionary.SportsDict.Basketball.NBA.Period.OneQuarter ||
+		periodValue == dictionary.SportsDict.Football.NFL.Period.OneQuarter {
+
+		returnPeriodText = "1st Quarter"
+	} else if periodValue == dictionary.SportsDict.Basketball.NBA.Period.TwoQuarter ||
+		periodValue == dictionary.SportsDict.Football.NFL.Period.TwoQuarter {
+
+		returnPeriodText = "2nd Quarter"
+	} else if periodValue == dictionary.SportsDict.Basketball.NBA.Period.ThreeQuarter ||
+		periodValue == dictionary.SportsDict.Football.NFL.Period.ThreeQuarter {
+
+		returnPeriodText = "3rd Quarter"
+	} else if periodValue == dictionary.SportsDict.Basketball.NBA.Period.OneHalf ||
+		periodValue == dictionary.SportsDict.Football.NFL.Period.OneHalf {
+
+		returnPeriodText = "4th Quarter"
+	} else {
+		returnPeriodText = "Undefined"
+	}
+
+	return returnPeriodText
+}
+
 // Helper Function to help print JSON formatted of a struct
 func (helper Helper) PrintStructInJSON(v interface{}) {
 	printString, _ := json.MarshalIndent(v, "", "    ")
