@@ -181,9 +181,9 @@ func formatSlaveLineValues(slave Slave, slaveLine Lines, rotationNumber, period,
 	returnSlaveLine.SlaveSite = slave.SiteName
 
 	// Format the Sport, League and Period
-	returnSlaveLine.Sport = formatSport(sport)
-	returnSlaveLine.League = formatLeague(league)
-	returnSlaveLine.Period = formatPeriod(period)
+	returnSlaveLine.Sport = helper.FormatSport(sport)
+	returnSlaveLine.League = helper.FormatLeague(league)
+	returnSlaveLine.Period = helper.FormatPeriod(period)
 
 	// ----------------------------------- Converting LineSpread to LineSpreadFloat --------------------------------- //
 

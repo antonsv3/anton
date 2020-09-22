@@ -8,10 +8,7 @@ import (
 // These three functions are used in methodsCreateMasterLine.go and methodsCreateSlaveLine.go
 
 // Possible Sport Values can be found in configurableParameters.go
-func formatSport(sport string) string {
-
-	// Declare the helper struct to access the helper functions
-	var helper Helper
+func (helper Helper) FormatSport(sport string) string {
 
 	returnSport := strings.ToUpper(helper.ReplaceParameters(sport, "\u00a0", "", " ", ""))
 
@@ -30,9 +27,8 @@ func formatSport(sport string) string {
 }
 
 // Possible Period Values can be found in configurableParameters.go
-func formatLeague(league string) string {
-	// Declare the helper struct to access the helper functions
-	var helper Helper
+func (helper Helper) FormatLeague(league string) string {
+
 	returnLeague := strings.ToUpper(helper.ReplaceParameters(league, "\u00a0", "", " ", ""))
 
 	// The different Leagues are "MLB", "NBA", "NFL"
@@ -52,9 +48,8 @@ func formatLeague(league string) string {
 }
 
 // Possible Period Values can be found in configurableParameters.go
-func formatPeriod(period string) string {
-	// Declare the helper struct to access the helper functions
-	var helper Helper
+func (helper Helper) FormatPeriod(period string) string {
+
 	returnPeriod := strings.ToUpper(helper.ReplaceParameters(period, "\u00a0", "", " ", ""))
 
 	if helper.FindIfStringInSlice(returnPeriod, periodValuesGame) != "False" {

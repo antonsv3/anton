@@ -322,6 +322,7 @@ func formatMasterLineValues(master Master, tempLine Lines, rotationNumber, lineS
 // This method lets me know what additional values I need for a Master Line to ensure consistency
 func (masterLine *Lines) AddMasterLineValues(riskAmount, toWinAmount, period, league, sport, team, masterName, masterPass string) {
 
+	var helper Helper
 	// Can just pass it's own masterName and masterPass when calling function if not found on HTML page
 
 	// Format Line with additional values, will need a method
@@ -332,9 +333,9 @@ func (masterLine *Lines) AddMasterLineValues(riskAmount, toWinAmount, period, le
 	masterLine.MasterPass = masterPass
 
 	// These three properties I need to run through and translate, will need their own functions
-	masterLine.League = formatLeague(league)
-	masterLine.Sport = formatSport(sport)
-	masterLine.Period = formatPeriod(period)
+	masterLine.League = helper.FormatLeague(league)
+	masterLine.Sport = helper.FormatSport(sport)
+	masterLine.Period = helper.FormatPeriod(period)
 
 	// Check for any errors
 	if masterLine.League == "Undefined" {
