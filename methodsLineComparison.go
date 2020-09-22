@@ -62,7 +62,7 @@ func (slaveLine *Lines) CompareSlaveLineToMasterLine(masterLine Lines, slave Sla
 			// This variable is our parameter for what is the maximum difference of Spread values between Slave and Master
 			// Because GoLang uses 0 if there is an error when converting to float/integers, we need to see if error or not
 			spreadParameter, _ = strconv.ParseFloat(slave.Profiles[0].SpreadParameter, 32)
-			if spreadParameter == 0 && profile.SpreadParameter != "0" {
+			if spreadParameter == 0 && profile.SpreadParameter != "0" && profile.SpreadParameter != "0.0" {
 				fmt.Println("Profile Spread Parameter")
 				fmt.Println(profile.SpreadParameter)
 				fmt.Println("Spread Parameter")
