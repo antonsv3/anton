@@ -34,6 +34,9 @@ func (slaveLine *Lines) CompareSlaveLineToMasterLine(masterLine Lines, slave Sla
 	// This flag is to ensure that we have met all other criteria prior to comparing, default "False"
 	preChecksValidFlag := "False"
 
+	// I want to add the Team from MasterLine to SlaveLine
+	slaveLine.Team = masterLine.Team
+
 	// Now lets start these checks, Let's validate both Lines to see if values are populated correctly
 	slaveLine.ValidateSingleLine()
 	masterLine.ValidateSingleLine()
