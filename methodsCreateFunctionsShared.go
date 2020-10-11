@@ -31,7 +31,7 @@ func (helper Helper) FormatLeague(league string) string {
 
 	returnLeague := strings.ToUpper(helper.ReplaceParameters(league, "\u00a0", "", " ", ""))
 
-	// The different Leagues are "MLB", "NBA", "NFL"
+	// The different Leagues are "MLB", "NBA", "NFL", "College Football", "College Basketball"
 
 	if helper.FindIfStringInSlice(returnLeague, leagueValuesMLB) != "False" {
 		returnLeague = "MLB"
