@@ -57,8 +57,11 @@ var leagueValuesNBA = []string{"NBA", "NATIONALBASKETBALLASSOCIATION"}
 // "NFL"
 var leagueValuesNFL = []string{"NFL", "NATIONALFOOTBALLLEAGUE"}
 
-// "C Football"
-var leagueValuesCFootball = []string{"COLLEGEFOOTBALL"}
+// "College Football"
+var leagueValuesCollegeFootball = []string{"COLLEGEFOOTBALL"}
+
+// "College Basketball
+var leagueValuesCollegeBasketball = []string{"COLLEGEBASKETBALL"}
 
 // ------------------------------- Configurable Parameters That Shouldn't Change Much ------------------------------- //
 

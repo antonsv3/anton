@@ -39,6 +39,10 @@ func (helper Helper) FormatLeague(league string) string {
 		returnLeague = "NBA"
 	} else if helper.FindIfStringInSlice(returnLeague, leagueValuesNFL) != "False" {
 		returnLeague = "NFL"
+	} else if helper.FindIfStringInSlice(returnLeague, leagueValuesCollegeFootball) != "False" {
+		returnLeague = "College Football"
+	} else if helper.FindIfStringInSlice(returnLeague, leagueValuesCollegeBasketball) != "False" {
+		returnLeague = "College Basketball"
 	} else {
 		fmt.Println("Error, can not format Period with a value of " + returnLeague)
 		returnLeague = "Undefined"
