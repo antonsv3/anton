@@ -224,6 +224,26 @@ func (helper Helper) FormatStringSportLeaguePeriod(master Master, slave Slave, s
 				} else if master.MasterLines[i].Period == "4th Quarter" {
 					tempString = helper.ReplaceParameters(tempString, "{PeriodID}", sportsDict.Football.NFL.Period.FourQuarter)
 				}
+			} else if master.MasterLines[i].League == "College Football" {
+				// Add in the LeagueID, which we know is "CollegeFootball" on this conditional
+				tempString = helper.ReplaceParameters(tempString, "{LeagueID}", sportsDict.Football.CollegeFootball.ID)
+
+				// Now we have to add in the Period of the bets (Game, 1st Half, etc)
+				if master.MasterLines[i].Period == "Game" {
+					tempString = helper.ReplaceParameters(tempString, "{PeriodID}", sportsDict.Football.CollegeFootball.Period.Game)
+				} else if master.MasterLines[i].Period == "1st Half" {
+					tempString = helper.ReplaceParameters(tempString, "{PeriodID}", sportsDict.Football.CollegeFootball.Period.OneHalf)
+				} else if master.MasterLines[i].Period == "2nd Half" {
+					tempString = helper.ReplaceParameters(tempString, "{PeriodID}", sportsDict.Football.CollegeFootball.Period.TwoHalf)
+				} else if master.MasterLines[i].Period == "1st Quarter" {
+					tempString = helper.ReplaceParameters(tempString, "{PeriodID}", sportsDict.Football.CollegeFootball.Period.OneQuarter)
+				} else if master.MasterLines[i].Period == "2nd Quarter" {
+					tempString = helper.ReplaceParameters(tempString, "{PeriodID}", sportsDict.Football.CollegeFootball.Period.TwoQuarter)
+				} else if master.MasterLines[i].Period == "3rd Quarter" {
+					tempString = helper.ReplaceParameters(tempString, "{PeriodID}", sportsDict.Football.CollegeFootball.Period.ThreeQuarter)
+				} else if master.MasterLines[i].Period == "4th Quarter" {
+					tempString = helper.ReplaceParameters(tempString, "{PeriodID}", sportsDict.Football.CollegeFootball.Period.FourQuarter)
+				}
 			}
 		} else if master.MasterLines[i].Sport == "Basketball" {
 			// Add in the SportID, which we know is "Basketball" on this conditional
@@ -249,6 +269,26 @@ func (helper Helper) FormatStringSportLeaguePeriod(master Master, slave Slave, s
 					tempString = helper.ReplaceParameters(tempString, "{PeriodID}", sportsDict.Basketball.NBA.Period.ThreeQuarter)
 				} else if master.MasterLines[i].Period == "4th Quarter" {
 					tempString = helper.ReplaceParameters(tempString, "{PeriodID}", sportsDict.Basketball.NBA.Period.FourQuarter)
+				}
+			} else if master.MasterLines[i].League == "College Football" {
+				// Add in the LeagueID, which we know is "College Basketball" on this conditional
+				tempString = helper.ReplaceParameters(tempString, "{LeagueID}", sportsDict.Basketball.CollegeBasketball.ID)
+
+				// Now we have to add in the Period of the bets (Game, 1st Half, etc)
+				if master.MasterLines[i].Period == "Game" {
+					tempString = helper.ReplaceParameters(tempString, "{PeriodID}", sportsDict.Basketball.CollegeBasketball.Period.Game)
+				} else if master.MasterLines[i].Period == "1st Half" {
+					tempString = helper.ReplaceParameters(tempString, "{PeriodID}", sportsDict.Basketball.CollegeBasketball.Period.OneHalf)
+				} else if master.MasterLines[i].Period == "2nd Half" {
+					tempString = helper.ReplaceParameters(tempString, "{PeriodID}", sportsDict.Basketball.CollegeBasketball.Period.TwoHalf)
+				} else if master.MasterLines[i].Period == "1st Quarter" {
+					tempString = helper.ReplaceParameters(tempString, "{PeriodID}", sportsDict.Basketball.CollegeBasketball.Period.OneQuarter)
+				} else if master.MasterLines[i].Period == "2nd Quarter" {
+					tempString = helper.ReplaceParameters(tempString, "{PeriodID}", sportsDict.Basketball.CollegeBasketball.Period.TwoQuarter)
+				} else if master.MasterLines[i].Period == "3rd Quarter" {
+					tempString = helper.ReplaceParameters(tempString, "{PeriodID}", sportsDict.Basketball.CollegeBasketball.Period.ThreeQuarter)
+				} else if master.MasterLines[i].Period == "4th Quarter" {
+					tempString = helper.ReplaceParameters(tempString, "{PeriodID}", sportsDict.Basketball.CollegeBasketball.Period.FourQuarter)
 				}
 			}
 		} else if master.MasterLines[i].Sport == "Baseball" {
@@ -293,35 +333,50 @@ func (helper Helper) GetPeriodTextValue(dictionary SiteDictionary, periodValue s
 	// These are all the "Game" Period values
 	if periodValue == dictionary.SportsDict.Baseball.MLB.Period.Game ||
 		periodValue == dictionary.SportsDict.Football.NFL.Period.Game ||
-		periodValue == dictionary.SportsDict.Basketball.NBA.Period.Game {
-
+		periodValue == dictionary.SportsDict.Basketball.NBA.Period.Game ||
+		periodValue == dictionary.SportsDict.Basketball.CollegeBasketball.Period.Game ||
+		periodValue == dictionary.SportsDict.Football.CollegeFootball.Period.Game {
 		returnPeriodText = "Game"
+
 	} else if periodValue == dictionary.SportsDict.Baseball.MLB.Period.OneFiveInnings {
 		returnPeriodText = "1st 5 Innings"
-	} else if periodValue == dictionary.SportsDict.Basketball.NBA.Period.OneHalf ||
-		periodValue == dictionary.SportsDict.Football.NFL.Period.OneHalf {
 
+	} else if periodValue == dictionary.SportsDict.Basketball.NBA.Period.OneHalf ||
+		periodValue == dictionary.SportsDict.Basketball.CollegeBasketball.Period.OneHalf ||
+		periodValue == dictionary.SportsDict.Football.NFL.Period.OneHalf ||
+		periodValue == dictionary.SportsDict.Football.CollegeFootball.Period.OneHalf {
 		returnPeriodText = "1st Half"
+
 	} else if periodValue == dictionary.SportsDict.Basketball.NBA.Period.TwoHalf ||
-		periodValue == dictionary.SportsDict.Football.NFL.Period.TwoHalf {
-
+		periodValue == dictionary.SportsDict.Basketball.CollegeBasketball.Period.TwoHalf ||
+		periodValue == dictionary.SportsDict.Football.NFL.Period.TwoHalf ||
+		periodValue == dictionary.SportsDict.Football.CollegeFootball.Period.TwoHalf {
 		returnPeriodText = "2nd Half"
+
 	} else if periodValue == dictionary.SportsDict.Basketball.NBA.Period.OneQuarter ||
-		periodValue == dictionary.SportsDict.Football.NFL.Period.OneQuarter {
-
+		periodValue == dictionary.SportsDict.Basketball.CollegeBasketball.Period.OneQuarter ||
+		periodValue == dictionary.SportsDict.Football.NFL.Period.OneQuarter ||
+		periodValue == dictionary.SportsDict.Football.CollegeFootball.Period.OneQuarter {
 		returnPeriodText = "1st Quarter"
+
 	} else if periodValue == dictionary.SportsDict.Basketball.NBA.Period.TwoQuarter ||
-		periodValue == dictionary.SportsDict.Football.NFL.Period.TwoQuarter {
-
+		periodValue == dictionary.SportsDict.Basketball.CollegeBasketball.Period.TwoQuarter ||
+		periodValue == dictionary.SportsDict.Football.NFL.Period.TwoQuarter ||
+		periodValue == dictionary.SportsDict.Football.CollegeFootball.Period.TwoQuarter {
 		returnPeriodText = "2nd Quarter"
+
 	} else if periodValue == dictionary.SportsDict.Basketball.NBA.Period.ThreeQuarter ||
-		periodValue == dictionary.SportsDict.Football.NFL.Period.ThreeQuarter {
-
+		periodValue == dictionary.SportsDict.Basketball.CollegeBasketball.Period.ThreeQuarter ||
+		periodValue == dictionary.SportsDict.Football.NFL.Period.ThreeQuarter ||
+		periodValue == dictionary.SportsDict.Football.CollegeFootball.Period.ThreeQuarter {
 		returnPeriodText = "3rd Quarter"
-	} else if periodValue == dictionary.SportsDict.Basketball.NBA.Period.OneHalf ||
-		periodValue == dictionary.SportsDict.Football.NFL.Period.OneHalf {
 
+	} else if periodValue == dictionary.SportsDict.Basketball.NBA.Period.FourQuarter ||
+		periodValue == dictionary.SportsDict.Basketball.CollegeBasketball.Period.FourQuarter ||
+		periodValue == dictionary.SportsDict.Football.NFL.Period.FourQuarter ||
+		periodValue == dictionary.SportsDict.Football.CollegeFootball.Period.FourQuarter {
 		returnPeriodText = "4th Quarter"
+
 	} else {
 		returnPeriodText = "Undefined"
 	}
