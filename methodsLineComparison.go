@@ -87,11 +87,11 @@ func (slaveLine *Lines) CompareSlaveLineToMasterLine(masterLine Lines, slave Sla
 	// This will print if it failed the Single Validation or the Pre Check Comparisons
 	if slaveLine.LineStatus == "Error" || masterLine.LineStatus == "Error" {
 		if len(masterLine.ErrorLog) >= 1 {
-			slaveLine.LineStatus = "Error"
 			for i := range masterLine.ErrorLog {
 				slaveLine.ErrorLog = append(slaveLine.ErrorLog, "MasterLine Error: "+masterLine.ErrorLog[i])
 			}
 		}
+		slaveLine.LineStatus = "Error"
 		slaveLine.PrintComparedLines(masterLine)
 	}
 
