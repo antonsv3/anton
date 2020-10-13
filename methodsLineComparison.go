@@ -92,6 +92,7 @@ func (slaveLine *Lines) CompareSlaveLineToMasterLine(masterLine Lines, slave Sla
 			}
 		}
 		slaveLine.LineStatus = "Error"
+		slaveLine.FunctionLog = "[#CompareSlaveLineToMasterLine] Comparing Slave Line to an Error'd Master Line"
 		slaveLine.PrintComparedLines(masterLine)
 	}
 
