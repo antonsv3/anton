@@ -356,7 +356,7 @@ func (returnSlaveResults SlaveResults) PushSlaveLines(MongoURI, TelegramGroupID,
 
 		telegramMsg := helper.ReplaceParameters("Following #{TicketID}\n", "{TicketID}", line.MasterTicketID)
 
-		telegramMsg = helper.ReplaceParameters("{SlaveName} ({SlavePass})", "{SlaveName}", line.SlaveName,
+		telegramMsg += helper.ReplaceParameters("{SlaveName} ({SlavePass})\n", "{SlaveName}", line.SlaveName,
 			"{SlavePass}", line.SlavePass)
 		telegramMsg += helper.ReplaceParameters("{LineType} - {Period}\n", "{Period}", line.Period, "{LineType}",
 			line.LineType)
