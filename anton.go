@@ -75,6 +75,9 @@ type Lines struct {
 	ID       primitive.ObjectID `bson:"_id,omitempty" json:"-"`
 	ObjectID string             `bson:"-" json:"-"`
 
+	// Created Timestamp
+	CreatedTimestamp time.Time `bson:"createdtimestamp" json:"createdtimestamp"`
+
 	// Will need to fill these out based from the scrapper
 	RotationNumber  string `bson:"rotationnumber" json:"rotationnumber"`
 	LineSpread      string `bson:"linespread" json:"linespread"`

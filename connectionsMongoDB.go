@@ -397,7 +397,7 @@ func (returnSlaveResults SlaveResults) PushSlaveLines(MongoURI, TelegramGroupID,
 
 	// Start database connections
 	client := GetClient(MongoURI)
-	results := client.Database("Anton").Collection("MastersLines")
+	results := client.Database("Anton").Collection("SlavesLines")
 
 	// This is how MongoDB needs to take the Placed Lines
 	var placedLinesToInsert []interface{}
