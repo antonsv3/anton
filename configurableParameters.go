@@ -10,7 +10,7 @@ package anton
 var lineJuiceEvenValues = []string{"-100", "+100", "100", "EV", "EVEN", "PK", "PICK"} // Set Float to +100
 
 // Slice of EVEN values for Spread that is ToUpperCased, if it's a value in here, then set float to 0
-var lineSpreadEvenValues = []string{"0", "EV", "EVEN", "PK", "PICK"}
+var lineSpreadEvenValues = []string{"0", "0.0", "0.00", "EV", "EVEN", "PK", "PICK"}
 
 // ------------------------------------------------------------------------------- Period - Possible Values
 // "Game"
