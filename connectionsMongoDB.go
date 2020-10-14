@@ -327,9 +327,9 @@ func (returnSlaveResults SlaveResults) PushSlaveLines(MongoURI, TelegramGroupID,
 	var helper Helper
 
 	// We are first going to send all the 'Placed Lines' first
-	placedLinesString := helper.ReplaceParameters("----- Placed Lines: {Amount} -----", "{Amount}", strconv.Itoa(len(returnSlaveResults.PlacedLines)))
-	skippedLinesString := helper.ReplaceParameters("----- Skipped Lines: {Amount} -----", "{Amount}", strconv.Itoa(len(returnSlaveResults.SkippedLines)))
-	errorLinesString := helper.ReplaceParameters("----- Error Lines: {Amount} -----", "{Amount}", strconv.Itoa(len(returnSlaveResults.ErrorLines)))
+	placedLinesString := helper.ReplaceParameters("------ Placed Lines: {Amount} ------", "{Amount}", strconv.Itoa(len(returnSlaveResults.PlacedLines)))
+	skippedLinesString := helper.ReplaceParameters("------ Skipped Lines: {Amount} -----", "{Amount}", strconv.Itoa(len(returnSlaveResults.SkippedLines)))
+	errorLinesString := helper.ReplaceParameters("------- Error Lines: {Amount} ------", "{Amount}", strconv.Itoa(len(returnSlaveResults.ErrorLines)))
 
 	// First, Send the Header for Placed Lines
 	SendTelegram(placedLinesString, TelegramGroupID, TelegramToken)
