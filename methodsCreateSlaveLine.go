@@ -202,6 +202,7 @@ func formatSlaveLineValues(slave Slave, slaveLine Lines, rotationNumber, period,
 	var spreadErrorFlag string
 
 	// Use our helper function that sees if the Spread in the EVEN slice, otherwise will be a string value of "False"
+	returnSlaveLine.LineSpread = helper.ReplaceParameters(returnSlaveLine.LineSpread, "+", "", "-", "")
 	if helper.FindIfStringInSlice(strings.ToUpper(returnSlaveLine.LineSpread), spreadEvenValues) != "False" {
 		returnSlaveLine.LineSpreadFloat = 0
 		spreadErrorFlag = "False"
@@ -212,7 +213,6 @@ func formatSlaveLineValues(slave Slave, slaveLine Lines, rotationNumber, period,
 
 	// If the LineSpreadFloat is 0 and the Flag is "True", then an error happened when converting, log error if true
 	if returnSlaveLine.LineSpreadFloat == 0 && spreadErrorFlag == "True" {
-		returnSlaveLine.PrintSingleLine()
 		returnSlaveLine.ErrorLog = append(returnSlaveLine.ErrorLog, "Could Not Parse LineSpread to Float Value")
 		spreadErrorFlag = "True"
 	} else {
