@@ -7,6 +7,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"log"
+	"strconv"
 )
 
 // Get the Client, will pass this Client into our other functions
@@ -316,6 +317,99 @@ func (master Master) PushMasterLines(MongoURI, TelegramGroupID, TelegramToken st
 	}
 
 	results.InsertMany(context.Background(), linesToInsert)
+	DisconnectClient(client)
+
+}
+
+// Master Method to push all MasterLines to MongoDB
+func (returnSlaveResults SlaveResults) PushSlaveLines(MongoURI, TelegramGroupID, TelegramToken string) {
+
+	var helper Helper
+
+	// We are first going to send all the 'Placed Lines' first
+	placedLinesString := helper.ReplaceParameters("----- Placed Lines: {Amount} -----", "{Amount}", strconv.Itoa(len(returnSlaveResults.PlacedLines)))
+	skippedLinesString := helper.ReplaceParameters("----- Skipped Lines: {Amount} -----", "{Amount}", strconv.Itoa(len(returnSlaveResults.SkippedLines)))
+	errorLinesString := helper.ReplaceParameters("----- Error Lines: {Amount} -----", "{Amount}", strconv.Itoa(len(returnSlaveResults.ErrorLines)))
+
+	// First, Send the Header for Placed Lines
+	SendTelegram(placedLinesString, TelegramGroupID, TelegramToken)
+
+	// Send all the Placed Lines
+	for i := range returnSlaveResults.PlacedLines {
+
+		// First format the Master and Lines, will need the telegram message to look like:
+
+		// {Master} ({MasterPass}) - Following #{TicketID}
+		// LineType: {LineType}
+
+		// If it is a Total, The bottom lines need to look like this
+		// {Team} {OverUnder} {Spread} ({Juice}) [{RiskAmount}/{ToWinAmount}]
+		// {Sport} - {League}
+
+		// If it is a Spread, The bottom lines need to look like this
+		// {Team} {Spread} ({Juice}) [{RiskAmount}/{ToWinAmount}]
+		// {Sport} - {League}
+
+		line := returnSlaveResults.PlacedLines[i]
+
+		telegramMsg := helper.ReplaceParameters("{SlaveName} ({SlavePass}) - Following #{TicketID}\n",
+			"{SlaveName}", line.SlaveName, "{SlavePass}", line.SlavePass, "{TicketID}", line.MasterTicketID)
+		telegramMsg += helper.ReplaceParameters("{LineType} - {Period}\n", "{Period}", line.Period, "{LineType}",
+			line.LineType)
+
+		// Based on the LineType, the next telegramMsg line will be formatted differently
+		if line.LineType == "Total" || line.LineType == "TeamTotal" {
+			telegramMsg += helper.ReplaceParameters("{Team} {OverUnder} {Spread} ({Juice}) [{RiskAmount}/{ToWin}]\n",
+				"{Team}", line.Team, "{OverUnder}", line.OverUnder, "{Spread}", line.LineSpread, "{Juice}",
+				line.LineJuice, "{RiskAmount}", line.RiskAmount, "{ToWin}", line.ToWinAmount)
+		}
+
+		// Based on the LineType, the next telegramMsg line will be formatted differently
+		if line.LineType == "MoneyLine" {
+			telegramMsg += helper.ReplaceParameters("{Team} ({Juice}) [{RiskAmount}/{ToWin}]\n", "{Team}",
+				line.Team, "{Juice}", line.LineJuice, "{RiskAmount}", line.RiskAmount, "{ToWin}", line.ToWinAmount)
+		}
+
+		// Based on the LineType, the next telegramMsg line will be formatted differently
+		if line.LineType == "Spread" {
+			telegramMsg += helper.ReplaceParameters("{Team} {Spread} ({Juice}) [{RiskAmount}/{ToWin}]\n",
+				"{Team}", line.Team, "{Spread}", line.LineSpread, "{Juice}", line.LineJuice, "{RiskAmount}",
+				line.RiskAmount, "{ToWin}", line.ToWinAmount)
+		}
+
+		// The last line on the TelegramMsg will be the same for the different leagues
+		telegramMsg += helper.ReplaceParameters("{Sport} - {League}\n", "{Sport}", line.Sport, "{League}",
+			line.League)
+
+		// Now we can send the Telegram Msg within this loop
+		SendTelegram(telegramMsg, TelegramGroupID, TelegramToken)
+
+	}
+
+	// Next, Send the Headers for Skipped and Error Lines
+	SendTelegram(skippedLinesString, TelegramGroupID, TelegramToken)
+	SendTelegram(errorLinesString, TelegramGroupID, TelegramToken)
+
+	// Start database connections
+	client := GetClient(MongoURI)
+	results := client.Database("Anton").Collection("MastersLines")
+
+	// This is how MongoDB needs to take the Placed Lines
+	var placedLinesToInsert []interface{}
+	for i := range returnSlaveResults.PlacedLines {
+		placedLinesToInsert = append(placedLinesToInsert, returnSlaveResults.PlacedLines[i])
+	}
+	results.InsertMany(context.Background(), placedLinesToInsert)
+
+	// I also want to keep the Error Lines, sending it to the Error Log
+	results = client.Database("Anton").Collection("Errors")
+	var errorLinesToInsert []interface{}
+	for i := range returnSlaveResults.ErrorLines {
+		errorLinesToInsert = append(errorLinesToInsert, returnSlaveResults.ErrorLines[i])
+	}
+	results.InsertMany(context.Background(), errorLinesToInsert)
+
+	// Disconnect MongoDB Client
 	DisconnectClient(client)
 
 }
