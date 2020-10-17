@@ -58,7 +58,7 @@ var leagueValuesNBA = []string{"NBA", "NATIONALBASKETBALLASSOCIATION"}
 var leagueValuesNFL = []string{"NFL", "NATIONALFOOTBALLLEAGUE"}
 
 // "College Football"
-var leagueValuesCollegeFootball = []string{"COLLEGEFOOTBALL"}
+var leagueValuesCollegeFootball = []string{"COLLEGEFOOTBALL", "CFB"}
 
 // "College Basketball
 var leagueValuesCollegeBasketball = []string{"COLLEGEBASKETBALL"}
