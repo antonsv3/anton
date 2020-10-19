@@ -243,6 +243,9 @@ func (master Master) PushMasterLines(MongoURI, TelegramGroupID, TelegramToken st
 
 	var helper Helper
 
+	masterHeader := "----------- Master -----------"
+	SendTelegram(masterHeader, TelegramGroupID, TelegramToken)
+
 	// First format the Master and Lines, will need the telegram message to look like:
 
 	// {Master} ({MasterPass}) #{TicketID}
@@ -326,11 +329,19 @@ func (returnSlaveResults SlaveResults) PushSlaveLines(MongoURI, TelegramGroupID,
 
 	var helper Helper
 
+	/*
+		----------- Master -----------
+		------------ Slave -----------
+		------------- End ------------
+	*/
+
 	// We are first going to send all the 'Placed Lines' first
 	placedLinesString := helper.ReplaceParameters("Placed Lines: {Amount}", "{Amount}", strconv.Itoa(len(returnSlaveResults.PlacedLines)))
 	skippedLinesString := helper.ReplaceParameters("Skipped Lines: {Amount}", "{Amount}", strconv.Itoa(len(returnSlaveResults.SkippedLines)))
 	errorLinesString := helper.ReplaceParameters("Error Lines: {Amount}", "{Amount}", strconv.Itoa(len(returnSlaveResults.ErrorLines)))
-	slaveHeader := "------------------------------"
+
+	slaveHeader := "------------ Slave -----------"
+	slaveEnd := "------------- End ------------"
 
 	// First, Send the Header for Placed Lines
 	SendTelegram(slaveHeader, TelegramGroupID, TelegramToken)
@@ -393,7 +404,7 @@ func (returnSlaveResults SlaveResults) PushSlaveLines(MongoURI, TelegramGroupID,
 	// Next, Send the Headers for Skipped and Error Lines
 	SendTelegram(skippedLinesString, TelegramGroupID, TelegramToken)
 	SendTelegram(errorLinesString, TelegramGroupID, TelegramToken)
-	SendTelegram(slaveHeader, TelegramGroupID, TelegramToken)
+	SendTelegram(slaveEnd, TelegramGroupID, TelegramToken)
 
 	// Start database connections
 	client := GetClient(MongoURI)
