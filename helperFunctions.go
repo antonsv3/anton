@@ -321,7 +321,11 @@ func (helper Helper) FormatStringSportLeaguePeriod(master Master, slave Slave, s
 		} else if strings.Contains(tempString, "{PeriodID}") {
 			fmt.Println("Could not finish filling in " + tempString + ", still contains the Parameter {PeriodID}")
 		} else {
-			returnStringSlice = append(returnStringSlice, tempString)
+			if len(returnStringSlice) == 0 {
+				returnStringSlice = append(returnStringSlice, tempString)
+			} else if helper.FindIfStringInSlice(tempString, returnStringSlice) == "False" {
+				returnStringSlice = append(returnStringSlice, tempString)
+			}
 		}
 	}
 
