@@ -218,7 +218,7 @@ func (helper Helper) FormatStringSportLeaguePeriod(master Master, slave Slave, s
 					tempString = helper.ReplaceParameters(tempString, "{PeriodID}", sportsDict.Football.NFL.Period.Game)
 				} else if master.MasterLines[i].Period == "1st Half" {
 					fmt.Println("Matched 1st Half")
-					fmt.Println(sportsDict.Football.NFL.Period.Game)
+					fmt.Println(sportsDict.Football.NFL.Period.OneHalf)
 					tempString = helper.ReplaceParameters(tempString, "{PeriodID}", sportsDict.Football.NFL.Period.OneHalf)
 				} else if master.MasterLines[i].Period == "2nd Half" {
 					tempString = helper.ReplaceParameters(tempString, "{PeriodID}", sportsDict.Football.NFL.Period.TwoHalf)
@@ -328,6 +328,8 @@ func (helper Helper) FormatStringSportLeaguePeriod(master Master, slave Slave, s
 			returnStringSlice = append(returnStringSlice, tempString)
 		}
 	}
+
+	fmt.Println(returnStringSlice)
 
 	return returnStringSlice
 }
