@@ -149,9 +149,12 @@ func (helper Helper) StringNegativePositiveZero(stringValue string) string {
 	juiceEvenValues := GetJuiceEvenValues()
 	spreadEvenValues := GetSpreadEvenValues()
 
+	// Create a Temporary String to strip "+" and "-"
+	strippedZeroValues := helper.ReplaceParameters(strings.ToUpper(stringValue), "+", "", "-", "")
+
 	// First lets see if it is Zero or any of the Even Values, if it is, then assign it "Zero"
-	if helper.FindIfStringInSlice(strings.ToUpper(stringValue), juiceEvenValues) != "False" ||
-		helper.FindIfStringInSlice(strings.ToUpper(stringValue), spreadEvenValues) != "False" {
+	if helper.FindIfStringInSlice(strippedZeroValues, juiceEvenValues) != "False" ||
+		helper.FindIfStringInSlice(strippedZeroValues, spreadEvenValues) != "False" {
 
 		returnString = "Zero"
 		isZeroAnError = "False"
