@@ -119,6 +119,8 @@ func (slaveLine *Lines) CompareSlaveLineToMasterLine(masterLine Lines, slave Sla
 		} else if strings.HasPrefix(slaveLine.FunctionLog, "[#CompareJuiceValues Failed]") {
 			slaveLine.LineStatus = "Skipped"
 			slaveLine.FunctionLog = helper.ReplaceParameters(slaveLine.FunctionLog, "[#CompareJuiceValues Failed]", "[#CompareJuiceValues Skipped]")
+		} else if strings.HasPrefix(slaveLine.FunctionLog, "[#CompareJuiceValues Skipped]") {
+			slaveLine.LineStatus = "Skipped"
 		}
 
 		// Let's validate slave line one more time, let's create a new variable so we don't mess up any function logs
