@@ -235,8 +235,9 @@ type SlaveResults struct {
 	LinesOnPage []Lines `bson:"-" json:"-"`
 
 	// Section (d) of the Scrapper
-	AuthLines    []Lines `bson:"-" json:"-"`
-	SkippedLines []Lines `bson:"-" json:"-"`
+	ComparedLines []Lines `bson:"-" json:"-"`
+	AuthLines     []Lines `bson:"-" json:"-"`
+	SkippedLines  []Lines `bson:"-" json:"-"`
 
 	// Section (e) of the Scrapper
 	PlacedLines []Lines `bson:"-" json:"-"`

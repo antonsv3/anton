@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="32889956-354c-453a-b1ee-957106589bc7" name="Default Changelist" comment="Made Changes">
+    <list default="true" id="32889956-354c-453a-b1ee-957106589bc7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/methodsCreateMasterLine.go" beforeDir="false" afterPath="$PROJECT_DIR$/methodsCreateMasterLine.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/methodsCreateSlaveLine.go" beforeDir="false" afterPath="$PROJECT_DIR$/methodsCreateSlaveLine.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/anton.go" beforeDir="false" afterPath="$PROJECT_DIR$/anton.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,13 +43,13 @@
     <integration-enabled>true</integration-enabled>
   </component>
   <component name="WindowStateProjectService">
-    <state x="2537" y="113" key="CommitChangelistDialog2" timestamp="1603099973000">
+    <state x="2537" y="113" key="CommitChangelistDialog2" timestamp="1603100023952">
       <screen x="1680" y="-171" width="2560" height="1417" />
     </state>
-    <state x="2537" y="113" key="CommitChangelistDialog2/1680.-171.2560.1417/0.23.1680.962@1680.-171.2560.1417" timestamp="1603099973000" />
-    <state x="2560" y="277" key="Vcs.Push.Dialog.v2" timestamp="1603099711638">
+    <state x="2537" y="113" key="CommitChangelistDialog2/1680.-171.2560.1417/0.23.1680.962@1680.-171.2560.1417" timestamp="1603100023952" />
+    <state x="2560" y="277" key="Vcs.Push.Dialog.v2" timestamp="1603100027726">
       <screen x="1680" y="-171" width="2560" height="1417" />
     </state>
-    <state x="2560" y="277" key="Vcs.Push.Dialog.v2/1680.-171.2560.1417/0.23.1680.962@1680.-171.2560.1417" timestamp="1603099711638" />
+    <state x="2560" y="277" key="Vcs.Push.Dialog.v2/1680.-171.2560.1417/0.23.1680.962@1680.-171.2560.1417" timestamp="1603100027726" />
   </component>
 </project>
