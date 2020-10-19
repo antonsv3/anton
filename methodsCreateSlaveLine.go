@@ -1,6 +1,7 @@
 package anton
 
 import (
+	"fmt"
 	"strconv"
 	"strings"
 	"time"
@@ -156,7 +157,6 @@ func formatSlaveLineValues(slave Slave, slaveLine Lines, rotationNumber, period,
 	// This will remove "+" and "-" if it is a Total or TeamTotal, which we'll be using OverUnder to compare
 	if returnSlaveLine.LineType != "Total" && returnSlaveLine.LineType != "TeamTotal" {
 		if helper.StringNegativePositiveZero(returnSlaveLine.LineSpread) == "Positive" {
-
 			if !strings.HasPrefix(returnSlaveLine.LineSpread, "+") {
 				returnSlaveLine.LineSpread = "+" + returnSlaveLine.LineSpread
 			}
@@ -168,6 +168,7 @@ func formatSlaveLineValues(slave Slave, slaveLine Lines, rotationNumber, period,
 			returnSlaveLine.LineSpread = helper.ReplaceParameters(returnSlaveLine.LineSpread, "+", "", "-", "")
 		}
 	}
+	fmt.Println("171 : " + returnSlaveLine.LineSpread)
 
 	// I want to add "+" in front of the LineJuice, if it is Positive
 	if helper.StringNegativePositiveZero(returnSlaveLine.LineJuice) == "Positive" ||
@@ -289,6 +290,8 @@ func formatSlaveLineValues(slave Slave, slaveLine Lines, rotationNumber, period,
 			returnSlaveLine.ErrorLog = append(returnSlaveLine.ErrorLog, "LineType is not MoneyLine, Spread, Total, or TeamTotal")
 		}
 	}
+
+	fmt.Println("294 : " + returnSlaveLine.LineSpread)
 
 	return returnSlaveLine
 }
