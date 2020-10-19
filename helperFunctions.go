@@ -149,11 +149,11 @@ func (helper Helper) StringNegativePositiveZero(stringValue string) string {
 	juiceEvenValues := GetJuiceEvenValues()
 	spreadEvenValues := GetSpreadEvenValues()
 
-	// First lets see if it is Zero or any of the Even Values, if it is, then assign it "Positive"
+	// First lets see if it is Zero or any of the Even Values, if it is, then assign it "Zero"
 	if helper.FindIfStringInSlice(strings.ToUpper(stringValue), juiceEvenValues) != "False" ||
 		helper.FindIfStringInSlice(strings.ToUpper(stringValue), spreadEvenValues) != "False" {
 
-		returnString = "Positive"
+		returnString = "Zero"
 		isZeroAnError = "False"
 		tempFloat = 0
 	} else {
@@ -175,7 +175,7 @@ func (helper Helper) StringNegativePositiveZero(stringValue string) string {
 		} else if tempFloat < 0 {
 			returnString = "Negative"
 		} else if tempFloat == 0 {
-			returnString = "Positive"
+			returnString = "Zero"
 		}
 	}
 	return returnString

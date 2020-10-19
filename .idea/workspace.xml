@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="71bae790-0395-4baa-b78e-e33a759e25c6" name="Default Changelist" comment="">
+    <list default="true" id="32889956-354c-453a-b1ee-957106589bc7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurableParameters.go" beforeDir="false" afterPath="$PROJECT_DIR$/configurableParameters.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helperFunctions.go" beforeDir="false" afterPath="$PROJECT_DIR$/helperFunctions.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,7 +17,7 @@
   <component name="GoLibraries">
     <option name="indexEntireGoPath" value="false" />
   </component>
-  <component name="ProjectId" id="1izzMf4MojlkRBNUgvYjLcKsFR4" />
+  <component name="ProjectId" id="1j5XlIbCj8PbW0SBl0wYVjseStm" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
