@@ -168,7 +168,9 @@ func formatSlaveLineValues(slave Slave, slaveLine Lines, rotationNumber, period,
 			returnSlaveLine.LineSpread = helper.ReplaceParameters(returnSlaveLine.LineSpread, "+", "", "-", "")
 		}
 	}
-	fmt.Println("171 : " + returnSlaveLine.LineSpread)
+
+	fmt.Println("172 : " + returnSlaveLine.LineSpread)
+	fmt.Println(helper.StringNegativePositiveZero(returnSlaveLine.LineSpread))
 
 	// I want to add "+" in front of the LineJuice, if it is Positive
 	if helper.StringNegativePositiveZero(returnSlaveLine.LineJuice) == "Positive" ||
@@ -291,7 +293,8 @@ func formatSlaveLineValues(slave Slave, slaveLine Lines, rotationNumber, period,
 		}
 	}
 
-	fmt.Println("294 : " + returnSlaveLine.LineSpread)
+	fmt.Println("296 : " + returnSlaveLine.LineSpread)
+	fmt.Println(helper.StringNegativePositiveZero(returnSlaveLine.LineSpread))
 
 	return returnSlaveLine
 }
