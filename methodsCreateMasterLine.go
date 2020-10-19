@@ -190,11 +190,14 @@ func formatMasterLineValues(master Master, tempLine Lines, rotationNumber, lineS
 	}
 
 	// I want to add "+" in front of the LineJuice, if it is Positive
-	if helper.StringNegativePositiveZero(returnMasterLine.LineJuice) == "Positive" ||
-		helper.StringNegativePositiveZero(returnMasterLine.LineJuice) == "Zero" {
+	if helper.StringNegativePositiveZero(returnMasterLine.LineJuice) == "Positive" {
 
 		if !strings.HasPrefix(returnMasterLine.LineJuice, "+") {
 			returnMasterLine.LineJuice = "+" + returnMasterLine.LineJuice
+		}
+	} else if helper.StringNegativePositiveZero(returnMasterLine.LineJuice) == "Zero" {
+		if !strings.HasPrefix(returnMasterLine.LineJuice, "-") {
+			returnMasterLine.LineJuice = "-" + returnMasterLine.LineJuice
 		}
 	}
 
