@@ -192,7 +192,7 @@ func formatMasterLineValues(master Master, tempLine Lines, rotationNumber, lineS
 
 	// I want to add "+" in front of the LineJuice, if it is Positive
 	if helper.StringNegativePositiveZero(returnMasterLine.LineJuice) == "Positive" ||
-		helper.StringNegativePositiveZero(returnMasterLine.LineSpread) == "Even" {
+		helper.StringNegativePositiveZero(returnMasterLine.LineJuice) == "Zero" {
 
 		if !strings.HasPrefix(returnMasterLine.LineJuice, "+") {
 			returnMasterLine.LineJuice = "+" + returnMasterLine.LineJuice
@@ -217,11 +217,12 @@ func formatMasterLineValues(master Master, tempLine Lines, rotationNumber, lineS
 	var spreadErrorFlag string
 
 	// Use our helper function that sees if the Spread in the EVEN slice, otherwise will be a string value of "False"
-	if helper.FindIfStringInSlice(strings.ToUpper(returnMasterLine.LineSpread), spreadEvenValues) != "False" {
+	tempString := helper.ReplaceParameters(returnMasterLine.LineSpread, "+", "")
+	if helper.FindIfStringInSlice(strings.ToUpper(tempString), spreadEvenValues) != "False" {
 		returnMasterLine.LineSpreadFloat = 0
 		spreadErrorFlag = "False"
 	} else {
-		returnMasterLine.LineSpreadFloat, _ = strconv.ParseFloat(returnMasterLine.LineSpread, 32)
+		returnMasterLine.LineSpreadFloat, _ = strconv.ParseFloat(tempString, 32)
 		spreadErrorFlag = "True"
 	}
 
