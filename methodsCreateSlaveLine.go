@@ -206,12 +206,12 @@ func formatSlaveLineValues(slave Slave, slaveLine Lines, rotationNumber, period,
 	var spreadErrorFlag string
 
 	// Use our helper function that sees if the Spread in the EVEN slice, otherwise will be a string value of "False"
-	returnSlaveLine.LineSpread = helper.ReplaceParameters(returnSlaveLine.LineSpread, "+", "")
-	if helper.FindIfStringInSlice(strings.ToUpper(returnSlaveLine.LineSpread), spreadEvenValues) != "False" {
+	tempString := helper.ReplaceParameters(returnSlaveLine.LineSpread, "+", "")
+	if helper.FindIfStringInSlice(strings.ToUpper(tempString), spreadEvenValues) != "False" {
 		returnSlaveLine.LineSpreadFloat = 0
 		spreadErrorFlag = "False"
 	} else {
-		returnSlaveLine.LineSpreadFloat, _ = strconv.ParseFloat(returnSlaveLine.LineSpread, 32)
+		returnSlaveLine.LineSpreadFloat, _ = strconv.ParseFloat(tempString, 32)
 		spreadErrorFlag = "True"
 	}
 
