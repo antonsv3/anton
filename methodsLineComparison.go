@@ -34,6 +34,8 @@ func (slaveLine *Lines) CompareSlaveLineToMasterLine(masterLine Lines, slave Sla
 	// This flag is to ensure that we have met all other criteria prior to comparing, default "False"
 	preChecksValidFlag := "False"
 
+	var helper Helper
+
 	// I want to add the Team from MasterLine to SlaveLine
 	slaveLine.Team = masterLine.Team
 
@@ -114,6 +116,9 @@ func (slaveLine *Lines) CompareSlaveLineToMasterLine(masterLine Lines, slave Sla
 			} else if slaveLine.LineType != "MoneyLine" && masterLine.LineType != "MoneyLine" {
 				slaveLine.ErrorLog = append(slaveLine.ErrorLog, "Unable to triage Line Type to Compare")
 			}
+		} else if strings.HasPrefix(slaveLine.FunctionLog, "[#CompareJuiceValues Failed]") {
+			slaveLine.LineStatus = "Skipped"
+			slaveLine.FunctionLog = helper.ReplaceParameters(slaveLine.FunctionLog, "[#CompareJuiceValues Failed]", "[#CompareJuiceValues Skipped]")
 		}
 
 		// Let's validate slave line one more time, let's create a new variable so we don't mess up any function logs
