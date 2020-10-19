@@ -155,12 +155,13 @@ func formatSlaveLineValues(slave Slave, slaveLine Lines, rotationNumber, period,
 	// I want to add "+" in front of the LineSpread, if it is Positive and only if it's not Total or TeamTotal
 	// This will remove "+" and "-" if it is a Total or TeamTotal, which we'll be using OverUnder to compare
 	if returnSlaveLine.LineType != "Total" && returnSlaveLine.LineType != "TeamTotal" {
-		if helper.StringNegativePositiveZero(returnSlaveLine.LineSpread) == "Positive" ||
-			helper.StringNegativePositiveZero(returnSlaveLine.LineSpread) == "Even" {
+		if helper.StringNegativePositiveZero(returnSlaveLine.LineSpread) == "Positive" {
 
 			if !strings.HasPrefix(returnSlaveLine.LineSpread, "+") {
 				returnSlaveLine.LineSpread = "+" + returnSlaveLine.LineSpread
 			}
+		} else if helper.StringNegativePositiveZero(returnSlaveLine.LineSpread) == "Zero" {
+			returnSlaveLine.LineSpread = helper.ReplaceParameters(returnSlaveLine.LineSpread, "+", "", "-", "")
 		}
 	} else {
 		if strings.HasPrefix(returnSlaveLine.LineSpread, "+") || strings.HasPrefix(returnSlaveLine.LineSpread, "-") {

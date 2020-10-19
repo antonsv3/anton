@@ -176,12 +176,12 @@ func formatMasterLineValues(master Master, tempLine Lines, rotationNumber, lineS
 
 	// I want to add "+" in front of the LineSpread, if it is Positive and only if it's not Total or TeamTotal
 	if returnMasterLine.LineType != "Total" && returnMasterLine.LineType != "TeamTotal" {
-		if helper.StringNegativePositiveZero(returnMasterLine.LineSpread) == "Positive" ||
-			helper.StringNegativePositiveZero(returnMasterLine.LineSpread) == "Even" {
-
+		if helper.StringNegativePositiveZero(returnMasterLine.LineSpread) == "Positive" {
 			if !strings.HasPrefix(returnMasterLine.LineSpread, "+") {
 				returnMasterLine.LineSpread = "+" + returnMasterLine.LineSpread
 			}
+		} else if helper.StringNegativePositiveZero(returnMasterLine.LineSpread) == "Zero" {
+			returnMasterLine.LineSpread = helper.ReplaceParameters(returnMasterLine.LineSpread, "+", "", "-", "")
 		}
 	} else {
 		if strings.HasPrefix(returnMasterLine.LineSpread, "+") || strings.HasPrefix(returnMasterLine.LineSpread, "-") {
