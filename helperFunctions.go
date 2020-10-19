@@ -205,11 +205,9 @@ func (helper Helper) FormatStringSportLeaguePeriod(master Master, slave Slave, s
 		if master.MasterLines[i].Sport == "Football" {
 			// Add in the SportID, which we know is "Football" on this conditional
 			tempString = helper.ReplaceParameters(tempString, "{SportID}", sportsDict.Football.ID)
-			fmt.Println("Matched Football")
 
 			// Sort it out based on the different leagues, this is NFL
 			if master.MasterLines[i].League == "NFL" {
-				fmt.Println("Matched NFL")
 				// Add in the LeagueID, which we know is "NFL" on this conditional
 				tempString = helper.ReplaceParameters(tempString, "{LeagueID}", sportsDict.Football.NFL.ID)
 
@@ -217,8 +215,6 @@ func (helper Helper) FormatStringSportLeaguePeriod(master Master, slave Slave, s
 				if master.MasterLines[i].Period == "Game" {
 					tempString = helper.ReplaceParameters(tempString, "{PeriodID}", sportsDict.Football.NFL.Period.Game)
 				} else if master.MasterLines[i].Period == "1st Half" {
-					fmt.Println("Matched 1st Half")
-					fmt.Println(sportsDict.Football.NFL.Period.OneHalf)
 					tempString = helper.ReplaceParameters(tempString, "{PeriodID}", sportsDict.Football.NFL.Period.OneHalf)
 				} else if master.MasterLines[i].Period == "2nd Half" {
 					tempString = helper.ReplaceParameters(tempString, "{PeriodID}", sportsDict.Football.NFL.Period.TwoHalf)
