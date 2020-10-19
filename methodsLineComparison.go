@@ -359,6 +359,11 @@ func (line *Lines) ValidateSingleLine() {
 			line.ErrorLog = append(line.ErrorLog, "{betType} {lineType}: LineSpreadFloat -> Need Consistency,"+
 				" Value is Negative, LineType = Spread & Underdog, Float should be Positive")
 		}
+
+		if line.LineSpreadFloat == 0 && line.FavoredUnderdog != "Pick" {
+			line.ErrorLog = append(line.ErrorLog, "{betType} {lineType}: LineSpreadFloat -> Need Consistency,"+
+				" Value is Not Zero, LineType = Spread & Pick, Float should be Zero")
+		}
 	}
 
 	// ------------------------------------------------------------------------------- LineJuice
@@ -601,9 +606,11 @@ func (slaveLine *Lines) ValidateAgainst(masterLine Lines) {
 
 	// FavoredUnderdog - If both are Spread, Values should be the same between Slave, Master
 	if slaveLine.FavoredUnderdog != masterLine.FavoredUnderdog {
-		if slaveLine.LineType == "Spread" && masterLine.LineType == "Spread" {
-			slaveLine.ErrorLog = append(slaveLine.ErrorLog, "Slave Spread: FavoredUnderdog Values"+
-				" are not matching")
+		if slaveLine.FavoredUnderdog != "Pick" && masterLine.FavoredUnderdog != "Pick" {
+			if slaveLine.LineType == "Spread" && masterLine.LineType == "Spread" {
+				slaveLine.ErrorLog = append(slaveLine.ErrorLog, "Slave Spread: FavoredUnderdog Values"+
+					" are not matching")
+			}
 		}
 	}
 
@@ -780,8 +787,12 @@ func (slaveLine *Lines) compareJuiceValues(masterLine Lines, juiceParam float64)
 func (slaveLine *Lines) compareSpreadLine(approvedLine Lines, spreadParam float64) {
 
 	// Regardless if it is Favored or Underdog, it'll use the same function
+	eitherValueIsPick := "False"
+	if slaveLine.FavoredUnderdog == "Pick" || approvedLine.FavoredUnderdog == "Pick" {
+		eitherValueIsPick = "True"
+	}
 
-	if slaveLine.FavoredUnderdog == approvedLine.FavoredUnderdog {
+	if slaveLine.FavoredUnderdog == approvedLine.FavoredUnderdog || eitherValueIsPick == "True" {
 		if approvedLine.LineSpreadFloat <= slaveLine.LineSpreadFloat+spreadParam {
 
 			slaveLine.FunctionLog = fmt.Sprintf("[#CompareSpreadLine Authorized] Master Spread (%v) w/ "+

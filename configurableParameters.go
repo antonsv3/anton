@@ -68,7 +68,7 @@ var leagueValuesCollegeBasketball = []string{"COLLEGEBASKETBALL"}
 // These Line Properties have set values that I will be validating against, listing the values here
 var lineTypeValues = []string{"MoneyLine", "Total", "Spread", "TeamTotal"}
 var homeAwayValues = []string{"Away", "Home"}
-var favoredUnderdogValues = []string{"Favored", "Underdog"}
+var favoredUnderdogValues = []string{"Favored", "Underdog", "Pick"}
 var overUnderValues = []string{"Over", "Under"}
 var lineStatusValues = []string{"New", "Validated", "Authorized", "Placed", "Error", "Skipped", "Ignored"}
 var createdViaFunctionValues = []string{"True"}

@@ -1,7 +1,6 @@
 package anton
 
 import (
-	"fmt"
 	"strconv"
 	"strings"
 	"time"
@@ -169,9 +168,6 @@ func formatSlaveLineValues(slave Slave, slaveLine Lines, rotationNumber, period,
 		}
 	}
 
-	fmt.Println("172 : " + returnSlaveLine.LineSpread)
-	fmt.Println(helper.StringNegativePositiveZero(returnSlaveLine.LineSpread))
-
 	// I want to add "+" in front of the LineJuice, if it is Positive
 	if helper.StringNegativePositiveZero(returnSlaveLine.LineJuice) == "Positive" ||
 		helper.StringNegativePositiveZero(returnSlaveLine.LineJuice) == "Zero" {
@@ -292,9 +288,6 @@ func formatSlaveLineValues(slave Slave, slaveLine Lines, rotationNumber, period,
 			returnSlaveLine.ErrorLog = append(returnSlaveLine.ErrorLog, "LineType is not MoneyLine, Spread, Total, or TeamTotal")
 		}
 	}
-
-	fmt.Println("296 : " + returnSlaveLine.LineSpread)
-	fmt.Println(helper.StringNegativePositiveZero(returnSlaveLine.LineSpread))
 
 	return returnSlaveLine
 }
