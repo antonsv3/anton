@@ -339,16 +339,12 @@ func (helper Helper) GetPeriodTextValue(dictionary SiteDictionary, periodValue s
 
 	returnPeriodText := ""
 
-	fmt.Println(periodValue)
-	fmt.Println(dictionary.SportsDict.Football.CollegeFootball.Period.Game)
-
 	// These are all the "Game" Period values
 	if periodValue == dictionary.SportsDict.Baseball.MLB.Period.Game ||
 		periodValue == dictionary.SportsDict.Football.NFL.Period.Game ||
 		periodValue == dictionary.SportsDict.Basketball.NBA.Period.Game ||
 		periodValue == dictionary.SportsDict.Basketball.CollegeBasketball.Period.Game ||
 		periodValue == dictionary.SportsDict.Football.CollegeFootball.Period.Game {
-		fmt.Println("Line 351, Good")
 		returnPeriodText = "Game"
 
 	} else if periodValue == dictionary.SportsDict.Baseball.MLB.Period.OneFiveInnings {
