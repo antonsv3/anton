@@ -102,8 +102,9 @@ type Lines struct {
 	MasterTicketID string `bson:"masterticketID,omitempty" json:"masterticketID,omitempty"`
 
 	// This is Optional holder for any unique values for a particular line
-	UniqueID string `bson:",omitempty" json:"uniqueid"`
-	HomeAway string `bson:",omitempty" json:"homeaway"`
+	UniqueID     string `bson:"uniqueid,omitempty" json:"uniqueid"`
+	HomeAway     string `bson:"homeaway,omitempty" json:"homeaway"`
+	StringHolder string `bson:"stringholder,omitempty" json:"stringholder"`
 
 	// These will be auto-populated by the lines from the scrapper
 	Sport  string `bson:"sport" json:"sport"`
