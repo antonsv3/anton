@@ -175,7 +175,7 @@ func formatSlaveLineValues(slave Slave, slaveLine Lines, rotationNumber, period,
 		}
 	} else if helper.StringNegativePositiveZero(returnSlaveLine.LineJuice) == "Zero" {
 		if !strings.HasPrefix(returnSlaveLine.LineJuice, "-") {
-			returnSlaveLine.LineJuice = "-" + returnSlaveLine.LineJuice
+			returnSlaveLine.LineJuice = "-" + helper.ReplaceParameters(returnSlaveLine.LineJuice, "+", "")
 		}
 	}
 

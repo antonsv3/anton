@@ -197,7 +197,7 @@ func formatMasterLineValues(master Master, tempLine Lines, rotationNumber, lineS
 		}
 	} else if helper.StringNegativePositiveZero(returnMasterLine.LineJuice) == "Zero" {
 		if !strings.HasPrefix(returnMasterLine.LineJuice, "-") {
-			returnMasterLine.LineJuice = "-" + returnMasterLine.LineJuice
+			returnMasterLine.LineJuice = "-" + helper.ReplaceParameters(returnMasterLine.LineJuice, "+", "")
 		}
 	}
 
