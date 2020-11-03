@@ -162,16 +162,16 @@ func GatherSiteDictionaries(client *mongo.Client, filter bson.M) []SiteDictionar
 
 }
 
-func GatherFrontEndUsers(client *mongo.Client, filter bson.M) []FrontEndUser {
-	var antonUsers []FrontEndUser
-	collection := client.Database("Anton").Collection("FrontEndUsers")
+func GatherAntonUsers(client *mongo.Client, filter bson.M) []AntonUser {
+	var antonUsers []AntonUser
+	collection := client.Database("Anton").Collection("AntonUsers")
 	cur, err := collection.Find(context.TODO(), filter)
 	if err != nil {
 		log.Fatal("Error on Finding all the documents", err)
 	}
 
 	for cur.Next(context.TODO()) {
-		var antonUser FrontEndUser
+		var antonUser AntonUser
 		err = cur.Decode(&antonUser)
 		if err != nil {
 			log.Fatal("Error on Decoding the document", err)
@@ -182,7 +182,7 @@ func GatherFrontEndUsers(client *mongo.Client, filter bson.M) []FrontEndUser {
 	// Close the Cursor
 	err = cur.Close(context.TODO())
 	if err != nil {
-		log.Fatal("[#GatherSiteDictionaries] Failed to Close Connection", err)
+		log.Fatal("[#GatherAntonUsers] Failed to Close Connection", err)
 	}
 
 	// Return Results
