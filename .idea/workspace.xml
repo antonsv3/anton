@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="44eb8868-897f-4c8f-88df-d2330dabb1cc" name="Default Changelist" comment="">
+    <list default="true" id="234e7fbb-1514-4b9c-9110-08e92c9d69b3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/methodsCreateMasterLine.go" beforeDir="false" afterPath="$PROJECT_DIR$/methodsCreateMasterLine.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/methodsCreateSlaveLine.go" beforeDir="false" afterPath="$PROJECT_DIR$/methodsCreateSlaveLine.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/anton.go" beforeDir="false" afterPath="$PROJECT_DIR$/anton.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,7 +17,7 @@
   <component name="GoLibraries">
     <option name="indexEntireGoPath" value="false" />
   </component>
-  <component name="ProjectId" id="1jkXaGBrabtemnTJgkwG16FnbYr" />
+  <component name="ProjectId" id="1jkyCQtgIDaRBxzX3Q2OpoHxz56" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -37,5 +36,11 @@
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="2537" y="113" key="CommitChangelistDialog2" timestamp="1604362564482">
+      <screen x="1680" y="-171" width="2560" height="1417" />
+    </state>
+    <state x="2537" y="113" key="CommitChangelistDialog2/1680.-171.2560.1417/0.23.1680.962@1680.-171.2560.1417" timestamp="1604362564482" />
   </component>
 </project>

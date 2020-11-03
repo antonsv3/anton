@@ -20,6 +20,9 @@ type Master struct {
 	ID       primitive.ObjectID `bson:"_id,omitempty" json:"-"`
 	ObjectID string             `bson:"-" json:"-"`
 
+	// This is to mark who created this Master, pulled from Anton Front End
+	AntonOwner string `bson:"antonowner" json:"antonowner"`
+
 	// These are populated when the Master and Lines are received from Scraping Scripts
 	MasterName  string `bson:"mastername" json:"mastername"`
 	MasterPass  string `bson:"masterpass" json:"masterpass"`
@@ -55,6 +58,9 @@ type Slave struct {
 	ID       primitive.ObjectID `bson:"_id,omitempty" json:"-"`
 	ObjectID string             `bson:"-" json:"-"`
 
+	// This is to mark who created this Slave, pulled from Anton Front End
+	AntonOwner string `bson:"antonowner" json:"antonowner"`
+
 	Status      string `bson:"status" json:"status"`
 	SlaveName   string `bson:"slavename" json:"slavename"`
 	SlavePass   string `bson:"slavepass" json:"slavepass"`
@@ -74,6 +80,9 @@ type Slave struct {
 type Lines struct {
 	ID       primitive.ObjectID `bson:"_id,omitempty" json:"-"`
 	ObjectID string             `bson:"-" json:"-"`
+
+	// This is to mark who created this Line, pulled from Anton Front End
+	AntonOwner string `bson:"antonowner" json:"antonowner"`
 
 	// Created Timestamp
 	CreatedTimestamp time.Time `bson:"createdtimestamp" json:"createdtimestamp"`
@@ -129,6 +138,9 @@ type Lines struct {
 type Profile struct {
 	ID       primitive.ObjectID `bson:"_id,omitempty" json:"-"`
 	ObjectID string             `bson:"-" json:"-"`
+
+	// This is to mark who created this Profile, pulled from Anton Front End
+	AntonOwner string `bson:"antonowner" json:"antonowner"`
 
 	Status          string `bson:"status" json:"status"`
 	SiteName        string `bson:"sitename" json:"sitename"`
