@@ -230,9 +230,11 @@ type Proxy struct {
 }
 
 // Anton Users for Front-End Login
-type FrontEndUser struct {
-	User          string `bson:"user" json:"user"`
+type AntonUser struct {
+	Username      string `bson:"username" json:"username"`
 	Password      string `bson:"password" json:"password"`
+	Role          string `bson:"role" json:"role"`
+	Telegram      string `bson:"telegram" json:"telegram"`
 	Authenticated bool   `bson:"-" json:"-"`
 }
 
