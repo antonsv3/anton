@@ -162,7 +162,9 @@ func formatMasterLineValues(master Master, tempLine Lines, rotationNumber, lineS
 	// Create a Line that takes the tempLine values, this function will return this line when it is done
 	returnMasterLine := tempLine
 
+	// Stamp the Created Time and the owner
 	returnMasterLine.CreatedTimestamp = time.Now()
+	returnMasterLine.AntonOwner = master.AntonOwner
 
 	// Append Static Values that'll be changed if there are any errors with this function
 	returnMasterLine.CreatedViaFunction = "True"

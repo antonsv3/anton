@@ -138,7 +138,9 @@ func formatSlaveLineValues(slave Slave, slaveLine Lines, rotationNumber, period,
 	// Create a Line that takes the tempLine values, this function will return this line when it is done
 	returnSlaveLine := slaveLine
 
+	// Stamp the Created Time and the owner
 	returnSlaveLine.CreatedTimestamp = time.Now()
+	returnSlaveLine.AntonOwner = slave.AntonOwner
 
 	// Append Static Values that'll be changed if there are any errors with this function
 	returnSlaveLine.CreatedViaFunction = "True"
