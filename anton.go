@@ -261,6 +261,9 @@ type SlaveResults struct {
 
 // Site Status
 type SiteStatus struct {
+	ID       primitive.ObjectID `bson:"_id,omitempty" json:"-"`
+	ObjectID string             `bson:"-" json:"-"`
+
 	SiteName string `bson:"sitename" json:"sitename"`
 	Master   struct {
 		Agent struct {
