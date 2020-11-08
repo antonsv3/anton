@@ -259,6 +259,202 @@ type SlaveResults struct {
 	ErrorLines  []Lines `bson:"-" json:"-"`
 }
 
+// Site Status
+type SiteStatus struct {
+	SiteName string `bson:"sitename" json:"sitename"`
+	Master   struct {
+		Agent struct {
+			AntonEnable string `bson:"antonenable" json:"antonenable"`
+			MLB         struct {
+				MoneyLine      string `bson:"moneyline" json:"moneyline"`
+				Spread         string `bson:"spread" json:"spread"`
+				Total          string `bson:"total" json:"total"`
+				TeamTotal      string `bson:"teamtotal" json:"teamtotal"`
+				Game           string `bson:"game" json:"game"`
+				OneFiveInnings string `bson:"onefiveinnings" json:"onefiveinnings"`
+			} `bson:"mlb" json:"mlb"`
+			NFL struct {
+				MoneyLine    string `bson:"moneyline" json:"moneyline"`
+				Spread       string `bson:"spread" json:"spread"`
+				Total        string `bson:"total" json:"total"`
+				TeamTotal    string `bson:"teamtotal" json:"teamtotal"`
+				Game         string `bson:"game" json:"game"`
+				OneHalf      string `bson:"onehalf" json:"onehalf"`
+				TwoHalf      string `bson:"twohalf" json:"twohalf"`
+				OneQuarter   string `bson:"onequarter" json:"onequarter"`
+				TwoQuarter   string `bson:"twoquarter" json:"twoquarter"`
+				ThreeQuarter string `bson:"threequarter" json:"threequarter"`
+				FourQuarter  string `bson:"fourquarter" json:"fourquarter"`
+			} `bson:"nfl" json:"nfl"`
+			NBA struct {
+				MoneyLine    string `bson:"moneyline" json:"moneyline"`
+				Spread       string `bson:"spread" json:"spread"`
+				Total        string `bson:"total" json:"total"`
+				TeamTotal    string `bson:"teamtotal" json:"teamtotal"`
+				Game         string `bson:"game" json:"game"`
+				OneHalf      string `bson:"onehalf" json:"onehalf"`
+				TwoHalf      string `bson:"twohalf" json:"twohalf"`
+				OneQuarter   string `bson:"onequarter" json:"onequarter"`
+				TwoQuarter   string `bson:"twoquarter" json:"twoquarter"`
+				ThreeQuarter string `bson:"threequarter" json:"threequarter"`
+				FourQuarter  string `bson:"fourquarter" json:"fourquarter"`
+			} `bson:"nba" json:"nba"`
+			CollegeFootball struct {
+				MoneyLine    string `bson:"moneyline" json:"moneyline"`
+				Spread       string `bson:"spread" json:"spread"`
+				Total        string `bson:"total" json:"total"`
+				TeamTotal    string `bson:"teamtotal" json:"teamtotal"`
+				Game         string `bson:"game" json:"game"`
+				OneHalf      string `bson:"onehalf" json:"onehalf"`
+				TwoHalf      string `bson:"twohalf" json:"twohalf"`
+				OneQuarter   string `bson:"onequarter" json:"onequarter"`
+				TwoQuarter   string `bson:"twoquarter" json:"twoquarter"`
+				ThreeQuarter string `bson:"threequarter" json:"threequarter"`
+				FourQuarter  string `bson:"fourquarter" json:"fourquarter"`
+			} `bson:"collegefootball" json:"collegefootball"`
+			CollegeBasketball struct {
+				MoneyLine    string `bson:"moneyline" json:"moneyline"`
+				Spread       string `bson:"spread" json:"spread"`
+				Total        string `bson:"total" json:"total"`
+				TeamTotal    string `bson:"teamtotal" json:"teamtotal"`
+				Game         string `bson:"game" json:"game"`
+				OneHalf      string `bson:"onehalf" json:"onehalf"`
+				TwoHalf      string `bson:"twohalf" json:"twohalf"`
+				OneQuarter   string `bson:"onequarter" json:"onequarter"`
+				TwoQuarter   string `bson:"twoquarter" json:"twoquarter"`
+				ThreeQuarter string `bson:"threequarter" json:"threequarter"`
+				FourQuarter  string `bson:"fourquarter" json:"fourquarter"`
+			} `bson:"collegebasketball" json:"collegebasketball"`
+		} `bson:"agent" json:"agent"`
+		User struct {
+			AntonEnable string `bson:"antonenable" json:"antonenable"`
+			MLB         struct {
+				MoneyLine      string `bson:"moneyline" json:"moneyline"`
+				Spread         string `bson:"spread" json:"spread"`
+				Total          string `bson:"total" json:"total"`
+				TeamTotal      string `bson:"teamtotal" json:"teamtotal"`
+				Game           string `bson:"game" json:"game"`
+				OneFiveInnings string `bson:"onefiveinnings" json:"onefiveinnings"`
+			} `bson:"mlb" json:"mlb"`
+			NFL struct {
+				MoneyLine    string `bson:"moneyline" json:"moneyline"`
+				Spread       string `bson:"spread" json:"spread"`
+				Total        string `bson:"total" json:"total"`
+				TeamTotal    string `bson:"teamtotal" json:"teamtotal"`
+				Game         string `bson:"game" json:"game"`
+				OneHalf      string `bson:"onehalf" json:"onehalf"`
+				TwoHalf      string `bson:"twohalf" json:"twohalf"`
+				OneQuarter   string `bson:"onequarter" json:"onequarter"`
+				TwoQuarter   string `bson:"twoquarter" json:"twoquarter"`
+				ThreeQuarter string `bson:"threequarter" json:"threequarter"`
+				FourQuarter  string `bson:"fourquarter" json:"fourquarter"`
+			} `bson:"nfl" json:"nfl"`
+			NBA struct {
+				MoneyLine    string `bson:"moneyline" json:"moneyline"`
+				Spread       string `bson:"spread" json:"spread"`
+				Total        string `bson:"total" json:"total"`
+				TeamTotal    string `bson:"teamtotal" json:"teamtotal"`
+				Game         string `bson:"game" json:"game"`
+				OneHalf      string `bson:"onehalf" json:"onehalf"`
+				TwoHalf      string `bson:"twohalf" json:"twohalf"`
+				OneQuarter   string `bson:"onequarter" json:"onequarter"`
+				TwoQuarter   string `bson:"twoquarter" json:"twoquarter"`
+				ThreeQuarter string `bson:"threequarter" json:"threequarter"`
+				FourQuarter  string `bson:"fourquarter" json:"fourquarter"`
+			} `bson:"nba" json:"nba"`
+			CollegeFootball struct {
+				MoneyLine    string `bson:"moneyline" json:"moneyline"`
+				Spread       string `bson:"spread" json:"spread"`
+				Total        string `bson:"total" json:"total"`
+				TeamTotal    string `bson:"teamtotal" json:"teamtotal"`
+				Game         string `bson:"game" json:"game"`
+				OneHalf      string `bson:"onehalf" json:"onehalf"`
+				TwoHalf      string `bson:"twohalf" json:"twohalf"`
+				OneQuarter   string `bson:"onequarter" json:"onequarter"`
+				TwoQuarter   string `bson:"twoquarter" json:"twoquarter"`
+				ThreeQuarter string `bson:"threequarter" json:"threequarter"`
+				FourQuarter  string `bson:"fourquarter" json:"fourquarter"`
+			} `bson:"collegefootball" json:"collegefootball"`
+			CollegeBasketball struct {
+				MoneyLine    string `bson:"moneyline" json:"moneyline"`
+				Spread       string `bson:"spread" json:"spread"`
+				Total        string `bson:"total" json:"total"`
+				TeamTotal    string `bson:"teamtotal" json:"teamtotal"`
+				Game         string `bson:"game" json:"game"`
+				OneHalf      string `bson:"onehalf" json:"onehalf"`
+				TwoHalf      string `bson:"twohalf" json:"twohalf"`
+				OneQuarter   string `bson:"onequarter" json:"onequarter"`
+				TwoQuarter   string `bson:"twoquarter" json:"twoquarter"`
+				ThreeQuarter string `bson:"threequarter" json:"threequarter"`
+				FourQuarter  string `bson:"fourquarter" json:"fourquarter"`
+			} `bson:"collegebasketball" json:"collegebasketball"`
+		} `bson:"user" json:"user"`
+	} `bson:"master" json:"master"`
+	Slave struct {
+		AntonEnable string `bson:"antonenable" json:"antonenable"`
+		MLB         struct {
+			MoneyLine      string `bson:"moneyline" json:"moneyline"`
+			Spread         string `bson:"spread" json:"spread"`
+			Total          string `bson:"total" json:"total"`
+			TeamTotal      string `bson:"teamtotal" json:"teamtotal"`
+			Game           string `bson:"game" json:"game"`
+			OneFiveInnings string `bson:"onefiveinnings" json:"onefiveinnings"`
+		} `bson:"mlb" json:"mlb"`
+		NFL struct {
+			MoneyLine    string `bson:"moneyline" json:"moneyline"`
+			Spread       string `bson:"spread" json:"spread"`
+			Total        string `bson:"total" json:"total"`
+			TeamTotal    string `bson:"teamtotal" json:"teamtotal"`
+			Game         string `bson:"game" json:"game"`
+			OneHalf      string `bson:"onehalf" json:"onehalf"`
+			TwoHalf      string `bson:"twohalf" json:"twohalf"`
+			OneQuarter   string `bson:"onequarter" json:"onequarter"`
+			TwoQuarter   string `bson:"twoquarter" json:"twoquarter"`
+			ThreeQuarter string `bson:"threequarter" json:"threequarter"`
+			FourQuarter  string `bson:"fourquarter" json:"fourquarter"`
+		} `bson:"nfl" json:"nfl"`
+		NBA struct {
+			MoneyLine    string `bson:"moneyline" json:"moneyline"`
+			Spread       string `bson:"spread" json:"spread"`
+			Total        string `bson:"total" json:"total"`
+			TeamTotal    string `bson:"teamtotal" json:"teamtotal"`
+			Game         string `bson:"game" json:"game"`
+			OneHalf      string `bson:"onehalf" json:"onehalf"`
+			TwoHalf      string `bson:"twohalf" json:"twohalf"`
+			OneQuarter   string `bson:"onequarter" json:"onequarter"`
+			TwoQuarter   string `bson:"twoquarter" json:"twoquarter"`
+			ThreeQuarter string `bson:"threequarter" json:"threequarter"`
+			FourQuarter  string `bson:"fourquarter" json:"fourquarter"`
+		} `bson:"nba" json:"nba"`
+		CollegeFootball struct {
+			MoneyLine    string `bson:"moneyline" json:"moneyline"`
+			Spread       string `bson:"spread" json:"spread"`
+			Total        string `bson:"total" json:"total"`
+			TeamTotal    string `bson:"teamtotal" json:"teamtotal"`
+			Game         string `bson:"game" json:"game"`
+			OneHalf      string `bson:"onehalf" json:"onehalf"`
+			TwoHalf      string `bson:"twohalf" json:"twohalf"`
+			OneQuarter   string `bson:"onequarter" json:"onequarter"`
+			TwoQuarter   string `bson:"twoquarter" json:"twoquarter"`
+			ThreeQuarter string `bson:"threequarter" json:"threequarter"`
+			FourQuarter  string `bson:"fourquarter" json:"fourquarter"`
+		} `bson:"collegefootball" json:"collegefootball"`
+		CollegeBasketball struct {
+			MoneyLine    string `bson:"moneyline" json:"moneyline"`
+			Spread       string `bson:"spread" json:"spread"`
+			Total        string `bson:"total" json:"total"`
+			TeamTotal    string `bson:"teamtotal" json:"teamtotal"`
+			Game         string `bson:"game" json:"game"`
+			OneHalf      string `bson:"onehalf" json:"onehalf"`
+			TwoHalf      string `bson:"twohalf" json:"twohalf"`
+			OneQuarter   string `bson:"onequarter" json:"onequarter"`
+			TwoQuarter   string `bson:"twoquarter" json:"twoquarter"`
+			ThreeQuarter string `bson:"threequarter" json:"threequarter"`
+			FourQuarter  string `bson:"fourquarter" json:"fourquarter"`
+		} `bson:"collegebasketball" json:"collegebasketball"`
+	} `bson:"slave" json:"slave"`
+}
+
 // This is a Struct to hold the Site's Dict, to help navigate through the different Sites, easier to read this way
 type SiteDictionary struct {
 	SiteName   string `bson:"sitename" json:"sitename"`

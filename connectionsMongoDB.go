@@ -238,6 +238,32 @@ func GatherSlaveLines(client *mongo.Client, filter bson.M) []Lines {
 
 }
 
+func GatherSiteStatus(client *mongo.Client, filter bson.M) []SiteStatus {
+	var siteStatuses []SiteStatus
+	collection := client.Database("Anton").Collection("SiteStatus")
+	cur, err := collection.Find(context.TODO(), filter)
+	if err != nil {
+		log.Fatal("Error on Finding all the documents", err)
+	}
+	for cur.Next(context.TODO()) {
+		var siteStatus SiteStatus
+		err = cur.Decode(&siteStatus)
+		if err != nil {
+			log.Fatal("Error on Decoding the document", err)
+		}
+		siteStatuses = append(siteStatuses, siteStatus)
+	}
+
+	// Close the Cursor
+	err = cur.Close(context.TODO())
+	if err != nil {
+		log.Fatal("[#GatherSiteStatus] Failed to Close Connection", err)
+	}
+
+	// Return Results
+	return siteStatuses
+}
+
 // Master Method to push all MasterLines to MongoDB
 func (master Master) PushMasterLines(MongoURI, TelegramGroupID, TelegramToken string) {
 
