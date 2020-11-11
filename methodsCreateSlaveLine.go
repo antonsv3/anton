@@ -223,6 +223,13 @@ func formatSlaveLineValues(slave Slave, slaveLine Lines, rotationNumber, period,
 		spreadErrorFlag = "False"
 	}
 
+	// Reformat LineSpread from -.5 and +.5 to -0.5 and +0.5
+	if returnSlaveLine.LineSpread == "-.5" {
+		returnSlaveLine.LineSpread = "-0.5"
+	} else if returnSlaveLine.LineSpread == "+.5" {
+		returnSlaveLine.LineSpread = "+0.5"
+	}
+
 	// ----------------------------------------- LineSpreadFloat Consistencies -------------------------------------- //
 
 	// -------------------- MoneyLine - Spread Floats
