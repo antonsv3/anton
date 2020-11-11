@@ -143,7 +143,6 @@ type Profile struct {
 	AntonOwner string `bson:"antonowner" json:"antonowner"`
 
 	Status          string `bson:"status" json:"status"`
-	SiteName        string `bson:"sitename" json:"sitename"`
 	MasterName      string `bson:"mastername" json:"mastername"`
 	MasterSite      string `bson:"mastersite" json:"mastersite"`
 	SlaveName       string `bson:"slavename" json:"slavename"`
