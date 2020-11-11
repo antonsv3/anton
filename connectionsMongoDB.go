@@ -265,12 +265,12 @@ func GatherSiteStatus(client *mongo.Client, filter bson.M) []SiteStatus {
 }
 
 // Master Method to push all MasterLines to MongoDB
-func (master Master) PushMasterLines(MongoURI, TelegramGroupID, TelegramToken string) {
+func (master Master) PushMasterLines(MongoURI, antonUserTelegram, antonBotTelegramTokenID string) {
 
 	var helper Helper
 
 	masterHeader := "----------- Master -----------"
-	SendTelegram(masterHeader, TelegramGroupID, TelegramToken)
+	SendTelegram(masterHeader, antonUserTelegram, antonBotTelegramTokenID)
 
 	// First format the Master and Lines, will need the telegram message to look like:
 
@@ -331,8 +331,8 @@ func (master Master) PushMasterLines(MongoURI, TelegramGroupID, TelegramToken st
 		telegramMsg += helper.ReplaceParameters("{Sport} - {League}\n", "{Sport}", lines.Sport, "{League}",
 			lines.League)
 
-		// Now we can send the Telegram Msg within this loop
-		SendTelegram(telegramMsg, TelegramGroupID, TelegramToken)
+		// Now we can send the Telegram Msg within this loop, we will send each Master line to whoever the Master belongs to
+		SendTelegram(telegramMsg, antonUserTelegram, antonBotTelegramTokenID)
 	}
 
 	// Start database connections

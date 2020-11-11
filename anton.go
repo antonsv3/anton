@@ -21,7 +21,8 @@ type Master struct {
 	ObjectID string             `bson:"-" json:"-"`
 
 	// This is to mark who created this Master, pulled from Anton Front End
-	AntonOwner string `bson:"antonowner" json:"antonowner"`
+	AntonOwner         string `bson:"antonowner" json:"antonowner"`
+	AntonOwnerTelegram string `bson:"antonownertelegram" json:"antonownertelegram"`
 
 	// These are populated when the Master and Lines are received from Scraping Scripts
 	MasterName  string `bson:"mastername" json:"mastername"`
@@ -59,7 +60,8 @@ type Slave struct {
 	ObjectID string             `bson:"-" json:"-"`
 
 	// This is to mark who created this Slave, pulled from Anton Front End
-	AntonOwner string `bson:"antonowner" json:"antonowner"`
+	AntonOwner         string `bson:"antonowner" json:"antonowner"`
+	AntonOwnerTelegram string `bson:"antonownertelegram" json:"antonownertelegram"`
 
 	Status      string `bson:"status" json:"status"`
 	SlaveName   string `bson:"slavename" json:"slavename"`
@@ -82,7 +84,8 @@ type Lines struct {
 	ObjectID string             `bson:"-" json:"-"`
 
 	// This is to mark who created this Line, pulled from Anton Front End
-	AntonOwner string `bson:"antonowner" json:"antonowner"`
+	AntonOwner         string `bson:"antonowner" json:"antonowner"`
+	AntonOwnerTelegram string `bson:"antonownertelegram" json:"antonownertelegram"`
 
 	// Created Timestamp
 	CreatedTimestamp time.Time `bson:"createdtimestamp" json:"createdtimestamp"`

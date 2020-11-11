@@ -611,15 +611,22 @@ func (slaveLine *Lines) ValidateAgainst(masterLine Lines) {
 		}
 	}
 
-	// FavoredUnderdog - If both are Spread, Values should be the same between Slave, Master
-	if slaveLine.FavoredUnderdog != masterLine.FavoredUnderdog {
-		if slaveLine.FavoredUnderdog != "Pick" && masterLine.FavoredUnderdog != "Pick" {
-			if slaveLine.LineType == "Spread" && masterLine.LineType == "Spread" {
-				slaveLine.ErrorLog = append(slaveLine.ErrorLog, "Slave Spread: FavoredUnderdog Values"+
-					" are not matching")
+	/*
+
+		Commented out, spread FavoredUnderdogs should be consistent due to rotation numbers matching, otherwise if it flips
+		between +1 and -1 spread, it won't place
+
+		// FavoredUnderdog - If both are Spread, Values should be the same between Slave, Master
+		if slaveLine.FavoredUnderdog != masterLine.FavoredUnderdog {
+			if slaveLine.FavoredUnderdog != "Pick" && masterLine.FavoredUnderdog != "Pick" {
+				if slaveLine.LineType == "Spread" && masterLine.LineType == "Spread" {
+					slaveLine.ErrorLog = append(slaveLine.ErrorLog, "Slave Spread: FavoredUnderdog Values"+
+						" are not matching")
+				}
 			}
 		}
-	}
+
+	*/
 
 	// If LineType == "MoneyLine" and either OverUnder or FavoredUnderdog is not blank
 	if slaveLine.LineType == "MoneyLine" && masterLine.LineType == "MoneyLine" {
