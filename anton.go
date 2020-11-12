@@ -221,10 +221,26 @@ type Proxy struct {
 	ID       primitive.ObjectID `bson:"_id,omitempty" json:"-"`
 	ObjectID string             `bson:"-" json:"-"`
 
+	IPAddress     string `bson:"ipaddress" json:"ipaddress"`
+	Subnet        string `bson:"subnet" json:"subnet"`
 	ProxyAddress  string `bson:"proxyaddress" json:"proxyaddress"`
-	SubnetNumber  string `bson:"subnetnumber" json:"subnetnumber"`
 	HTTPUserAgent string `bson:"httpuseragent" json:"httpuseragent"`
 
+	// Can delete Subnet Number
+	SubnetNumber string `bson:"subnetnumber" json:"subnetnumber"`
+
+	// Geolocation
+	City      string `bson:"city" json:"city"`
+	State     string `bson:"state" json:"state"`
+	ZipCode   string `bson:"zipcode" json:"zipcode"`
+	Country   string `bson:"country" json:"country"`
+	Continent string `bson:"continent" json:"continent"`
+
+	// IP Ownership
+	Organization string `bson:"organization" json:"organization"`
+	HostName     string `bson:"hostname" json:"hostname"`
+
+	// If Assigned
 	AccountType string   `bson:"accounttype" json:"accounttype"`
 	LoginName   string   `bson:"loginname" json:"loginname"`
 	SiteName    string   `bson:"sitename" json:"sitename"`

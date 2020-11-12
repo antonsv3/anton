@@ -4,9 +4,6 @@
     <list default="true" id="f9ee9b8a-960d-4fd8-a2f9-5d875b743135" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/anton.go" beforeDir="false" afterPath="$PROJECT_DIR$/anton.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/connectionsMongoDB.go" beforeDir="false" afterPath="$PROJECT_DIR$/connectionsMongoDB.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/connectionsTelegram.go" beforeDir="false" afterPath="$PROJECT_DIR$/connectionsTelegram.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/methodsLineComparison.go" beforeDir="false" afterPath="$PROJECT_DIR$/methodsLineComparison.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,13 +43,13 @@
     <integration-enabled>true</integration-enabled>
   </component>
   <component name="WindowStateProjectService">
-    <state x="2537" y="113" key="CommitChangelistDialog2" timestamp="1605098206144">
+    <state x="2537" y="113" key="CommitChangelistDialog2" timestamp="1605103642380">
       <screen x="1680" y="-171" width="2560" height="1417" />
     </state>
-    <state x="2537" y="113" key="CommitChangelistDialog2/1680.-171.2560.1417/0.23.1680.962@1680.-171.2560.1417" timestamp="1605098206144" />
-    <state x="2560" y="277" key="Vcs.Push.Dialog.v2" timestamp="1605098209971">
+    <state x="2537" y="113" key="CommitChangelistDialog2/1680.-171.2560.1417/0.23.1680.962@1680.-171.2560.1417" timestamp="1605103642380" />
+    <state x="2560" y="277" key="Vcs.Push.Dialog.v2" timestamp="1605103646543">
       <screen x="1680" y="-171" width="2560" height="1417" />
     </state>
-    <state x="2560" y="277" key="Vcs.Push.Dialog.v2/1680.-171.2560.1417/0.23.1680.962@1680.-171.2560.1417" timestamp="1605098209971" />
+    <state x="2560" y="277" key="Vcs.Push.Dialog.v2/1680.-171.2560.1417/0.23.1680.962@1680.-171.2560.1417" timestamp="1605103646543" />
   </component>
 </project>
