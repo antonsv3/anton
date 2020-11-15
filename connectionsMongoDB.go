@@ -272,7 +272,7 @@ func GatherProcessSalt(client *mongo.Client, errorUserTelegram, antonBotTelegram
 	// Create the return process
 	var returnProcess Process
 
-	collection := client.Database("Anton").Collection("SiteStatus")
+	collection := client.Database("Anton").Collection("Secrets")
 	cur, err := collection.Find(context.TODO(), bson.M{"purpose": "masterprocessid"})
 	if err != nil {
 		log.Fatal("Error on Finding all the documents", err)
@@ -293,7 +293,7 @@ func GatherProcessSalt(client *mongo.Client, errorUserTelegram, antonBotTelegram
 	} else {
 		var helper Helper
 		helper.PrintStructInJSON(returnProcess)
-		SendTelegram("[#GatherProcessSalt] More than one current master process id in database", errorUserTelegram, antonBotTelegramTokenID)
+		SendTelegram("[#GatherProcessSalt] More/Less than one current master process id in database", errorUserTelegram, antonBotTelegramTokenID)
 	}
 
 	return returnProcess
