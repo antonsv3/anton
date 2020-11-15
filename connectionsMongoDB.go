@@ -284,6 +284,7 @@ func GatherProcessSalt(client *mongo.Client, errorUserTelegram, antonBotTelegram
 			log.Fatal("Error on Decoding the document", err)
 		}
 		currentProcessSlice = append(currentProcessSlice, process)
+		fmt.Println(currentProcessSlice)
 	}
 
 	// Check length of the results
