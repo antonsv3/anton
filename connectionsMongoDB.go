@@ -264,6 +264,38 @@ func GatherSiteStatus(client *mongo.Client, filter bson.M) []SiteStatus {
 	return siteStatuses
 }
 
+func GatherProcessSalt(client *mongo.Client, errorUserTelegram, antonBotTelegramTokenID string) Process {
+
+	// Create a slice, although there should only be one Process running, which we'll check
+	var currentProcessSlice []Process
+
+	// Create the return process
+	var returnProcess Process
+
+	collection := client.Database("Anton").Collection("SiteStatus")
+	cur, err := collection.Find(context.TODO(), bson.M{"purpose": "masterprocessid"})
+	if err != nil {
+		log.Fatal("Error on Finding all the documents", err)
+	}
+	for cur.Next(context.TODO()) {
+		var process Process
+		err = cur.Decode(&process)
+		if err != nil {
+			log.Fatal("Error on Decoding the document", err)
+		}
+		currentProcessSlice = append(currentProcessSlice, process)
+	}
+
+	// Check length of the results
+	if len(currentProcessSlice) == 1 {
+		returnProcess = currentProcessSlice[0]
+	} else {
+		SendTelegram("More than one current master process id in database", errorUserTelegram, antonBotTelegramTokenID)
+	}
+
+	return returnProcess
+}
+
 // Master Method to push all MasterLines to MongoDB
 func (master Master) PushMasterLines(MongoURI, antonUserTelegram, antonBotTelegramTokenID string) {
 

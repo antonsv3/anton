@@ -277,6 +277,21 @@ type SlaveResults struct {
 	ErrorLines  []Lines `bson:"-" json:"-"`
 }
 
+// Process Struct for Communication between Slave to Master
+type Process struct {
+	ID       primitive.ObjectID `bson:"_id,omitempty" json:"-"`
+	ObjectID string             `bson:"-" json:"-"`
+
+	// Purpose -> Since it's in the Secrets Database, we split them by a purpose
+	Purpose string `bson:"purpose" json:"purpose"`
+
+	// Current Process ID
+	CurrentID string `bson:"currentid" json:"currentid"`
+
+	// Current Salt
+	Salt string `bson:"salt" json:"salt"`
+}
+
 // Site Status
 type SiteStatus struct {
 	ID       primitive.ObjectID `bson:"_id,omitempty" json:"-"`
