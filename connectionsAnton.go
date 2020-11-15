@@ -2,6 +2,7 @@ package anton
 
 import (
 	"bytes"
+	"crypto/sha256"
 	"encoding/json"
 	"io/ioutil"
 	"log"
@@ -35,4 +36,18 @@ func (master Master) SendToAnton(antonLocation string) {
 	}
 
 	log.Println(string(body))
+}
+
+// Method to create hash with string and salt, returns the hash
+func CreateProcessHash(processID, salt string) string {
+
+	// Concatenate the string using salt with ProcessID
+	saltedString := salt + processID
+
+	// Now we will use SHA256 for the hashing this string
+	hashByte := sha256.Sum256([]byte(saltedString))
+
+	// Return the HashBytes as string
+	return string(hashByte[:])
+
 }

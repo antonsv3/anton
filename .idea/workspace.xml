@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f9ee9b8a-960d-4fd8-a2f9-5d875b743135" name="Default Changelist" comment="" />
+    <list default="true" id="298d1c1c-24a2-4101-9288-cd832efcfdba" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/connectionsAnton.go" beforeDir="false" afterPath="$PROJECT_DIR$/connectionsAnton.go" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,13 +17,12 @@
   <component name="GoLibraries">
     <option name="indexEntireGoPath" value="false" />
   </component>
-  <component name="ProjectId" id="1k8hvcyhU07eF3frGepm3KS4JsR" />
+  <component name="ProjectId" id="1kIxqOYDoh89OZYGYfL97yPAumL" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="GO_FMT" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.import.settings.migrated" value="true" />
@@ -32,23 +34,7 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Made Changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Made Changes" />
-  </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="562" y="136" key="CommitChangelistDialog2" timestamp="1605198310352">
-      <screen x="0" y="23" width="1680" height="962" />
-    </state>
-    <state x="562" y="136" key="CommitChangelistDialog2/1680.-171.2560.1417/0.23.1680.962@0.23.1680.962" timestamp="1605198310352" />
-    <state x="2537" y="113" key="CommitChangelistDialog2/1680.-171.2560.1417/0.23.1680.962@1680.-171.2560.1417" timestamp="1605103642380" />
-    <state x="578" y="327" key="Vcs.Push.Dialog.v2" timestamp="1605198314759">
-      <screen x="0" y="23" width="1680" height="962" />
-    </state>
-    <state x="578" y="327" key="Vcs.Push.Dialog.v2/1680.-171.2560.1417/0.23.1680.962@0.23.1680.962" timestamp="1605198314759" />
-    <state x="2560" y="277" key="Vcs.Push.Dialog.v2/1680.-171.2560.1417/0.23.1680.962@1680.-171.2560.1417" timestamp="1605103646543" />
   </component>
 </project>
