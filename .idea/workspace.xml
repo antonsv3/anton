@@ -43,13 +43,13 @@
     <integration-enabled>true</integration-enabled>
   </component>
   <component name="WindowStateProjectService">
-    <state x="2537" y="113" key="CommitChangelistDialog2" timestamp="1605431593544">
+    <state x="2537" y="113" key="CommitChangelistDialog2" timestamp="1605432108533">
       <screen x="1680" y="-171" width="2560" height="1417" />
     </state>
-    <state x="2537" y="113" key="CommitChangelistDialog2/1680.-171.2560.1417/0.23.1680.962@1680.-171.2560.1417" timestamp="1605431593544" />
-    <state x="2560" y="277" key="Vcs.Push.Dialog.v2" timestamp="1605431597212">
+    <state x="2537" y="113" key="CommitChangelistDialog2/1680.-171.2560.1417/0.23.1680.962@1680.-171.2560.1417" timestamp="1605432108533" />
+    <state x="2560" y="277" key="Vcs.Push.Dialog.v2" timestamp="1605432119250">
       <screen x="1680" y="-171" width="2560" height="1417" />
     </state>
-    <state x="2560" y="277" key="Vcs.Push.Dialog.v2/1680.-171.2560.1417/0.23.1680.962@1680.-171.2560.1417" timestamp="1605431597212" />
+    <state x="2560" y="277" key="Vcs.Push.Dialog.v2/1680.-171.2560.1417/0.23.1680.962@1680.-171.2560.1417" timestamp="1605432119250" />
   </component>
 </project>
