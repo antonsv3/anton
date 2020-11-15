@@ -290,7 +290,9 @@ func GatherProcessSalt(client *mongo.Client, errorUserTelegram, antonBotTelegram
 	if len(currentProcessSlice) == 1 {
 		returnProcess = currentProcessSlice[0]
 	} else {
-		SendTelegram("More than one current master process id in database", errorUserTelegram, antonBotTelegramTokenID)
+		var helper Helper
+		helper.PrintStructInJSON(returnProcess)
+		SendTelegram("[#GatherProcessSalt] More than one current master process id in database", errorUserTelegram, antonBotTelegramTokenID)
 	}
 
 	return returnProcess
