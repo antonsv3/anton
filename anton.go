@@ -221,6 +221,8 @@ type Proxy struct {
 	ID       primitive.ObjectID `bson:"_id,omitempty" json:"-"`
 	ObjectID string             `bson:"-" json:"-"`
 
+	Status string `bson:"status" json:"status"`
+
 	IPAddress     string `bson:"ipaddress" json:"ipaddress"`
 	Subnet        string `bson:"subnet" json:"subnet"`
 	ProxyAddress  string `bson:"proxyaddress" json:"proxyaddress"`
