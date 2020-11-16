@@ -297,12 +297,12 @@ func GatherProcessSalt(client *mongo.Client, errorUserTelegram, antonBotTelegram
 }
 
 // Master Method to push all MasterLines to MongoDB
-func (master Master) PushMasterLines(MongoURI, antonUserTelegram, antonBotTelegramTokenID string) {
+func (master Master) PushMasterLines(MongoURI, AntonUserTelegram, AntonTelegramBot string) {
 
 	var helper Helper
 
 	masterHeader := "----------- Master -----------"
-	SendTelegram(masterHeader, antonUserTelegram, antonBotTelegramTokenID)
+	SendTelegram(masterHeader, master.AntonOwnerTelegram, AntonTelegramBot)
 
 	// First format the Master and Lines, will need the telegram message to look like:
 
@@ -364,7 +364,7 @@ func (master Master) PushMasterLines(MongoURI, antonUserTelegram, antonBotTelegr
 			lines.League)
 
 		// Now we can send the Telegram Msg within this loop, we will send each Master line to whoever the Master belongs to
-		SendTelegram(telegramMsg, antonUserTelegram, antonBotTelegramTokenID)
+		SendTelegram(telegramMsg, lines.AntonOwnerTelegram, AntonTelegramBot)
 	}
 
 	// Start database connections
@@ -383,7 +383,7 @@ func (master Master) PushMasterLines(MongoURI, antonUserTelegram, antonBotTelegr
 }
 
 // Master Method to push all MasterLines to MongoDB
-func (returnSlaveResults SlaveResults) PushSlaveLines(MongoURI, TelegramGroupID, TelegramToken string) {
+func (returnSlaveResults SlaveResults) PushSlaveLines(MongoURI, AntonUserTelegram, AntonTelegramBot string) {
 
 	var helper Helper
 
@@ -402,8 +402,8 @@ func (returnSlaveResults SlaveResults) PushSlaveLines(MongoURI, TelegramGroupID,
 	slaveEnd := "------------- End ------------"
 
 	// First, Send the Header for Placed Lines
-	SendTelegram(slaveHeader, TelegramGroupID, TelegramToken)
-	SendTelegram(placedLinesString, TelegramGroupID, TelegramToken)
+	SendTelegram(slaveHeader, AntonUserTelegram, AntonTelegramBot)
+	SendTelegram(placedLinesString, AntonUserTelegram, AntonTelegramBot)
 
 	// Send all the Placed Lines
 	for i := range returnSlaveResults.PlacedLines {
@@ -454,15 +454,15 @@ func (returnSlaveResults SlaveResults) PushSlaveLines(MongoURI, TelegramGroupID,
 		telegramMsg += helper.ReplaceParameters("{Sport} - {League}\n", "{Sport}", line.Sport, "{League}",
 			line.League)
 
-		// Now we can send the Telegram Msg within this loop
-		SendTelegram(telegramMsg, TelegramGroupID, TelegramToken)
+		// Now we can send the Telegram Msg within this loop, each line has an assigned telegram group
+		SendTelegram(telegramMsg, line.AntonOwnerTelegram, AntonTelegramBot)
 
 	}
 
 	// Next, Send the Headers for Skipped and Error Lines
-	SendTelegram(skippedLinesString, TelegramGroupID, TelegramToken)
-	SendTelegram(errorLinesString, TelegramGroupID, TelegramToken)
-	SendTelegram(slaveEnd, TelegramGroupID, TelegramToken)
+	SendTelegram(skippedLinesString, AntonUserTelegram, AntonTelegramBot)
+	SendTelegram(errorLinesString, AntonUserTelegram, AntonTelegramBot)
+	SendTelegram(slaveEnd, AntonUserTelegram, AntonTelegramBot)
 
 	// Start database connections
 	client := GetClient(MongoURI)

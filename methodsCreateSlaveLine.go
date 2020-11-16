@@ -141,6 +141,7 @@ func formatSlaveLineValues(slave Slave, slaveLine Lines, rotationNumber, period,
 	// Stamp the Created Time and the owner
 	returnSlaveLine.CreatedTimestamp = time.Now()
 	returnSlaveLine.AntonOwner = slave.AntonOwner
+	returnSlaveLine.AntonOwnerTelegram = slave.AntonOwnerTelegram
 
 	// Append Static Values that'll be changed if there are any errors with this function
 	returnSlaveLine.CreatedViaFunction = "True"

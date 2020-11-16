@@ -165,6 +165,7 @@ func formatMasterLineValues(master Master, tempLine Lines, rotationNumber, lineS
 	// Stamp the Created Time and the owner
 	returnMasterLine.CreatedTimestamp = time.Now()
 	returnMasterLine.AntonOwner = master.AntonOwner
+	returnMasterLine.AntonOwnerTelegram = master.AntonOwnerTelegram
 
 	// Append Static Values that'll be changed if there are any errors with this function
 	returnMasterLine.CreatedViaFunction = "True"
