@@ -244,6 +244,9 @@ type Proxy struct {
 	LoginName   string   `bson:"loginname" json:"loginname"`
 	SiteName    string   `bson:"sitename" json:"sitename"`
 	BannedSites struct{} `bson:"bannedsites" json:"bannedsites"`
+
+	// String to display on the pick list
+	StringHolder string `bson:"-" json:"-"`
 }
 
 // Anton Users for Front-End Login
