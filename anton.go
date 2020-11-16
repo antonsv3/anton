@@ -228,9 +228,6 @@ type Proxy struct {
 	ProxyAddress  string `bson:"proxyaddress" json:"proxyaddress"`
 	HTTPUserAgent string `bson:"httpuseragent" json:"httpuseragent"`
 
-	// Can delete Subnet Number
-	SubnetNumber string `bson:"subnetnumber" json:"subnetnumber"`
-
 	// Geolocation
 	City      string `bson:"city" json:"city"`
 	State     string `bson:"state" json:"state"`
