@@ -801,27 +801,28 @@ func (slaveLine *Lines) compareJuiceValues(masterLine Lines, juiceParam float64)
 func (slaveLine *Lines) compareSpreadLine(approvedLine Lines, spreadParam float64) {
 
 	// Regardless if it is Favored or Underdog, it'll use the same function
-	eitherValueIsPick := "False"
-	if slaveLine.FavoredUnderdog == "Pick" || approvedLine.FavoredUnderdog == "Pick" {
-		eitherValueIsPick = "True"
-	}
-
-	if slaveLine.FavoredUnderdog == approvedLine.FavoredUnderdog || eitherValueIsPick == "True" {
-		if approvedLine.LineSpreadFloat <= slaveLine.LineSpreadFloat+spreadParam {
-
-			slaveLine.FunctionLog = fmt.Sprintf("[#CompareSpreadLine Authorized] Master Spread (%v) w/ "+
-				"Spread Parameter (%v) vs. Slave Spread: (%v)", approvedLine.LineSpreadFloat, spreadParam,
-				slaveLine.LineSpreadFloat)
-		} else {
-
-			slaveLine.FunctionLog = fmt.Sprintf("[#CompareSpreadLine Skipped] Master Spread (%v) w/ Spread "+
-				"Parameter (%v) vs. Slave Spread: (%v)", approvedLine.LineSpreadFloat, spreadParam,
-				slaveLine.LineSpreadFloat)
+	/*
+		eitherValueIsPick := "False"
+		if slaveLine.FavoredUnderdog == "Pick" || approvedLine.FavoredUnderdog == "Pick" {
+			eitherValueIsPick = "True"
 		}
+
+	*/
+
+	// Since Rotation Numbers are already checked, we do not need to have the same FavoredUnderdog
+	//if slaveLine.FavoredUnderdog == approvedLine.FavoredUnderdog || eitherValueIsPick == "True" {
+	if approvedLine.LineSpreadFloat <= slaveLine.LineSpreadFloat+spreadParam {
+
+		slaveLine.FunctionLog = fmt.Sprintf("[#CompareSpreadLine Authorized] Master Spread (%v) w/ "+
+			"Spread Parameter (%v) vs. Slave Spread: (%v)", approvedLine.LineSpreadFloat, spreadParam,
+			slaveLine.LineSpreadFloat)
 	} else {
-		slaveLine.ErrorLog = append(slaveLine.ErrorLog, "Slave Total: Inverted FavoredUnderdog with "+
-			"Authorized bet")
+
+		slaveLine.FunctionLog = fmt.Sprintf("[#CompareSpreadLine Skipped] Master Spread (%v) w/ Spread "+
+			"Parameter (%v) vs. Slave Spread: (%v)", approvedLine.LineSpreadFloat, spreadParam,
+			slaveLine.LineSpreadFloat)
 	}
+	//}
 
 	// This prefix means that it passed Juice Comparisons
 	if strings.HasPrefix(slaveLine.FunctionLog, "[#CompareSpreadLine Authorized]") {
