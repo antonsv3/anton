@@ -819,7 +819,7 @@ func (slaveLine *Lines) compareSpreadLine(approvedLine Lines, spreadParam float6
 				slaveLine.LineSpreadFloat)
 		}
 	} else {
-		slaveLine.ErrorLog = append(slaveLine.ErrorLog, "Slave Total: Inverted OverUnder with "+
+		slaveLine.ErrorLog = append(slaveLine.ErrorLog, "Slave Total: Inverted FavoredUnderdog with "+
 			"Authorized bet")
 	}
 

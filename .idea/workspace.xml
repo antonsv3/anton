@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="eb67f419-8121-4799-b3d3-029664830106" name="Default Changelist" comment="">
+    <list default="true" id="60df95ea-ed83-4c56-a787-7bf08c92ab21" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/anton.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/connectionsMongoDB.go" beforeDir="false" afterPath="$PROJECT_DIR$/connectionsMongoDB.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/methodsLineComparison.go" beforeDir="false" afterPath="$PROJECT_DIR$/methodsLineComparison.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,7 +20,7 @@
   <component name="GoLibraries">
     <option name="indexEntireGoPath" value="false" />
   </component>
-  <component name="ProjectId" id="1kNFmNFlVqLxrT2qn4fqgG2jIgV" />
+  <component name="ProjectId" id="1kRdmKTNWCY1z0uyrQdrDkg2jgV" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
