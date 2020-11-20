@@ -406,7 +406,6 @@ func (returnSlaveResults SlaveResults) PushSlaveLines(MongoURI, AntonTelegramBot
 	slaveEnd := "------------- End ------------"
 
 	var sentHeadersToTelegram []string
-	var sentEndToTelegram []string
 
 	// Send all the Placed Lines
 	for i := range returnSlaveResults.PlacedLines {
@@ -505,64 +504,33 @@ func (returnSlaveResults SlaveResults) PushSlaveLines(MongoURI, AntonTelegramBot
 		// Now we can send the Telegram Msg within this loop, each line has an assigned telegram group
 		SendTelegram(telegramMsg, line.AntonOwnerTelegram, AntonTelegramBot)
 
-		// First we need to send end to all the Telegram Groups and save the Groups like the Headers
-		if len(sentEndToTelegram) == 0 {
+	}
 
-			// Count of skipped lines for this Telegram User
-			countOfSkippedLines := 0
-			countOfErrorLines := 0
+	// Now we need to send the enders to each person we sent this to
+	for i := range sentHeadersToTelegram {
+		countOfSkippedLines := 0
+		countOfErrorLines := 0
 
-			for j := range returnSlaveResults.SkippedLines {
-				if returnSlaveResults.SkippedLines[j].AntonOwnerTelegram == line.AntonOwnerTelegram {
-					countOfSkippedLines = countOfSkippedLines + 1
-				}
+		for j := range returnSlaveResults.SkippedLines {
+			if returnSlaveResults.SkippedLines[j].AntonOwnerTelegram == sentHeadersToTelegram[i] {
+				countOfSkippedLines += 1
 			}
-
-			skippedLinesString := helper.ReplaceParameters("Skipped Lines: {Amount}", "{Amount}", strconv.Itoa(countOfSkippedLines))
-			SendTelegram(skippedLinesString, line.AntonOwnerTelegram, AntonTelegramBot)
-
-			for k := range returnSlaveResults.ErrorLines {
-				if returnSlaveResults.ErrorLines[k].AntonOwnerTelegram == line.AntonOwnerTelegram {
-					countOfErrorLines = countOfErrorLines + 1
-				}
-			}
-
-			errorLinesString := helper.ReplaceParameters("Error Lines: {Amount}", "{Amount}", strconv.Itoa(countOfErrorLines))
-			SendTelegram(errorLinesString, line.AntonOwnerTelegram, AntonTelegramBot)
-			SendTelegram(slaveEnd, line.AntonOwnerTelegram, AntonTelegramBot)
-
-			sentEndToTelegram = append(sentEndToTelegram, line.AntonOwnerTelegram)
 		}
 
-		// Now, if the string is not in the slice of saved Telegram Groups, we will resend the headers
-		if helper.FindIfStringInSlice(line.AntonOwnerTelegram, sentEndToTelegram) == "False" {
+		skippedLinesString := helper.ReplaceParameters("Skipped Lines: {Amount}", "{Amount}", strconv.Itoa(countOfSkippedLines))
+		SendTelegram(skippedLinesString, sentHeadersToTelegram[i], AntonTelegramBot)
 
-			// Count of skipped lines for this Telegram User
-			countOfSkippedLines := 0
-			countOfErrorLines := 0
-
-			for j := range returnSlaveResults.SkippedLines {
-				if returnSlaveResults.SkippedLines[j].AntonOwnerTelegram == line.AntonOwnerTelegram {
-					countOfSkippedLines = countOfSkippedLines + 1
-				}
+		for k := range returnSlaveResults.ErrorLines {
+			if returnSlaveResults.ErrorLines[k].AntonOwnerTelegram == sentHeadersToTelegram[i] {
+				countOfErrorLines += 1
 			}
-
-			skippedLinesString := helper.ReplaceParameters("Skipped Lines: {Amount}", "{Amount}", strconv.Itoa(countOfSkippedLines))
-			SendTelegram(skippedLinesString, line.AntonOwnerTelegram, AntonTelegramBot)
-
-			for k := range returnSlaveResults.ErrorLines {
-				if returnSlaveResults.ErrorLines[k].AntonOwnerTelegram == line.AntonOwnerTelegram {
-					countOfErrorLines = countOfErrorLines + 1
-				}
-			}
-
-			errorLinesString := helper.ReplaceParameters("Error Lines: {Amount}", "{Amount}", strconv.Itoa(countOfErrorLines))
-			SendTelegram(errorLinesString, line.AntonOwnerTelegram, AntonTelegramBot)
-			SendTelegram(slaveEnd, line.AntonOwnerTelegram, AntonTelegramBot)
-
-			sentEndToTelegram = append(sentEndToTelegram, line.AntonOwnerTelegram)
-
 		}
+
+		errorLinesString := helper.ReplaceParameters("Error Lines: {Amount}", "{Amount}", strconv.Itoa(countOfErrorLines))
+		SendTelegram(errorLinesString, sentHeadersToTelegram[i], AntonTelegramBot)
+
+		// Send End
+		SendTelegram(slaveEnd, sentHeadersToTelegram[i], AntonTelegramBot)
 
 	}
 

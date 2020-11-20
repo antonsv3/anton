@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="60df95ea-ed83-4c56-a787-7bf08c92ab21" name="Default Changelist" comment="">
+    <list default="true" id="68de542f-1f2f-4798-8095-5d854b80991c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/methodsLineComparison.go" beforeDir="false" afterPath="$PROJECT_DIR$/methodsLineComparison.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/connectionsMongoDB.go" beforeDir="false" afterPath="$PROJECT_DIR$/connectionsMongoDB.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,13 +17,12 @@
   <component name="GoLibraries">
     <option name="indexEntireGoPath" value="false" />
   </component>
-  <component name="ProjectId" id="1kRdmKTNWCY1z0uyrQdrDkg2jgV" />
+  <component name="ProjectId" id="1kZD9Y4gCuYYdxwpv9FeVz0R7rx" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="GO_FMT" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.import.settings.migrated" value="true" />
@@ -35,21 +34,13 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Made Changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Made Changes" />
-  </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
   </component>
   <component name="WindowStateProjectService">
-    <state x="2537" y="113" key="CommitChangelistDialog2" timestamp="1605667679800">
+    <state x="2625" y="154" width="670" height="676" key="search.everywhere.popup" timestamp="1605899389829">
       <screen x="1680" y="-171" width="2560" height="1417" />
     </state>
-    <state x="2537" y="113" key="CommitChangelistDialog2/1680.-171.2560.1417/0.23.1680.963@1680.-171.2560.1417" timestamp="1605667679800" />
-    <state x="2560" y="277" key="Vcs.Push.Dialog.v2" timestamp="1605667684648">
-      <screen x="1680" y="-171" width="2560" height="1417" />
-    </state>
-    <state x="2560" y="277" key="Vcs.Push.Dialog.v2/1680.-171.2560.1417/0.23.1680.963@1680.-171.2560.1417" timestamp="1605667684648" />
+    <state x="2625" y="154" width="670" height="676" key="search.everywhere.popup/1680.-171.2560.1417/0.23.1680.962@1680.-171.2560.1417" timestamp="1605899389829" />
   </component>
 </project>
