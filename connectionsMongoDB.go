@@ -264,7 +264,7 @@ func GatherSiteStatus(client *mongo.Client, filter bson.M) []SiteStatus {
 	return siteStatuses
 }
 
-func GatherProcessSalt(client *mongo.Client, errorUserTelegram, antonBotTelegramTokenID string) Process {
+func GatherScrapingProcessSalt(client *mongo.Client, errorUserTelegram, antonBotTelegramTokenID string) Process {
 
 	// Create a slice, although there should only be one Process running, which we'll check
 	var currentProcessSlice []Process
@@ -272,8 +272,8 @@ func GatherProcessSalt(client *mongo.Client, errorUserTelegram, antonBotTelegram
 	// Create the return process
 	var returnProcess Process
 
-	collection := client.Database("Anton").Collection("Secrets")
-	cur, err := collection.Find(context.TODO(), bson.M{"purpose": "masterprocessid"})
+	collection := client.Database("Anton").Collection("Connections")
+	cur, err := collection.Find(context.TODO(), bson.M{"purpose": "masterscrapingprocessid"})
 	if err != nil {
 		log.Fatal("Error on Finding all the documents", err)
 	}
@@ -290,7 +290,39 @@ func GatherProcessSalt(client *mongo.Client, errorUserTelegram, antonBotTelegram
 	if len(currentProcessSlice) == 1 {
 		returnProcess = currentProcessSlice[0]
 	} else {
-		SendTelegram("[#GatherProcessSalt] More/Less than one current master process id in database", errorUserTelegram, antonBotTelegramTokenID)
+		SendTelegram("[#GatherScrapingProcessSalt] More/Less than one Current Master Scraping Process ID in Database", errorUserTelegram, antonBotTelegramTokenID)
+	}
+
+	return returnProcess
+}
+
+func GatherProxyProcessSalt(client *mongo.Client, errorUserTelegram, antonBotTelegramTokenID string) Process {
+
+	// Create a slice, although there should only be one Process running, which we'll check
+	var currentProcessSlice []Process
+
+	// Create the return process
+	var returnProcess Process
+
+	collection := client.Database("Anton").Collection("Connections")
+	cur, err := collection.Find(context.TODO(), bson.M{"purpose": "proxysyncingprocessid"})
+	if err != nil {
+		log.Fatal("Error on Finding all the documents", err)
+	}
+	for cur.Next(context.TODO()) {
+		var process Process
+		err = cur.Decode(&process)
+		if err != nil {
+			log.Fatal("Error on Decoding the document", err)
+		}
+		currentProcessSlice = append(currentProcessSlice, process)
+	}
+
+	// Check length of the results
+	if len(currentProcessSlice) == 1 {
+		returnProcess = currentProcessSlice[0]
+	} else {
+		SendTelegram("[#GatherProxyProcessSalt] More/Less than one Current Master Proxy Sync Process ID in Database", errorUserTelegram, antonBotTelegramTokenID)
 	}
 
 	return returnProcess
