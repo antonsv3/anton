@@ -284,6 +284,9 @@ type Process struct {
 	ID       primitive.ObjectID `bson:"_id,omitempty" json:"-"`
 	ObjectID string             `bson:"-" json:"-"`
 
+	// Created Timestamp
+	StartTimestamp time.Time `bson:"starttimestamp" json:"starttimestamp"`
+
 	// Purpose -> Since it's in the Connections Database, we split them by a purpose
 	Purpose string `bson:"purpose" json:"purpose"`
 
