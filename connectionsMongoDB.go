@@ -305,7 +305,7 @@ func GatherProxyIPGeoProcess(client *mongo.Client, errorUserTelegram, antonBotTe
 	var returnProcess Process
 
 	collection := client.Database("Anton").Collection("Connections")
-	cur, err := collection.Find(context.TODO(), bson.M{"purpose": "proxysyncingprocessid"})
+	cur, err := collection.Find(context.TODO(), bson.M{"purpose": "proxyipgeosyncingprocessid"})
 	if err != nil {
 		log.Fatal("Error on Finding all the documents", err)
 	}
@@ -337,7 +337,7 @@ func GatherProxyDatabaseProcess(client *mongo.Client, errorUserTelegram, antonBo
 	var returnProcess Process
 
 	collection := client.Database("Anton").Collection("Connections")
-	cur, err := collection.Find(context.TODO(), bson.M{"purpose": "proxysyncingprocessid"})
+	cur, err := collection.Find(context.TODO(), bson.M{"purpose": "proxydatabasesyncingprocessid"})
 	if err != nil {
 		log.Fatal("Error on Finding all the documents", err)
 	}
