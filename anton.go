@@ -309,7 +309,7 @@ type Process struct {
 	ObjectID string             `bson:"-" json:"-"`
 
 	// Created Timestamp
-	StartTimestamp time.Time `bson:"starttimestamp" json:"starttimestamp"`
+	StartTimestamp time.Time `bson:"starttime" json:"starttime"`
 
 	// Purpose -> Since it's in the Connections Database, we split them by a purpose
 	Purpose string `bson:"purpose" json:"purpose"`
