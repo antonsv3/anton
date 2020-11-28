@@ -249,6 +249,17 @@ type Proxy struct {
 	StringHolder string `bson:"-" json:"-"`
 }
 
+// Struct to keep track of banned Sites
+type Subnet struct {
+	ID       primitive.ObjectID `bson:"_id,omitempty" json:"-"`
+	ObjectID string             `bson:"-" json:"-"`
+
+	Subnet          string   `bson:"subnet" json:"subnet"`
+	Status          string   `bson:"status" json:"status"`
+	NumberOfProxies string   `bson:"numberofproxies" json:"numberofproxies"`
+	BannedSites     []string `bson:"bannedsites" json:"bannedsites"`
+}
+
 // Anton Users for Front-End Login
 type AntonUser struct {
 	Username      string `bson:"username" json:"username"`
