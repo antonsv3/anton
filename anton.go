@@ -258,6 +258,19 @@ type Subnet struct {
 	Status          string   `bson:"status" json:"status"`
 	NumberOfProxies string   `bson:"numberofproxies" json:"numberofproxies"`
 	BannedSites     []string `bson:"bannedsites" json:"bannedsites"`
+
+	// Pulled from IP Addresses
+	City      string `bson:"city" json:"city"`
+	State     string `bson:"state" json:"state"`
+	ZipCode   string `bson:"zipcode" json:"zipcode"`
+	Country   string `bson:"country" json:"country"`
+	Continent string `bson:"continent" json:"continent"`
+
+	// IP Ownership
+	Organization string `bson:"organization" json:"organization"`
+	HostName     string `bson:"hostname" json:"hostname"`
+
+	StringHolder string `bson:"-" json:"-"`
 }
 
 // Anton Users for Front-End Login
