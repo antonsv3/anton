@@ -135,6 +135,32 @@ func GatherProxies(client *mongo.Client, filter bson.M) []Proxy {
 	return proxies
 }
 
+func GatherSubnets(client *mongo.Client, filter bson.M) []Subnet {
+	var subnets []Subnet
+	collection := client.Database("Anton").Collection("Proxies")
+	cur, err := collection.Find(context.TODO(), filter)
+	if err != nil {
+		log.Fatal("Error on Finding all the documents", err)
+	}
+	for cur.Next(context.TODO()) {
+		var subnet Subnet
+		err = cur.Decode(&subnet)
+		if err != nil {
+			log.Fatal("Error on Decoding the document", err)
+		}
+		subnets = append(subnets, subnet)
+	}
+
+	// Close the Cursor
+	err = cur.Close(context.TODO())
+	if err != nil {
+		log.Fatal("[#GatherProfiles] Failed to Close Connection", err)
+	}
+
+	// Return Results
+	return subnets
+}
+
 func GatherSiteDictionaries(client *mongo.Client, filter bson.M) []SiteDictionary {
 	var siteDictionaries []SiteDictionary
 	collection := client.Database("Anton").Collection("SitesDictionary")
