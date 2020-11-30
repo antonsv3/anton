@@ -240,10 +240,10 @@ type Proxy struct {
 	HostName     string `bson:"hostname" json:"hostname"`
 
 	// If Assigned
-	AccountType string   `bson:"accounttype" json:"accounttype"`
-	LoginName   string   `bson:"loginname" json:"loginname"`
-	SiteName    string   `bson:"sitename" json:"sitename"`
-	BannedSites struct{} `bson:"bannedsites" json:"bannedsites"`
+	AccountType string `bson:"accounttype" json:"accounttype"`
+	LoginName   string `bson:"loginname" json:"loginname"`
+	SiteName    string `bson:"sitename" json:"sitename"`
+	//BannedSites struct{} `bson:"bannedsites" json:"bannedsites"`
 
 	// String to display on the pick list
 	StringHolder string `bson:"-" json:"-"`

@@ -137,7 +137,7 @@ func GatherProxies(client *mongo.Client, filter bson.M) []Proxy {
 
 func GatherSubnets(client *mongo.Client, filter bson.M) []Subnet {
 	var subnets []Subnet
-	collection := client.Database("Anton").Collection("Proxies")
+	collection := client.Database("Anton").Collection("Subnets")
 	cur, err := collection.Find(context.TODO(), filter)
 	if err != nil {
 		log.Fatal("Error on Finding all the documents", err)
