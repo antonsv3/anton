@@ -177,33 +177,6 @@ func formatMasterLineValues(master Master, tempLine Lines, rotationNumber, lineS
 	returnMasterLine.LineJuice = helper.ReplaceParameters(lineJuice, "½", ".5", "\u00a0", "")
 	returnMasterLine.LineSpread = helper.ReplaceParameters(lineSpread, "½", ".5", "\u00a0", "")
 
-	// I want to add "+" in front of the LineSpread, if it is Positive and only if it's not Total or TeamTotal
-	if returnMasterLine.LineType != "Total" && returnMasterLine.LineType != "TeamTotal" {
-		if helper.StringNegativePositiveZero(returnMasterLine.LineSpread) == "Positive" {
-			if !strings.HasPrefix(returnMasterLine.LineSpread, "+") {
-				returnMasterLine.LineSpread = "+" + returnMasterLine.LineSpread
-			}
-		} else if helper.StringNegativePositiveZero(returnMasterLine.LineSpread) == "Zero" {
-			returnMasterLine.LineSpread = helper.ReplaceParameters(returnMasterLine.LineSpread, "+", "", "-", "")
-		}
-	} else {
-		if strings.HasPrefix(returnMasterLine.LineSpread, "+") || strings.HasPrefix(returnMasterLine.LineSpread, "-") {
-			returnMasterLine.LineSpread = helper.ReplaceParameters(returnMasterLine.LineSpread, "+", "", "-", "")
-		}
-	}
-
-	// I want to add "+" in front of the LineJuice, if it is Positive
-	if helper.StringNegativePositiveZero(returnMasterLine.LineJuice) == "Positive" {
-
-		if !strings.HasPrefix(returnMasterLine.LineJuice, "+") {
-			returnMasterLine.LineJuice = "+" + returnMasterLine.LineJuice
-		}
-	} else if helper.StringNegativePositiveZero(returnMasterLine.LineJuice) == "Zero" {
-		if !strings.HasPrefix(returnMasterLine.LineJuice, "-") {
-			returnMasterLine.LineJuice = "-" + helper.ReplaceParameters(returnMasterLine.LineJuice, "+", "")
-		}
-	}
-
 	// Append Inherited Values from the Current User
 	returnMasterLine.BetType = "Master"
 	returnMasterLine.MasterSite = master.SiteName
@@ -330,6 +303,35 @@ func formatMasterLineValues(master Master, tempLine Lines, rotationNumber, lineS
 		if returnMasterLine.LineType != "Total" && returnMasterLine.LineType != "TeamTotal" {
 			returnMasterLine.ErrorLog = append(returnMasterLine.ErrorLog, "LineType is not MoneyLine, Spread, "+
 				"Total, or TeamTotal")
+		}
+	}
+
+	// ------------------------------- Format LineSpread and LineJuice Consistencies -------------------------------- //
+
+	// I want to add "+" in front of the LineSpread, if it is Positive and only if it's not Total or TeamTotal
+	if returnMasterLine.LineType != "Total" && returnMasterLine.LineType != "TeamTotal" {
+		if helper.StringNegativePositiveZero(returnMasterLine.LineSpread) == "Positive" {
+			if !strings.HasPrefix(returnMasterLine.LineSpread, "+") {
+				returnMasterLine.LineSpread = "+" + returnMasterLine.LineSpread
+			}
+		} else if helper.StringNegativePositiveZero(returnMasterLine.LineSpread) == "Zero" {
+			returnMasterLine.LineSpread = helper.ReplaceParameters(returnMasterLine.LineSpread, "+", "", "-", "")
+		}
+	} else {
+		if strings.HasPrefix(returnMasterLine.LineSpread, "+") || strings.HasPrefix(returnMasterLine.LineSpread, "-") {
+			returnMasterLine.LineSpread = helper.ReplaceParameters(returnMasterLine.LineSpread, "+", "", "-", "")
+		}
+	}
+
+	// I want to add "+" in front of the LineJuice, if it is Positive
+	if helper.StringNegativePositiveZero(returnMasterLine.LineJuice) == "Positive" {
+
+		if !strings.HasPrefix(returnMasterLine.LineJuice, "+") {
+			returnMasterLine.LineJuice = "+" + returnMasterLine.LineJuice
+		}
+	} else if helper.StringNegativePositiveZero(returnMasterLine.LineJuice) == "Zero" {
+		if !strings.HasPrefix(returnMasterLine.LineJuice, "-") {
+			returnMasterLine.LineJuice = "-" + helper.ReplaceParameters(returnMasterLine.LineJuice, "+", "")
 		}
 	}
 
