@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3999c899-6d45-4ac3-b688-4e741d496d66" name="Default Changelist" comment="">
+    <list default="true" id="6d05f672-0823-4b4b-8d51-4239a30c4d24" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/methodsSiteStatusComparison.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/methodsCreateMasterLine.go" beforeDir="false" afterPath="$PROJECT_DIR$/methodsCreateMasterLine.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/methodsCreateSlaveLine.go" beforeDir="false" afterPath="$PROJECT_DIR$/methodsCreateSlaveLine.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
   </component>
   <component name="GOROOT" path="/usr/local/go" />
   <component name="Git.Settings">
@@ -18,12 +24,13 @@
   <component name="GoLibraries">
     <option name="indexEntireGoPath" value="false" />
   </component>
-  <component name="ProjectId" id="1lC9tGjb00tucrKOO0Qs2RFgXze" />
+  <component name="ProjectId" id="1lVksflGgNPUpIWt4yKb1vbVCS6" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultGoTemplateProperty" value="Go File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.import.settings.migrated" value="true" />
