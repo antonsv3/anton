@@ -50,6 +50,9 @@ type Master struct {
 	LoginAttempts int      `bson:"-" json:"-"`
 	LinesOnPage   []string `bson:"-" json:"-"`
 
+	// This is for authentication purposes between the Master and Slave
+	Hash string `bson:"hash" json:"hash"`
+
 	// These will be time stamps for comparisons later
 	TimeReceived time.Time `bson:"-" json:"-"`
 }

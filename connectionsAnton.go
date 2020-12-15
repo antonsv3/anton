@@ -10,7 +10,7 @@ import (
 )
 
 // Method used to send the Master to Anton
-func (master Master) SendToAnton(antonLocation string) {
+func (master Master) SendToAnton(antonLocation, MongoURI, DevTelegramGroupID, AntonTelegramBot string) {
 
 	// We want to send the account we're following, and not the Master Account, if the Account Type is "Agent"
 	if master.AccountType == "Agent" {
@@ -19,6 +19,13 @@ func (master Master) SendToAnton(antonLocation string) {
 		master.MasterName = master.MasterLines[0].MasterName
 		master.MasterPass = master.MasterLines[0].MasterPass
 	}
+
+	// Send the process id and create hash to authenticate to the Slave server
+	client := GetClient(MongoURI)
+	currentProcess := GatherScrapingProcess(client, DevTelegramGroupID, AntonTelegramBot)
+	currentProcessHash := CreateProcessHash(currentProcess.CurrentID, currentProcess.Salt)
+
+	master.Hash = currentProcessHash
 
 	requestBody, err := json.Marshal(master)
 	if err != nil {
