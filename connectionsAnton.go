@@ -24,6 +24,7 @@ func (master Master) SendToAnton(antonLocation, MongoURI, DevTelegramGroupID, An
 	client := GetClient(MongoURI)
 	currentProcess := GatherScrapingProcess(client, DevTelegramGroupID, AntonTelegramBot)
 	currentProcessHash := CreateProcessHash(currentProcess.CurrentID, currentProcess.Salt)
+	DisconnectClient(client)
 
 	master.Hash = currentProcessHash
 
