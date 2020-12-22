@@ -26,7 +26,7 @@ func (master Master) SendToAnton(antonLocation, MongoURI, DevTelegramGroupID, An
 	DisconnectClient(client)
 
 	// Grab and send the first 10 letters of the process ID
-	if len(currentProcess.CurrentID) >= 10 {
+	if len(currentProcess.CurrentID) >= 11 {
 		master.Hash = currentProcess.CurrentID[:10]
 	}
 

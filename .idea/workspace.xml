@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e70d9f65-614d-4397-8149-f7cb51849f58" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/connectionsAnton.go" beforeDir="false" afterPath="$PROJECT_DIR$/connectionsAnton.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -43,14 +42,14 @@
     <integration-enabled>true</integration-enabled>
   </component>
   <component name="WindowStateProjectService">
-    <state x="2537" y="113" key="CommitChangelistDialog2" timestamp="1608675085256">
+    <state x="2537" y="113" key="CommitChangelistDialog2" timestamp="1608676347654">
       <screen x="1680" y="-171" width="2560" height="1417" />
     </state>
-    <state x="2537" y="113" key="CommitChangelistDialog2/1680.-171.2560.1417/0.23.1680.962@1680.-171.2560.1417" timestamp="1608675085256" />
-    <state x="2560" y="277" key="Vcs.Push.Dialog.v2" timestamp="1608675089840">
+    <state x="2537" y="113" key="CommitChangelistDialog2/1680.-171.2560.1417/0.23.1680.962@1680.-171.2560.1417" timestamp="1608676347654" />
+    <state x="2560" y="277" key="Vcs.Push.Dialog.v2" timestamp="1608676353552">
       <screen x="1680" y="-171" width="2560" height="1417" />
     </state>
-    <state x="2560" y="277" key="Vcs.Push.Dialog.v2/1680.-171.2560.1417/0.23.1680.962@1680.-171.2560.1417" timestamp="1608675089840" />
+    <state x="2560" y="277" key="Vcs.Push.Dialog.v2/1680.-171.2560.1417/0.23.1680.962@1680.-171.2560.1417" timestamp="1608676353552" />
     <state x="2625" y="154" width="670" height="676" key="search.everywhere.popup" timestamp="1608673951582">
       <screen x="1680" y="-171" width="2560" height="1417" />
     </state>
