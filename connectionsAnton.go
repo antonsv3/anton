@@ -23,10 +23,12 @@ func (master Master) SendToAnton(antonLocation, MongoURI, DevTelegramGroupID, An
 	// Send the process id and create hash to authenticate to the Slave server
 	client := GetClient(MongoURI)
 	currentProcess := GatherScrapingProcess(client, DevTelegramGroupID, AntonTelegramBot)
-	currentProcessHash := CreateProcessHash(currentProcess.CurrentID, currentProcess.Salt)
 	DisconnectClient(client)
 
-	master.Hash = currentProcessHash
+	// Grab and send the first 10 letters of the process ID
+	if len(currentProcess.CurrentID) >= 10 {
+		master.Hash = currentProcess.CurrentID[:10]
+	}
 
 	requestBody, err := json.Marshal(master)
 	if err != nil {
