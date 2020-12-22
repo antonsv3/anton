@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"crypto/sha256"
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -27,6 +28,8 @@ func (master Master) SendToAnton(antonLocation, MongoURI, DevTelegramGroupID, An
 	DisconnectClient(client)
 
 	master.Hash = currentProcessHash
+
+	fmt.Println(master.Hash)
 
 	requestBody, err := json.Marshal(master)
 	if err != nil {
