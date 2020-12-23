@@ -1,5 +1,7 @@
 package anton
 
+import "fmt"
+
 // Function to compare two SiteStatus and return one
 func CompareSiteStatuses(SiteStatusOne, SiteStatusTwo SiteStatus) SiteStatus {
 
@@ -634,6 +636,14 @@ func CompareSiteStatuses(SiteStatusOne, SiteStatusTwo SiteStatus) SiteStatus {
 	if SiteStatusOne.Slave.CollegeFootball.FourQuarter != "Yes" || SiteStatusTwo.Slave.CollegeFootball.FourQuarter != "Yes" {
 		returnSiteStatus.Slave.CollegeFootball.FourQuarter = "No"
 	}
+
+	var helper Helper
+	fmt.Println("SiteStatusOne:")
+	helper.PrintStructInJSON(SiteStatusOne)
+	fmt.Println("SiteStatusTwo:")
+	helper.PrintStructInJSON(SiteStatusTwo)
+	fmt.Println("ReturnSiteStatus:")
+	helper.PrintStructInJSON(returnSiteStatus)
 
 	return returnSiteStatus
 
