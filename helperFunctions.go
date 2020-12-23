@@ -273,7 +273,7 @@ func (helper Helper) FormatStringSportLeaguePeriod(master Master, slave Slave, s
 				} else if master.MasterLines[i].Period == "4th Quarter" {
 					tempString = helper.ReplaceParameters(tempString, "{PeriodID}", sportsDict.Basketball.NBA.Period.FourQuarter)
 				}
-			} else if master.MasterLines[i].League == "College Football" {
+			} else if master.MasterLines[i].League == "College Basketball" {
 				// Add in the LeagueID, which we know is "College Basketball" on this conditional
 				tempString = helper.ReplaceParameters(tempString, "{LeagueID}", sportsDict.Basketball.CollegeBasketball.ID)
 
