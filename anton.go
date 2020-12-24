@@ -327,7 +327,7 @@ type Process struct {
 	Status string `bson:"status" json:"status"`
 
 	// Current scraping masters
-	ScrapingMasters []Master `bson:"scrapingmasters" json:"scrapingmasters"`
+	ScrapingMasters []Master `bson:"scrapingmasters,omitempty" json:"scrapingmasters,omitempty"`
 }
 
 // Site Status
