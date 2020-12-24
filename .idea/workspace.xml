@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e655c542-36db-48a9-a3ea-72cb08f4043d" name="Default Changelist" comment="">
+    <list default="true" id="96574913-8341-40a4-b212-786d38ccb282" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/anton.go" beforeDir="false" afterPath="$PROJECT_DIR$/anton.go" afterDir="false" />
     </list>
@@ -17,7 +17,7 @@
   <component name="GoLibraries">
     <option name="indexEntireGoPath" value="false" />
   </component>
-  <component name="ProjectId" id="1m5j9pdMiEHU9YcaqBXBlV2eu5t" />
+  <component name="ProjectId" id="1m5rgkZeutbbPratgUO8l6XSEQ6" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
