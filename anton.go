@@ -600,3 +600,31 @@ type SiteDictionary struct {
 		} `bson:"football" json:"football"`
 	} `bson:"sportsdict" json:"sportsdict"`
 }
+
+// Struct to save lines from a Site, used for data mapping
+type LinesMappingStruct struct {
+	SiteName          string    `bson:"sitename" json:"sitename"`
+	FullSyncTimeStamp time.Time `bson:"fullsynctimestamp" json:"fullsynctimestamp"`
+	League            struct {
+		MLB struct {
+			SyncTimeStamp time.Time `bson:"timestamp" json:"timstamp"`
+			Lines         []Lines   `bson:"lines" json:"lines"`
+		} `bson:"mlb" json:"mlb"`
+		NBA struct {
+			SyncTimeStamp time.Time `bson:"timestamp" json:"timstamp"`
+			Lines         []Lines   `bson:"lines" json:"lines"`
+		} `bson:"nba" json:"nba"`
+		NFL struct {
+			SyncTimeStamp time.Time `bson:"timestamp" json:"timstamp"`
+			Lines         []Lines   `bson:"lines" json:"lines"`
+		} `bson:"nfl" json:"nfl"`
+		CollegeBasketball struct {
+			SyncTimeStamp time.Time `bson:"timestamp" json:"timstamp"`
+			Lines         []Lines   `bson:"lines" json:"lines"`
+		} `bson:"collegebasketball" json:"collegebasketball"`
+		CollegeFootball struct {
+			SyncTimeStamp time.Time `bson:"timestamp" json:"timstamp"`
+			Lines         []Lines   `bson:"lines" json:"lines"`
+		} `bson:"collegefootball" json:"collegefootball"`
+	} `bson:"league" json:"league"`
+}

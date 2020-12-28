@@ -290,6 +290,32 @@ func GatherSiteStatus(client *mongo.Client, filter bson.M) []SiteStatus {
 	return siteStatuses
 }
 
+func GatherLinesMapping(client *mongo.Client, filter bson.M) []LinesMappingStruct {
+	var returnLinesMapping []LinesMappingStruct
+	collection := client.Database("Anton").Collection("LinesMapping")
+	cur, err := collection.Find(context.TODO(), filter)
+	if err != nil {
+		log.Fatal("Error on Finding all the documents", err)
+	}
+	for cur.Next(context.TODO()) {
+		var linesMapping LinesMappingStruct
+		err = cur.Decode(&linesMapping)
+		if err != nil {
+			log.Fatal("Error on Decoding the document", err)
+		}
+		returnLinesMapping = append(returnLinesMapping, linesMapping)
+	}
+
+	// Close the Cursor
+	err = cur.Close(context.TODO())
+	if err != nil {
+		log.Fatal("[#GatherLinesMapping] Failed to Close Connection", err)
+	}
+
+	// Return Results
+	return returnLinesMapping
+}
+
 func GatherScrapingProcess(client *mongo.Client, errorUserTelegram, antonBotTelegramTokenID string) Process {
 
 	// Create a slice, although there should only be one Process running, which we'll check
