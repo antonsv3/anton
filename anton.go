@@ -611,196 +611,256 @@ type LinesMappingStruct struct {
 		MLB struct {
 			SyncTimeStamp time.Time `bson:"timestamp" json:"timstamp"`
 			Game          struct {
-				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
-				Spread    []Lines   `bson:"spread" json:"spread"`
-				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
-				Total     []Lines   `bson:"total" json:"total"`
+				MoneyLineTimestamp time.Time `bson:"moneylinetimestamp" json:"moneylinetimestamp"`
+				SpreadTimestamp    time.Time `bson:"spreadtimestamp" json:"spreadtimestamp"`
+				TotalTimestamp     time.Time `bson:"totaltimestamp" json:"totaltimestamp"`
+				Spread             []Lines   `bson:"spread" json:"spread"`
+				MoneyLine          []Lines   `bson:"moneyline" json:"moneyline"`
+				Total              []Lines   `bson:"total" json:"total"`
 			} `bson:"game" json:"game"`
 			OneFiveInnings struct {
-				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
-				Spread    []Lines   `bson:"spread" json:"spread"`
-				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
-				Total     []Lines   `bson:"total" json:"total"`
+				MoneyLineTimestamp time.Time `bson:"moneylinetimestamp" json:"moneylinetimestamp"`
+				SpreadTimestamp    time.Time `bson:"spreadtimestamp" json:"spreadtimestamp"`
+				TotalTimestamp     time.Time `bson:"totaltimestamp" json:"totaltimestamp"`
+				Spread             []Lines   `bson:"spread" json:"spread"`
+				MoneyLine          []Lines   `bson:"moneyline" json:"moneyline"`
+				Total              []Lines   `bson:"total" json:"total"`
 			} `bson:"onefiveinnings" json:"onefiveinnings"`
 		} `bson:"mlb" json:"mlb"`
 		NBA struct {
 			SyncTimeStamp time.Time `bson:"timestamp" json:"timstamp"`
 			Game          struct {
-				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
-				Spread    []Lines   `bson:"spread" json:"spread"`
-				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
-				Total     []Lines   `bson:"total" json:"total"`
+				MoneyLineTimestamp time.Time `bson:"moneylinetimestamp" json:"moneylinetimestamp"`
+				SpreadTimestamp    time.Time `bson:"spreadtimestamp" json:"spreadtimestamp"`
+				TotalTimestamp     time.Time `bson:"totaltimestamp" json:"totaltimestamp"`
+				Spread             []Lines   `bson:"spread" json:"spread"`
+				MoneyLine          []Lines   `bson:"moneyline" json:"moneyline"`
+				Total              []Lines   `bson:"total" json:"total"`
 			} `bson:"game" json:"game"`
 			OneHalf struct {
-				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
-				Spread    []Lines   `bson:"spread" json:"spread"`
-				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
-				Total     []Lines   `bson:"total" json:"total"`
+				MoneyLineTimestamp time.Time `bson:"moneylinetimestamp" json:"moneylinetimestamp"`
+				SpreadTimestamp    time.Time `bson:"spreadtimestamp" json:"spreadtimestamp"`
+				TotalTimestamp     time.Time `bson:"totaltimestamp" json:"totaltimestamp"`
+				Spread             []Lines   `bson:"spread" json:"spread"`
+				MoneyLine          []Lines   `bson:"moneyline" json:"moneyline"`
+				Total              []Lines   `bson:"total" json:"total"`
 			} `bson:"onehalf" json:"onehalf"`
 			TwoHalf struct {
-				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
-				Spread    []Lines   `bson:"spread" json:"spread"`
-				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
-				Total     []Lines   `bson:"total" json:"total"`
+				MoneyLineTimestamp time.Time `bson:"moneylinetimestamp" json:"moneylinetimestamp"`
+				SpreadTimestamp    time.Time `bson:"spreadtimestamp" json:"spreadtimestamp"`
+				TotalTimestamp     time.Time `bson:"totaltimestamp" json:"totaltimestamp"`
+				Spread             []Lines   `bson:"spread" json:"spread"`
+				MoneyLine          []Lines   `bson:"moneyline" json:"moneyline"`
+				Total              []Lines   `bson:"total" json:"total"`
 			} `bson:"twohalf" json:"twohalf"`
 			OneQuarter struct {
-				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
-				Spread    []Lines   `bson:"spread" json:"spread"`
-				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
-				Total     []Lines   `bson:"total" json:"total"`
+				MoneyLineTimestamp time.Time `bson:"moneylinetimestamp" json:"moneylinetimestamp"`
+				SpreadTimestamp    time.Time `bson:"spreadtimestamp" json:"spreadtimestamp"`
+				TotalTimestamp     time.Time `bson:"totaltimestamp" json:"totaltimestamp"`
+				Spread             []Lines   `bson:"spread" json:"spread"`
+				MoneyLine          []Lines   `bson:"moneyline" json:"moneyline"`
+				Total              []Lines   `bson:"total" json:"total"`
 			} `bson:"onequarter" json:"onequarter"`
 			TwoQuarter struct {
-				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
-				Spread    []Lines   `bson:"spread" json:"spread"`
-				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
-				Total     []Lines   `bson:"total" json:"total"`
+				MoneyLineTimestamp time.Time `bson:"moneylinetimestamp" json:"moneylinetimestamp"`
+				SpreadTimestamp    time.Time `bson:"spreadtimestamp" json:"spreadtimestamp"`
+				TotalTimestamp     time.Time `bson:"totaltimestamp" json:"totaltimestamp"`
+				Spread             []Lines   `bson:"spread" json:"spread"`
+				MoneyLine          []Lines   `bson:"moneyline" json:"moneyline"`
+				Total              []Lines   `bson:"total" json:"total"`
 			} `bson:"twoquarter" json:"twoquarter"`
 			ThreeQuarter struct {
-				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
-				Spread    []Lines   `bson:"spread" json:"spread"`
-				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
-				Total     []Lines   `bson:"total" json:"total"`
+				MoneyLineTimestamp time.Time `bson:"moneylinetimestamp" json:"moneylinetimestamp"`
+				SpreadTimestamp    time.Time `bson:"spreadtimestamp" json:"spreadtimestamp"`
+				TotalTimestamp     time.Time `bson:"totaltimestamp" json:"totaltimestamp"`
+				Spread             []Lines   `bson:"spread" json:"spread"`
+				MoneyLine          []Lines   `bson:"moneyline" json:"moneyline"`
+				Total              []Lines   `bson:"total" json:"total"`
 			} `bson:"threequarter" json:"threequarter"`
 			FourQuarter struct {
-				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
-				Spread    []Lines   `bson:"spread" json:"spread"`
-				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
-				Total     []Lines   `bson:"total" json:"total"`
+				MoneyLineTimestamp time.Time `bson:"moneylinetimestamp" json:"moneylinetimestamp"`
+				SpreadTimestamp    time.Time `bson:"spreadtimestamp" json:"spreadtimestamp"`
+				TotalTimestamp     time.Time `bson:"totaltimestamp" json:"totaltimestamp"`
+				Spread             []Lines   `bson:"spread" json:"spread"`
+				MoneyLine          []Lines   `bson:"moneyline" json:"moneyline"`
+				Total              []Lines   `bson:"total" json:"total"`
 			} `bson:"fourquarter" json:"fourquarter"`
 		} `bson:"nba" json:"nba"`
 		NFL struct {
 			SyncTimeStamp time.Time `bson:"timestamp" json:"timstamp"`
 			Game          struct {
-				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
-				Spread    []Lines   `bson:"spread" json:"spread"`
-				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
-				Total     []Lines   `bson:"total" json:"total"`
+				MoneyLineTimestamp time.Time `bson:"moneylinetimestamp" json:"moneylinetimestamp"`
+				SpreadTimestamp    time.Time `bson:"spreadtimestamp" json:"spreadtimestamp"`
+				TotalTimestamp     time.Time `bson:"totaltimestamp" json:"totaltimestamp"`
+				Spread             []Lines   `bson:"spread" json:"spread"`
+				MoneyLine          []Lines   `bson:"moneyline" json:"moneyline"`
+				Total              []Lines   `bson:"total" json:"total"`
 			} `bson:"game" json:"game"`
 			OneHalf struct {
-				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
-				Spread    []Lines   `bson:"spread" json:"spread"`
-				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
-				Total     []Lines   `bson:"total" json:"total"`
+				MoneyLineTimestamp time.Time `bson:"moneylinetimestamp" json:"moneylinetimestamp"`
+				SpreadTimestamp    time.Time `bson:"spreadtimestamp" json:"spreadtimestamp"`
+				TotalTimestamp     time.Time `bson:"totaltimestamp" json:"totaltimestamp"`
+				Spread             []Lines   `bson:"spread" json:"spread"`
+				MoneyLine          []Lines   `bson:"moneyline" json:"moneyline"`
+				Total              []Lines   `bson:"total" json:"total"`
 			} `bson:"onehalf" json:"onehalf"`
 			TwoHalf struct {
-				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
-				Spread    []Lines   `bson:"spread" json:"spread"`
-				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
-				Total     []Lines   `bson:"total" json:"total"`
+				MoneyLineTimestamp time.Time `bson:"moneylinetimestamp" json:"moneylinetimestamp"`
+				SpreadTimestamp    time.Time `bson:"spreadtimestamp" json:"spreadtimestamp"`
+				TotalTimestamp     time.Time `bson:"totaltimestamp" json:"totaltimestamp"`
+				Spread             []Lines   `bson:"spread" json:"spread"`
+				MoneyLine          []Lines   `bson:"moneyline" json:"moneyline"`
+				Total              []Lines   `bson:"total" json:"total"`
 			} `bson:"twohalf" json:"twohalf"`
 			OneQuarter struct {
-				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
-				Spread    []Lines   `bson:"spread" json:"spread"`
-				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
-				Total     []Lines   `bson:"total" json:"total"`
+				MoneyLineTimestamp time.Time `bson:"moneylinetimestamp" json:"moneylinetimestamp"`
+				SpreadTimestamp    time.Time `bson:"spreadtimestamp" json:"spreadtimestamp"`
+				TotalTimestamp     time.Time `bson:"totaltimestamp" json:"totaltimestamp"`
+				Spread             []Lines   `bson:"spread" json:"spread"`
+				MoneyLine          []Lines   `bson:"moneyline" json:"moneyline"`
+				Total              []Lines   `bson:"total" json:"total"`
 			} `bson:"onequarter" json:"onequarter"`
 			TwoQuarter struct {
-				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
-				Spread    []Lines   `bson:"spread" json:"spread"`
-				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
-				Total     []Lines   `bson:"total" json:"total"`
+				MoneyLineTimestamp time.Time `bson:"moneylinetimestamp" json:"moneylinetimestamp"`
+				SpreadTimestamp    time.Time `bson:"spreadtimestamp" json:"spreadtimestamp"`
+				TotalTimestamp     time.Time `bson:"totaltimestamp" json:"totaltimestamp"`
+				Spread             []Lines   `bson:"spread" json:"spread"`
+				MoneyLine          []Lines   `bson:"moneyline" json:"moneyline"`
+				Total              []Lines   `bson:"total" json:"total"`
 			} `bson:"twoquarter" json:"twoquarter"`
 			ThreeQuarter struct {
-				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
-				Spread    []Lines   `bson:"spread" json:"spread"`
-				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
-				Total     []Lines   `bson:"total" json:"total"`
+				MoneyLineTimestamp time.Time `bson:"moneylinetimestamp" json:"moneylinetimestamp"`
+				SpreadTimestamp    time.Time `bson:"spreadtimestamp" json:"spreadtimestamp"`
+				TotalTimestamp     time.Time `bson:"totaltimestamp" json:"totaltimestamp"`
+				Spread             []Lines   `bson:"spread" json:"spread"`
+				MoneyLine          []Lines   `bson:"moneyline" json:"moneyline"`
+				Total              []Lines   `bson:"total" json:"total"`
 			} `bson:"threequarter" json:"threequarter"`
 			FourQuarter struct {
-				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
-				Spread    []Lines   `bson:"spread" json:"spread"`
-				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
-				Total     []Lines   `bson:"total" json:"total"`
+				MoneyLineTimestamp time.Time `bson:"moneylinetimestamp" json:"moneylinetimestamp"`
+				SpreadTimestamp    time.Time `bson:"spreadtimestamp" json:"spreadtimestamp"`
+				TotalTimestamp     time.Time `bson:"totaltimestamp" json:"totaltimestamp"`
+				Spread             []Lines   `bson:"spread" json:"spread"`
+				MoneyLine          []Lines   `bson:"moneyline" json:"moneyline"`
+				Total              []Lines   `bson:"total" json:"total"`
 			} `bson:"fourquarter" json:"fourquarter"`
 		} `bson:"nfl" json:"nfl"`
 		CollegeBasketball struct {
 			SyncTimeStamp time.Time `bson:"timestamp" json:"timstamp"`
 			Game          struct {
-				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
-				Spread    []Lines   `bson:"spread" json:"spread"`
-				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
-				Total     []Lines   `bson:"total" json:"total"`
+				MoneyLineTimestamp time.Time `bson:"moneylinetimestamp" json:"moneylinetimestamp"`
+				SpreadTimestamp    time.Time `bson:"spreadtimestamp" json:"spreadtimestamp"`
+				TotalTimestamp     time.Time `bson:"totaltimestamp" json:"totaltimestamp"`
+				Spread             []Lines   `bson:"spread" json:"spread"`
+				MoneyLine          []Lines   `bson:"moneyline" json:"moneyline"`
+				Total              []Lines   `bson:"total" json:"total"`
 			} `bson:"game" json:"game"`
 			OneHalf struct {
-				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
-				Spread    []Lines   `bson:"spread" json:"spread"`
-				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
-				Total     []Lines   `bson:"total" json:"total"`
+				MoneyLineTimestamp time.Time `bson:"moneylinetimestamp" json:"moneylinetimestamp"`
+				SpreadTimestamp    time.Time `bson:"spreadtimestamp" json:"spreadtimestamp"`
+				TotalTimestamp     time.Time `bson:"totaltimestamp" json:"totaltimestamp"`
+				Spread             []Lines   `bson:"spread" json:"spread"`
+				MoneyLine          []Lines   `bson:"moneyline" json:"moneyline"`
+				Total              []Lines   `bson:"total" json:"total"`
 			} `bson:"onehalf" json:"onehalf"`
 			TwoHalf struct {
-				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
-				Spread    []Lines   `bson:"spread" json:"spread"`
-				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
-				Total     []Lines   `bson:"total" json:"total"`
+				MoneyLineTimestamp time.Time `bson:"moneylinetimestamp" json:"moneylinetimestamp"`
+				SpreadTimestamp    time.Time `bson:"spreadtimestamp" json:"spreadtimestamp"`
+				TotalTimestamp     time.Time `bson:"totaltimestamp" json:"totaltimestamp"`
+				Spread             []Lines   `bson:"spread" json:"spread"`
+				MoneyLine          []Lines   `bson:"moneyline" json:"moneyline"`
+				Total              []Lines   `bson:"total" json:"total"`
 			} `bson:"twohalf" json:"twohalf"`
 			OneQuarter struct {
-				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
-				Spread    []Lines   `bson:"spread" json:"spread"`
-				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
-				Total     []Lines   `bson:"total" json:"total"`
+				MoneyLineTimestamp time.Time `bson:"moneylinetimestamp" json:"moneylinetimestamp"`
+				SpreadTimestamp    time.Time `bson:"spreadtimestamp" json:"spreadtimestamp"`
+				TotalTimestamp     time.Time `bson:"totaltimestamp" json:"totaltimestamp"`
+				Spread             []Lines   `bson:"spread" json:"spread"`
+				MoneyLine          []Lines   `bson:"moneyline" json:"moneyline"`
+				Total              []Lines   `bson:"total" json:"total"`
 			} `bson:"onequarter" json:"onequarter"`
 			TwoQuarter struct {
-				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
-				Spread    []Lines   `bson:"spread" json:"spread"`
-				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
-				Total     []Lines   `bson:"total" json:"total"`
+				MoneyLineTimestamp time.Time `bson:"moneylinetimestamp" json:"moneylinetimestamp"`
+				SpreadTimestamp    time.Time `bson:"spreadtimestamp" json:"spreadtimestamp"`
+				TotalTimestamp     time.Time `bson:"totaltimestamp" json:"totaltimestamp"`
+				Spread             []Lines   `bson:"spread" json:"spread"`
+				MoneyLine          []Lines   `bson:"moneyline" json:"moneyline"`
+				Total              []Lines   `bson:"total" json:"total"`
 			} `bson:"twoquarter" json:"twoquarter"`
 			ThreeQuarter struct {
-				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
-				Spread    []Lines   `bson:"spread" json:"spread"`
-				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
-				Total     []Lines   `bson:"total" json:"total"`
+				MoneyLineTimestamp time.Time `bson:"moneylinetimestamp" json:"moneylinetimestamp"`
+				SpreadTimestamp    time.Time `bson:"spreadtimestamp" json:"spreadtimestamp"`
+				TotalTimestamp     time.Time `bson:"totaltimestamp" json:"totaltimestamp"`
+				Spread             []Lines   `bson:"spread" json:"spread"`
+				MoneyLine          []Lines   `bson:"moneyline" json:"moneyline"`
+				Total              []Lines   `bson:"total" json:"total"`
 			} `bson:"threequarter" json:"threequarter"`
 			FourQuarter struct {
-				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
-				Spread    []Lines   `bson:"spread" json:"spread"`
-				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
-				Total     []Lines   `bson:"total" json:"total"`
+				MoneyLineTimestamp time.Time `bson:"moneylinetimestamp" json:"moneylinetimestamp"`
+				SpreadTimestamp    time.Time `bson:"spreadtimestamp" json:"spreadtimestamp"`
+				TotalTimestamp     time.Time `bson:"totaltimestamp" json:"totaltimestamp"`
+				Spread             []Lines   `bson:"spread" json:"spread"`
+				MoneyLine          []Lines   `bson:"moneyline" json:"moneyline"`
+				Total              []Lines   `bson:"total" json:"total"`
 			} `bson:"fourquarter" json:"fourquarter"`
 		} `bson:"collegebasketball" json:"collegebasketball"`
 		CollegeFootball struct {
 			SyncTimeStamp time.Time `bson:"timestamp" json:"timstamp"`
 			Game          struct {
-				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
-				Spread    []Lines   `bson:"spread" json:"spread"`
-				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
-				Total     []Lines   `bson:"total" json:"total"`
+				MoneyLineTimestamp time.Time `bson:"moneylinetimestamp" json:"moneylinetimestamp"`
+				SpreadTimestamp    time.Time `bson:"spreadtimestamp" json:"spreadtimestamp"`
+				TotalTimestamp     time.Time `bson:"totaltimestamp" json:"totaltimestamp"`
+				Spread             []Lines   `bson:"spread" json:"spread"`
+				MoneyLine          []Lines   `bson:"moneyline" json:"moneyline"`
+				Total              []Lines   `bson:"total" json:"total"`
 			} `bson:"game" json:"game"`
 			OneHalf struct {
-				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
-				Spread    []Lines   `bson:"spread" json:"spread"`
-				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
-				Total     []Lines   `bson:"total" json:"total"`
+				MoneyLineTimestamp time.Time `bson:"moneylinetimestamp" json:"moneylinetimestamp"`
+				SpreadTimestamp    time.Time `bson:"spreadtimestamp" json:"spreadtimestamp"`
+				TotalTimestamp     time.Time `bson:"totaltimestamp" json:"totaltimestamp"`
+				Spread             []Lines   `bson:"spread" json:"spread"`
+				MoneyLine          []Lines   `bson:"moneyline" json:"moneyline"`
+				Total              []Lines   `bson:"total" json:"total"`
 			} `bson:"onehalf" json:"onehalf"`
 			TwoHalf struct {
-				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
-				Spread    []Lines   `bson:"spread" json:"spread"`
-				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
-				Total     []Lines   `bson:"total" json:"total"`
+				MoneyLineTimestamp time.Time `bson:"moneylinetimestamp" json:"moneylinetimestamp"`
+				SpreadTimestamp    time.Time `bson:"spreadtimestamp" json:"spreadtimestamp"`
+				TotalTimestamp     time.Time `bson:"totaltimestamp" json:"totaltimestamp"`
+				Spread             []Lines   `bson:"spread" json:"spread"`
+				MoneyLine          []Lines   `bson:"moneyline" json:"moneyline"`
+				Total              []Lines   `bson:"total" json:"total"`
 			} `bson:"twohalf" json:"twohalf"`
 			OneQuarter struct {
-				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
-				Spread    []Lines   `bson:"spread" json:"spread"`
-				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
-				Total     []Lines   `bson:"total" json:"total"`
+				MoneyLineTimestamp time.Time `bson:"moneylinetimestamp" json:"moneylinetimestamp"`
+				SpreadTimestamp    time.Time `bson:"spreadtimestamp" json:"spreadtimestamp"`
+				TotalTimestamp     time.Time `bson:"totaltimestamp" json:"totaltimestamp"`
+				Spread             []Lines   `bson:"spread" json:"spread"`
+				MoneyLine          []Lines   `bson:"moneyline" json:"moneyline"`
+				Total              []Lines   `bson:"total" json:"total"`
 			} `bson:"onequarter" json:"onequarter"`
 			TwoQuarter struct {
-				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
-				Spread    []Lines   `bson:"spread" json:"spread"`
-				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
-				Total     []Lines   `bson:"total" json:"total"`
+				MoneyLineTimestamp time.Time `bson:"moneylinetimestamp" json:"moneylinetimestamp"`
+				SpreadTimestamp    time.Time `bson:"spreadtimestamp" json:"spreadtimestamp"`
+				TotalTimestamp     time.Time `bson:"totaltimestamp" json:"totaltimestamp"`
+				Spread             []Lines   `bson:"spread" json:"spread"`
+				MoneyLine          []Lines   `bson:"moneyline" json:"moneyline"`
+				Total              []Lines   `bson:"total" json:"total"`
 			} `bson:"twoquarter" json:"twoquarter"`
 			ThreeQuarter struct {
-				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
-				Spread    []Lines   `bson:"spread" json:"spread"`
-				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
-				Total     []Lines   `bson:"total" json:"total"`
+				MoneyLineTimestamp time.Time `bson:"moneylinetimestamp" json:"moneylinetimestamp"`
+				SpreadTimestamp    time.Time `bson:"spreadtimestamp" json:"spreadtimestamp"`
+				TotalTimestamp     time.Time `bson:"totaltimestamp" json:"totaltimestamp"`
+				Spread             []Lines   `bson:"spread" json:"spread"`
+				MoneyLine          []Lines   `bson:"moneyline" json:"moneyline"`
+				Total              []Lines   `bson:"total" json:"total"`
 			} `bson:"threequarter" json:"threequarter"`
 			FourQuarter struct {
-				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
-				Spread    []Lines   `bson:"spread" json:"spread"`
-				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
-				Total     []Lines   `bson:"total" json:"total"`
+				MoneyLineTimestamp time.Time `bson:"moneylinetimestamp" json:"moneylinetimestamp"`
+				SpreadTimestamp    time.Time `bson:"spreadtimestamp" json:"spreadtimestamp"`
+				TotalTimestamp     time.Time `bson:"totaltimestamp" json:"totaltimestamp"`
+				Spread             []Lines   `bson:"spread" json:"spread"`
+				MoneyLine          []Lines   `bson:"moneyline" json:"moneyline"`
+				Total              []Lines   `bson:"total" json:"total"`
 			} `bson:"fourquarter" json:"fourquarter"`
 		} `bson:"collegefootball" json:"collegefootball"`
 	} `bson:"league" json:"league"`
