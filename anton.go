@@ -570,7 +570,6 @@ type SiteDictionary struct {
 				} `bson:"period" json:"period"`
 			} `bson:"collegebasketball" json:"collegebasketball"`
 		} `bson:"basketball" json:"basketball"`
-
 		Football struct {
 			ID  string `bson:"id" json:"id"`
 			NFL struct {
@@ -603,28 +602,236 @@ type SiteDictionary struct {
 
 // Struct to save lines from a Site, used for data mapping
 type LinesMappingStruct struct {
+	ID       primitive.ObjectID `bson:"_id,omitempty" json:"-"`
+	ObjectID string             `bson:"-" json:"-"`
+
 	SiteName          string    `bson:"sitename" json:"sitename"`
 	FullSyncTimeStamp time.Time `bson:"fullsynctimestamp" json:"fullsynctimestamp"`
 	League            struct {
 		MLB struct {
 			SyncTimeStamp time.Time `bson:"timestamp" json:"timstamp"`
-			Lines         []Lines   `bson:"lines" json:"lines"`
+			Game          struct {
+				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
+				Spread    []Lines   `bson:"spread" json:"spread"`
+				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
+				Total     []Lines   `bson:"total" json:"total"`
+			} `bson:"game" json:"game"`
+			OneHalf struct {
+				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
+				Spread    []Lines   `bson:"spread" json:"spread"`
+				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
+				Total     []Lines   `bson:"total" json:"total"`
+			} `bson:"onehalf" json:"onehalf"`
+			TwoHalf struct {
+				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
+				Spread    []Lines   `bson:"spread" json:"spread"`
+				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
+				Total     []Lines   `bson:"total" json:"total"`
+			} `bson:"twohalf" json:"twohalf"`
+			OneQuarter struct {
+				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
+				Spread    []Lines   `bson:"spread" json:"spread"`
+				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
+				Total     []Lines   `bson:"total" json:"total"`
+			} `bson:"onequarter" json:"onequarter"`
+			TwoQuarter struct {
+				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
+				Spread    []Lines   `bson:"spread" json:"spread"`
+				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
+				Total     []Lines   `bson:"total" json:"total"`
+			} `bson:"twoquarter" json:"twoquarter"`
+			ThreeQuarter struct {
+				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
+				Spread    []Lines   `bson:"spread" json:"spread"`
+				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
+				Total     []Lines   `bson:"total" json:"total"`
+			} `bson:"threequarter" json:"threequarter"`
+			FourQuarter struct {
+				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
+				Spread    []Lines   `bson:"spread" json:"spread"`
+				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
+				Total     []Lines   `bson:"total" json:"total"`
+			} `bson:"fourquarter" json:"fourquarter"`
 		} `bson:"mlb" json:"mlb"`
 		NBA struct {
 			SyncTimeStamp time.Time `bson:"timestamp" json:"timstamp"`
-			Lines         []Lines   `bson:"lines" json:"lines"`
+			Game          struct {
+				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
+				Spread    []Lines   `bson:"spread" json:"spread"`
+				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
+				Total     []Lines   `bson:"total" json:"total"`
+			} `bson:"game" json:"game"`
+			OneHalf struct {
+				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
+				Spread    []Lines   `bson:"spread" json:"spread"`
+				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
+				Total     []Lines   `bson:"total" json:"total"`
+			} `bson:"onehalf" json:"onehalf"`
+			TwoHalf struct {
+				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
+				Spread    []Lines   `bson:"spread" json:"spread"`
+				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
+				Total     []Lines   `bson:"total" json:"total"`
+			} `bson:"twohalf" json:"twohalf"`
+			OneQuarter struct {
+				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
+				Spread    []Lines   `bson:"spread" json:"spread"`
+				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
+				Total     []Lines   `bson:"total" json:"total"`
+			} `bson:"onequarter" json:"onequarter"`
+			TwoQuarter struct {
+				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
+				Spread    []Lines   `bson:"spread" json:"spread"`
+				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
+				Total     []Lines   `bson:"total" json:"total"`
+			} `bson:"twoquarter" json:"twoquarter"`
+			ThreeQuarter struct {
+				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
+				Spread    []Lines   `bson:"spread" json:"spread"`
+				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
+				Total     []Lines   `bson:"total" json:"total"`
+			} `bson:"threequarter" json:"threequarter"`
+			FourQuarter struct {
+				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
+				Spread    []Lines   `bson:"spread" json:"spread"`
+				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
+				Total     []Lines   `bson:"total" json:"total"`
+			} `bson:"fourquarter" json:"fourquarter"`
 		} `bson:"nba" json:"nba"`
 		NFL struct {
 			SyncTimeStamp time.Time `bson:"timestamp" json:"timstamp"`
-			Lines         []Lines   `bson:"lines" json:"lines"`
+			Game          struct {
+				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
+				Spread    []Lines   `bson:"spread" json:"spread"`
+				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
+				Total     []Lines   `bson:"total" json:"total"`
+			} `bson:"game" json:"game"`
+			OneHalf struct {
+				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
+				Spread    []Lines   `bson:"spread" json:"spread"`
+				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
+				Total     []Lines   `bson:"total" json:"total"`
+			} `bson:"onehalf" json:"onehalf"`
+			TwoHalf struct {
+				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
+				Spread    []Lines   `bson:"spread" json:"spread"`
+				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
+				Total     []Lines   `bson:"total" json:"total"`
+			} `bson:"twohalf" json:"twohalf"`
+			OneQuarter struct {
+				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
+				Spread    []Lines   `bson:"spread" json:"spread"`
+				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
+				Total     []Lines   `bson:"total" json:"total"`
+			} `bson:"onequarter" json:"onequarter"`
+			TwoQuarter struct {
+				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
+				Spread    []Lines   `bson:"spread" json:"spread"`
+				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
+				Total     []Lines   `bson:"total" json:"total"`
+			} `bson:"twoquarter" json:"twoquarter"`
+			ThreeQuarter struct {
+				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
+				Spread    []Lines   `bson:"spread" json:"spread"`
+				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
+				Total     []Lines   `bson:"total" json:"total"`
+			} `bson:"threequarter" json:"threequarter"`
+			FourQuarter struct {
+				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
+				Spread    []Lines   `bson:"spread" json:"spread"`
+				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
+				Total     []Lines   `bson:"total" json:"total"`
+			} `bson:"fourquarter" json:"fourquarter"`
 		} `bson:"nfl" json:"nfl"`
 		CollegeBasketball struct {
 			SyncTimeStamp time.Time `bson:"timestamp" json:"timstamp"`
-			Lines         []Lines   `bson:"lines" json:"lines"`
+			Game          struct {
+				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
+				Spread    []Lines   `bson:"spread" json:"spread"`
+				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
+				Total     []Lines   `bson:"total" json:"total"`
+			} `bson:"game" json:"game"`
+			OneHalf struct {
+				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
+				Spread    []Lines   `bson:"spread" json:"spread"`
+				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
+				Total     []Lines   `bson:"total" json:"total"`
+			} `bson:"onehalf" json:"onehalf"`
+			TwoHalf struct {
+				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
+				Spread    []Lines   `bson:"spread" json:"spread"`
+				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
+				Total     []Lines   `bson:"total" json:"total"`
+			} `bson:"twohalf" json:"twohalf"`
+			OneQuarter struct {
+				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
+				Spread    []Lines   `bson:"spread" json:"spread"`
+				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
+				Total     []Lines   `bson:"total" json:"total"`
+			} `bson:"onequarter" json:"onequarter"`
+			TwoQuarter struct {
+				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
+				Spread    []Lines   `bson:"spread" json:"spread"`
+				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
+				Total     []Lines   `bson:"total" json:"total"`
+			} `bson:"twoquarter" json:"twoquarter"`
+			ThreeQuarter struct {
+				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
+				Spread    []Lines   `bson:"spread" json:"spread"`
+				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
+				Total     []Lines   `bson:"total" json:"total"`
+			} `bson:"threequarter" json:"threequarter"`
+			FourQuarter struct {
+				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
+				Spread    []Lines   `bson:"spread" json:"spread"`
+				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
+				Total     []Lines   `bson:"total" json:"total"`
+			} `bson:"fourquarter" json:"fourquarter"`
 		} `bson:"collegebasketball" json:"collegebasketball"`
 		CollegeFootball struct {
 			SyncTimeStamp time.Time `bson:"timestamp" json:"timstamp"`
-			Lines         []Lines   `bson:"lines" json:"lines"`
+			Game          struct {
+				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
+				Spread    []Lines   `bson:"spread" json:"spread"`
+				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
+				Total     []Lines   `bson:"total" json:"total"`
+			} `bson:"game" json:"game"`
+			OneHalf struct {
+				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
+				Spread    []Lines   `bson:"spread" json:"spread"`
+				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
+				Total     []Lines   `bson:"total" json:"total"`
+			} `bson:"onehalf" json:"onehalf"`
+			TwoHalf struct {
+				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
+				Spread    []Lines   `bson:"spread" json:"spread"`
+				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
+				Total     []Lines   `bson:"total" json:"total"`
+			} `bson:"twohalf" json:"twohalf"`
+			OneQuarter struct {
+				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
+				Spread    []Lines   `bson:"spread" json:"spread"`
+				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
+				Total     []Lines   `bson:"total" json:"total"`
+			} `bson:"onequarter" json:"onequarter"`
+			TwoQuarter struct {
+				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
+				Spread    []Lines   `bson:"spread" json:"spread"`
+				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
+				Total     []Lines   `bson:"total" json:"total"`
+			} `bson:"twoquarter" json:"twoquarter"`
+			ThreeQuarter struct {
+				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
+				Spread    []Lines   `bson:"spread" json:"spread"`
+				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
+				Total     []Lines   `bson:"total" json:"total"`
+			} `bson:"threequarter" json:"threequarter"`
+			FourQuarter struct {
+				Timestamp time.Time `bson:"timestamp" json:"timestamp"`
+				Spread    []Lines   `bson:"spread" json:"spread"`
+				MoneyLine []Lines   `bson:"moneyline" json:"moneyline"`
+				Total     []Lines   `bson:"total" json:"total"`
+			} `bson:"fourquarter" json:"fourquarter"`
 		} `bson:"collegefootball" json:"collegefootball"`
 	} `bson:"league" json:"league"`
 }
